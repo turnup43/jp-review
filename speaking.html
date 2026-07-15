@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>시원스쿨 일본어 기초말하기 복습 (1~30강)</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --panel2:#1f262e; --line:#2a323c;
+    --text:#e6edf3; --muted:#8b98a5; --accent:#4a9eff; --accent2:#3b82f6;
+    --good:#3fb950; --warn:#e3b341;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    line-height:1.5; padding-bottom:40px;}
+  .wrap{max-width:560px; margin:0 auto; padding:16px;}
+  .jp{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;}
+  header.top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:6px 0 14px;}
+  header.top h1{font-size:17px; margin:0;}
+  .sub{font-size:12px; color:var(--muted); margin-top:2px;}
+  button{font-family:inherit; cursor:pointer; border:1px solid var(--line); background:var(--panel2);
+    color:var(--text); border-radius:10px; padding:10px 14px; font-size:14px;}
+  button:hover{border-color:var(--accent2);}
+  button.primary{background:var(--accent2); border-color:var(--accent2); color:#fff; font-weight:600;}
+  button.warn{color:var(--warn); border-color:var(--warn);}
+  button:disabled{opacity:.5;}
+  .btn{padding:8px 12px; font-size:13px;}
+  .panel{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:14px;}
+  .panel h3{margin:0 0 12px; font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.03em;}
+  .row{display:flex; align-items:center; gap:10px;}
+  .hidden{display:none !important;}
+
+  .chips{display:flex; gap:6px; flex-wrap:wrap;}
+  .chip{padding:8px 10px; border-radius:10px; border:1px solid var(--line); background:var(--panel2);
+    color:var(--muted); font-size:12px; white-space:nowrap;}
+  .chip.active{background:var(--accent2); border-color:var(--accent2); color:#fff; font-weight:700;}
+
+  .modes{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .mode-card{border:1px solid var(--line); background:var(--panel2); border-radius:12px; padding:14px; cursor:pointer;}
+  .mode-card.active{border-color:var(--accent2); background:rgba(59,130,246,.12);}
+  .mode-card .ttl{font-weight:700; font-size:14px;}
+  .mode-card .desc{font-size:11px; color:var(--muted); margin-top:4px;}
+
+  .switch{display:flex; gap:0; background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:2px;}
+  .switch button{padding:7px 11px; font-size:12px; border:none; background:transparent; color:var(--muted); border-radius:8px;}
+  .switch button.on{background:var(--accent2); color:#fff;}
+  .toggle-row{display:flex; align-items:center; justify-content:space-between; padding:6px 0; font-size:13px; color:var(--muted);}
+
+  .lvlist{display:flex; flex-direction:column; gap:8px; max-height:230px; overflow:auto;}
+  .lvitem{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:9px 12px;
+    border:1px solid var(--line); border-radius:10px; background:var(--panel2); font-size:12.5px;}
+  .lvitem .lt{flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .lvbar{height:6px; background:var(--bg); border-radius:99px; overflow:hidden; width:70px;}
+  .lvbar>span{display:block; height:100%; background:var(--good);}
+
+  .topbar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:6px;}
+  .crumbs{font-size:12px; color:var(--muted); overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .progress{height:5px; background:var(--panel2); border:1px solid var(--line); border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .progress>span{display:block; height:100%; width:0; background:var(--accent2); transition:width .3s;}
+
+  .card{position:relative; background:var(--panel); border:1px solid var(--line); border-radius:18px;
+    padding:22px 18px 60px; min-height:300px; display:flex; flex-direction:column; cursor:pointer; user-select:none;}
+  .card .meta{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:14px;}
+  .lvbadge{font-size:11px; font-weight:700; padding:3px 9px; border-radius:99px; background:var(--accent2); color:#fff;}
+  .sectag{font-size:11px; color:var(--muted); border:1px solid var(--line); background:var(--panel2);
+    border-radius:99px; padding:3px 9px; margin-left:auto; max-width:70%; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .front{flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:6px;}
+  .qlabel{font-size:11px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase; margin-bottom:8px;}
+  .qtext{font-size:30px; font-weight:700; word-break:keep-all; line-height:1.5;}
+  .qtext.ko{font-size:27px;}
+  .answer{margin-top:16px; padding-top:16px; border-top:1px dashed var(--line); text-align:center;
+    opacity:0; transform:translateY(6px); transition:all .22s;}
+  .card.flipped .answer{opacity:1; transform:none;}
+  .answer .atext{font-size:26px; font-weight:700; word-break:keep-all; line-height:1.5;}
+  .hint{position:absolute; left:0; right:0; bottom:14px; text-align:center; font-size:11px; color:var(--muted);
+    letter-spacing:.05em; text-transform:uppercase;}
+  .countdown{position:absolute; top:14px; right:14px; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .speak-btn{position:absolute; bottom:12px; left:12px; width:44px; height:44px; border-radius:50%; padding:0;
+    font-size:18px; background:var(--panel2); display:flex; align-items:center; justify-content:center;}
+  .speak-btn.speaking{background:var(--accent2); color:#fff; border-color:var(--accent2); animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+
+  .nav-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:14px;}
+  .nav-row button{padding:12px;}
+  #autoPlayBtn{width:100%;}
+  #autoPlayBtn.on{background:var(--warn); border-color:var(--warn); color:#111; animation:pulse 1.4s infinite;}
+  .knowrow{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px;}
+  .knowrow .know.on{background:var(--good); border-color:var(--good); color:#fff;}
+  .end{text-align:center; padding:34px 18px;}
+  .end .big{font-size:44px;}
+  .footer-note{font-size:11px; color:var(--muted); text-align:center; margin-top:24px;}
+  kbd{background:var(--panel2); border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:11px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>🗣️ 시원스쿨 기초말하기 복습</h1>
+      <div class="sub" id="sub">1~30강 · 130문장 · <span id="masterInfo"></span></div>
+    </div>
+    <button class="btn" id="goHome">🏠 홈</button>
+  </header>
+
+  <section id="homeView">
+    <div class="panel">
+      <h3>강(講) 선택</h3>
+      <div class="chips" id="lessonChips"></div>
+    </div>
+    <div class="panel">
+      <h3>학습 모드</h3>
+      <div class="modes">
+        <div class="mode-card" data-mode="ko">
+          <div class="ttl">🇰🇷 한국어 → 일본어</div>
+          <div class="desc">뜻 보고 일본어 말하기 · 탭하면 정답</div>
+        </div>
+        <div class="mode-card" data-mode="jp">
+          <div class="ttl jp">🇯🇵 일본어 → 한국어</div>
+          <div class="desc">문장 보고 뜻 떠올리기 · 탭하면 정답</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <div class="toggle-row"><span>안 익힌 것만 학습</span>
+          <div class="switch" id="scopeSwitch"><button data-scope="all" class="on">전체</button><button data-scope="todo">미완만</button></div></div>
+        <div class="toggle-row"><span>자동발음</span>
+          <div class="switch" id="autoSpeakSwitch"><button data-as="1" class="on">ON</button><button data-as="0">OFF</button></div></div>
+        <div class="toggle-row"><span>발음 속도</span>
+          <div class="switch" id="rateSwitch">
+            <button data-rate="0.5">0.5×</button><button data-rate="0.75">0.75×</button>
+            <button data-rate="1" class="on">1×</button><button data-rate="1.25">1.25×</button></div></div>
+        <div class="toggle-row"><span>자동재생 반복</span>
+          <div class="switch" id="repeatSwitch">
+            <button data-rep="1">1회</button><button data-rep="2">2회</button>
+            <button data-rep="3" class="on">3회</button><button data-rep="5">5회</button></div></div>
+      </div>
+      <div style="margin-top:14px;"><button class="primary" id="startBtn" style="width:100%; padding:14px;">▶ 학습 시작</button></div>
+      <div id="ttsWarn" style="font-size:11px; color:var(--warn); margin-top:10px; display:none;">
+        ⚠️ 이 브라우저/기기에 일본어 음성이 없어 발음이 어색할 수 있어요. (macOS Safari · Kyoko 권장)</div>
+    </div>
+    <div class="panel">
+      <h3>강별 진도</h3>
+      <div class="lvlist" id="lvList"></div>
+      <div class="row" style="margin-top:12px;"><button class="warn btn" id="resetBtn">↺ 익힘 기록 초기화</button></div>
+    </div>
+    <div class="footer-note">
+      원본: <b>시원스쿨 일본어 기초말하기 강의 요약 (1~30강) 종합 실습본.docx</b> (강사: 최유리)<br>
+      진도는 이 브라우저에 저장됩니다 · 키보드 <kbd>Space</kbd>뒤집기 <kbd>←→</kbd>이동 <kbd>S</kbd>발음 <kbd>A</kbd>자동재생 <kbd>K</kbd>익힘
+    </div>
+  </section>
+
+  <section id="studyView" class="hidden">
+    <div class="topbar"><div class="crumbs" id="crumbs"></div><button class="btn" id="exitStudy">← 홈으로</button></div>
+    <div class="progress"><span id="progressBar"></span></div>
+    <div class="card" id="card">
+      <div class="meta"><span class="lvbadge" id="lvBadge"></span><span class="sectag" id="secTag"></span></div>
+      <div class="front"><div class="qlabel" id="qLabel"></div><div class="qtext" id="qText"></div></div>
+      <div class="answer" id="answerEl"></div>
+      <div class="countdown" id="countdown"></div>
+      <button class="speak-btn" id="speakBtn" title="발음">🔊</button>
+      <div class="hint" id="hint">탭하여 정답 보기</div>
+    </div>
+    <div class="nav-row"><button id="prevBtn">← 이전</button><button id="flipBtn">뒤집기 ↻</button><button id="nextBtn" class="primary">다음 →</button></div>
+    <div class="knowrow"><button class="know" id="knowBtn">✓ 익힘</button><button class="again" id="againBtn">↻ 다시</button></div>
+    <div class="row" style="margin-top:10px;"><button id="autoPlayBtn" class="primary">▶ 자동재생 (3회 반복)</button></div>
+    <div class="row" style="justify-content:space-between; margin-top:10px; gap:10px; flex-wrap:wrap;">
+      <div class="switch" id="rateSwitchStudy">
+        <button data-rate="0.5">0.5×</button><button data-rate="0.75">0.75×</button><button data-rate="1">1×</button><button data-rate="1.25">1.25×</button></div>
+      <div class="switch" id="repeatSwitchStudy">
+        <button data-rep="1">1회</button><button data-rep="2">2회</button><button data-rep="3">3회</button><button data-rep="5">5회</button></div>
+    </div>
+  </section>
+
+  <section id="endView" class="hidden">
+    <div class="panel end"><div class="big">🎉</div>
+      <h3 id="endTitle" style="color:var(--text); font-size:18px;">학습 완료!</h3>
+      <p id="endDesc" style="color:var(--muted); font-size:13px;"></p>
+      <div class="row" style="justify-content:center; gap:8px;">
+        <button class="primary" id="endRestart">한 번 더</button><button class="btn" id="endHome">홈으로</button></div>
+    </div>
+  </section>
+</div>
+
+<script>
+const RAW={"lessons":[{"lesson":"1강","title":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기"},{"lesson":"2강","title":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기"},{"lesson":"4강","title":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기"},{"lesson":"6강","title":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기"},{"lesson":"7강","title":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기"},{"lesson":"8강","title":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기"},{"lesson":"9강","title":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기"},{"lesson":"10강","title":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기"},{"lesson":"11강","title":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기"},{"lesson":"12강","title":"의문사 및 최상급","point":"누구, 어디, 어느 것 표현과 가장/제일 표현 배우기"},{"lesson":"14강","title":"'가'를 사용하는 형용사","point":"'가(が)' 조사와 함께 쓰이는 형용사들 익히기"},{"lesson":"15~18강","title":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기"},{"lesson":"20~22강","title":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습"},{"lesson":"25~27강","title":"희망, 용이성, 난이성","point":"ます형을 활용한 다양한 의사표현"},{"lesson":"30강","title":"형용사의 과도함 표현","point":"형용사 어간을 활용한 '너무 ~하다' 표현"}],"items":[{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정 (~이에요 / ~이다)","ko":"편의점이에요.","jp":"コンビニです。","jp_speak":"コンビニです。","id":0},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정 (~이에요 / ~이다)","ko":"일본산이에요.","jp":"日本製です。","jp_speak":"日本製です。","id":1},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정 (~이에요 / ~이다)","ko":"이것은 오늘(의) 티켓이에요.","jp":"これは今日のチケットです。","jp_speak":"これは今日のチケットです。","id":2},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정 (~이에요 / ~이다)","ko":"편의점이다.","jp":"コンビニだ。","jp_speak":"コンビニだ。","id":3},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정 (~이에요 / ~이다)","ko":"일본산이다.","jp":"日本製だ。","jp_speak":"日本製だ。","id":4},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정 (~이에요 / ~이다)","ko":"이것은 오늘(의) 티켓이다.","jp":"これは今日のチケットだ。","jp_speak":"これは今日のチケットだ。","id":5},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정 (~였어요 / ~였다)","ko":"편의점이었어요.","jp":"コンビニでした。","jp_speak":"コンビニでした。","id":6},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정 (~였어요 / ~였다)","ko":"일본산이었어요.","jp":"日本製でした。","jp_speak":"日本製でした。","id":7},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정 (~였어요 / ~였다)","ko":"이것은 오늘(의) 티켓이었어요.","jp":"これは今日のチケットでした。","jp_speak":"これは今日のチケットでした。","id":8},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정 (~였어요 / ~였다)","ko":"편의점이었다.","jp":"コンビニだった。","jp_speak":"コンビニだった。","id":9},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정 (~였어요 / ~였다)","ko":"일본산이었다.","jp":"日本製だった。","jp_speak":"日本製だった。","id":10},{"lesson":"1강","lessonTitle":"명사 긍정문 (현재/과거)","point":"명사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정 (~였어요 / ~였다)","ko":"이것은 오늘(의) 티켓이었다.","jp":"これは今日のチケットだった。","jp_speak":"これは今日のチケットだった。","id":11},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정 (~이 아니에요 / ~이 아니다)","ko":"아이돌이 아니에요.","jp":"アイドルじゃありません。","jp_speak":"アイドルじゃありません。","id":12},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정 (~이 아니에요 / ~이 아니다)","ko":"그녀가 아니에요.","jp":"彼女じゃありません。","jp_speak":"彼女じゃありません。","id":13},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정 (~이 아니에요 / ~이 아니다)","ko":"이번은 출장이 아니에요.","jp":"今回は出張じゃありません。","jp_speak":"今回は出張じゃありません。","id":14},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정 (~이 아니에요 / ~이 아니다)","ko":"아이돌이 아니다.","jp":"アイドルじゃない。","jp_speak":"アイドルじゃない。","id":15},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정 (~이 아니에요 / ~이 아니다)","ko":"그녀가 아니다.","jp":"彼女じゃない。","jp_speak":"彼女じゃない。","id":16},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정 (~이 아니에요 / ~이 아니다)","ko":"이번은 출장이 아니다.","jp":"今回は出張じゃない。","jp_speak":"今回は出張じゃない。","id":17},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"의문형","ko":"편의점이에요?","jp":"コンビニですか？","jp_speak":"コンビニですか？","id":18},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"의문형","ko":"이것은 오늘(의) 티켓이었어요?","jp":"これは今日のチケットでしたか？","jp_speak":"これは今日のチケットでしたか？","id":19},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"의문형","ko":"일본산(이야)?","jp":"日本製？","jp_speak":"日本製？","id":20},{"lesson":"2강","lessonTitle":"명사 부정문 및 의문형","point":"명사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"의문형","ko":"이것은 오늘(의) 티켓이었어?","jp":"これは今日のチケットだった？","jp_speak":"これは今日のチケットだった？","id":21},{"lesson":"4강","lessonTitle":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기","section":"현재긍정 연결","ko":"이것은 초밥이고 저것은 회예요.","jp":"これはすしで、あれはさしみです。","jp_speak":"これはすしで、あれはさしみです。","id":22},{"lesson":"4강","lessonTitle":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기","section":"현재긍정 연결","ko":"이것은 신주쿠행이고 그것은 롯본기행이에요.","jp":"これは新宿行きで、それは六本木行きです。","jp_speak":"これは新宿行きで、それは六本木行きです。","id":23},{"lesson":"4강","lessonTitle":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기","section":"현재긍정 연결","ko":"나는 선생이고 너는 학생이다.","jp":"私は先生で、あなたは学生だ。","jp_speak":"私は先生で、あなたは学生だ。","id":24},{"lesson":"4강","lessonTitle":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기","section":"현재긍정 연결","ko":"라면은 이거고 우동은 그거다.","jp":"ラーメンはこれで、うどんはそれだ。","jp_speak":"ラーメンはこれで、うどんはそれだ。","id":25},{"lesson":"4강","lessonTitle":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기","section":"과거긍정 연결","ko":"이것은 초밥이고 저것은 회였어요.","jp":"これはすしで、あれはさしみでした。","jp_speak":"これはすしで、あれはさしみでした。","id":26},{"lesson":"4강","lessonTitle":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기","section":"과거긍정 연결","ko":"이것은 신주쿠행이고 그것은 롯본기행이었어요.","jp":"これは新宿行きで、それは六本木行きでした。","jp_speak":"これは新宿行きで、それは六本木行きでした。","id":27},{"lesson":"4강","lessonTitle":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기","section":"과거긍정 연결","ko":"나는 선생이고 너는 학생이었다.","jp":"私は先生で、あなたは学生だった。","jp_speak":"私は先生で、あなたは学生だった。","id":28},{"lesson":"4강","lessonTitle":"명사 연결 (~이고)","point":"명사를 연결하는 방법(~으로/이고) 배우기","section":"과거긍정 연결","ko":"라면은 이거고 우동은 그거였다.","jp":"ラーメンはこれで、うどんはそれだった。","jp_speak":"ラーメンはこれで、うどんはそれだった。","id":29},{"lesson":"6강","lessonTitle":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정","ko":"걱정이에요.","jp":"心配です。","jp_speak":"心配です。","id":30},{"lesson":"6강","lessonTitle":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정","ko":"근사해요.","jp":"素敵です。","jp_speak":"素敵です。","id":31},{"lesson":"6강","lessonTitle":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정","ko":"첫 번째 여행이 걱정이야.","jp":"初めての旅行が心配だ。","jp_speak":"初めての旅行が心配だ。","id":32},{"lesson":"6강","lessonTitle":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정","ko":"후지산이 제일 근사해.","jp":"富士山が一番素敵だ。","jp_speak":"富士山が一番素敵だ。","id":33},{"lesson":"6강","lessonTitle":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정","ko":"걱정이었어요.","jp":"心配でした。","jp_speak":"心配でした。","id":34},{"lesson":"6강","lessonTitle":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정","ko":"근사했어요.","jp":"素敵でした。","jp_speak":"素敵でした。","id":35},{"lesson":"6강","lessonTitle":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정","ko":"첫 번째 여행이 걱정이었어.","jp":"初めての旅行が心配だった。","jp_speak":"初めての旅行が心配だった。","id":36},{"lesson":"6강","lessonTitle":"나형용사 긍정문","point":"나형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정","ko":"후지산이 제일 근사했어.","jp":"富士山が一番素敵だった。","jp_speak":"富士山が一番素敵だった。","id":37},{"lesson":"7강","lessonTitle":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"위험하지 않아요.","jp":"危険じゃありません。","jp_speak":"危険じゃありません。","id":38},{"lesson":"7강","lessonTitle":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"단순하지 않아요.","jp":"単純じゃありません。","jp_speak":"単純じゃありません。","id":39},{"lesson":"7강","lessonTitle":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"필요하지 않다.","jp":"必要じゃない。","jp_speak":"必要じゃない。","id":40},{"lesson":"7강","lessonTitle":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"행복하지 않다.","jp":"幸せじゃない。","jp_speak":"幸せじゃない。","id":41},{"lesson":"7강","lessonTitle":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"위험하지 않았어요.","jp":"危険じゃありませんでした。","jp_speak":"危険じゃありませんでした。","id":42},{"lesson":"7강","lessonTitle":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"단순하지 않았어요.","jp":"単純じゃありませんでした。","jp_speak":"単純じゃありませんでした。","id":43},{"lesson":"7강","lessonTitle":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"필요하지 않았다.","jp":"必要じゃなかった。","jp_speak":"必要じゃなかった。","id":44},{"lesson":"7강","lessonTitle":"나형용사 부정문","point":"나형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"행복하지 않았다.","jp":"幸せじゃなかった。","jp_speak":"幸せじゃなかった。","id":45},{"lesson":"8강","lessonTitle":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기","section":"명사 수식형 만들기","ko":"행복하다 -> 행복한","jp":"幸せだ -> 幸せな","jp_speak":"幸せだ -> 幸せな","id":46},{"lesson":"8강","lessonTitle":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기","section":"명사 수식형 만들기","ko":"편리하다 -> 편리한","jp":"便利だ -> 便利な","jp_speak":"便利だ -> 便利な","id":47},{"lesson":"8강","lessonTitle":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기","section":"명사 수식형 만들기","ko":"편하다 -> 편한","jp":"楽だ -> 楽な","jp_speak":"楽だ -> 楽な","id":48},{"lesson":"8강","lessonTitle":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기","section":"명사 수식형 만들기","ko":"능숙하다 -> 능숙한","jp":"上手だ -> 上手な","jp_speak":"上手だ -> 上手な","id":49},{"lesson":"8강","lessonTitle":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기","section":"명사 수식 실습","ko":"행복한 때","jp":"幸せな時","jp_speak":"幸せな時","id":50},{"lesson":"8강","lessonTitle":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기","section":"명사 수식 실습","ko":"편리한 스마트폰","jp":"便利なスマホ","jp_speak":"便利なスマホ","id":51},{"lesson":"8강","lessonTitle":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기","section":"명사 수식 실습","ko":"편한 자리","jp":"楽な席","jp_speak":"楽な席","id":52},{"lesson":"8강","lessonTitle":"나형용사의 명사 수식","point":"나형용사가 명사를 수식하는 방법 배우기","section":"명사 수식 실습","ko":"능숙한 학생","jp":"上手な学生","jp_speak":"上手な学生","id":53},{"lesson":"9강","lessonTitle":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정","ko":"맛있어요.","jp":"おいしいです。","jp_speak":"おいしいです。","id":54},{"lesson":"9강","lessonTitle":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정","ko":"시끄러워요.","jp":"うるさいです。","jp_speak":"うるさいです。","id":55},{"lesson":"9강","lessonTitle":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정","ko":"맛있다.","jp":"おいしい。","jp_speak":"おいしい。","id":56},{"lesson":"9강","lessonTitle":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"현재긍정","ko":"시끄럽다.","jp":"うるさい。","jp_speak":"うるさい。","id":57},{"lesson":"9강","lessonTitle":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정","ko":"맛있었어요.","jp":"おいしかったです。","jp_speak":"おいしかったです。","id":58},{"lesson":"9강","lessonTitle":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정","ko":"시끄러웠어요.","jp":"うるさかったです。","jp_speak":"うるさかったです。","id":59},{"lesson":"9강","lessonTitle":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정","ko":"맛있었다.","jp":"おいしかった。","jp_speak":"おいしかった。","id":60},{"lesson":"9강","lessonTitle":"이형용사 긍정문","point":"이형용사를 활용한 긍정문장의 정중표현과 기본표현 익히기","section":"과거긍정","ko":"시끄러웠다.","jp":"うるさかった。","jp_speak":"うるさかった。","id":61},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"맛있지 않아요.","jp":"おいしくありません。","jp_speak":"おいしくありません。","id":62},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"싸지 않아요.","jp":"安くありません。","jp_speak":"安くありません。","id":63},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"비싸지 않아요.","jp":"高くありません。","jp_speak":"高くありません。","id":64},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"어렵지 않다.","jp":"難しくない。","jp_speak":"難しくない。","id":65},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"시끄럽지 않다.","jp":"うるさくない。","jp_speak":"うるさくない。","id":66},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"현재부정","ko":"지루하지 않다.","jp":"つまらなくない。","jp_speak":"つまらなくない。","id":67},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"맛있지 않았어요.","jp":"おいしくありませんでした。","jp_speak":"おいしくありませんでした。","id":68},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"싸지 않았어요.","jp":"安くありませんでした。","jp_speak":"安くありませんでした。","id":69},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"비싸지 않았어요.","jp":"高くありませんでした。","jp_speak":"高くありませんでした。","id":70},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"어렵지 않았다.","jp":"難しくなかった。","jp_speak":"難しくなかった。","id":71},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"시끄럽지 않았다.","jp":"うるさくなかった。","jp_speak":"うるさくなかった。","id":72},{"lesson":"10강","lessonTitle":"이형용사 부정문","point":"이형용사를 활용한 부정문장의 정중표현과 기본표현 익히기","section":"과거부정","ko":"지루하지 않았다.","jp":"つまらなくなかった。","jp_speak":"つまらなくなかった。","id":73},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"기본형 명사 수식 (현재)","ko":"비싼 온천.","jp":"高い温泉。","jp_speak":"高い温泉。","id":74},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"기본형 명사 수식 (현재)","ko":"싼 케이크.","jp":"安いケーキ。","jp_speak":"安いケーキ。","id":75},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"기본형 명사 수식 (현재)","ko":"바쁜 하루.","jp":"忙しい一日。","jp_speak":"忙しい一日。","id":76},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"기본형 명사 수식 (현재)","ko":"큰 배.","jp":"大きい船。","jp_speak":"大きい船。","id":77},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"과거형 명사 수식 (했던)","ko":"비쌌던 온천.","jp":"高かった温泉。","jp_speak":"高かった温泉。","id":78},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"과거형 명사 수식 (했던)","ko":"쌌던 케이크.","jp":"安かったケーキ。","jp_speak":"安かったケーキ。","id":79},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"과거형 명사 수식 (했던)","ko":"바빴던 하루.","jp":"忙しかった一日。","jp_speak":"忙しかった一日。","id":80},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"과거형 명사 수식 (했던)","ko":"컸던 배.","jp":"大きかった船。","jp_speak":"大きかった船。","id":81},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"부정형 명사 수식 (하지 않은/않았던)","ko":"비싸지 않은 온천.","jp":"高くない温泉。","jp_speak":"高くない温泉。","id":82},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"부정형 명사 수식 (하지 않은/않았던)","ko":"싸지 않은 케이크.","jp":"安くないケーキ。","jp_speak":"安くないケーキ。","id":83},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"부정형 명사 수식 (하지 않은/않았던)","ko":"바쁘지 않았던 하루.","jp":"忙しくなかった一日。","jp_speak":"忙しくなかった一日。","id":84},{"lesson":"11강","lessonTitle":"이형용사의 명사 수식","point":"이형용사의 명사 수식을 배우기","section":"부정형 명사 수식 (하지 않은/않았던)","ko":"크지 않았던 배.","jp":"大きくなかった船。","jp_speak":"大きくなかった船。","id":85},{"lesson":"12강","lessonTitle":"의문사 및 최상급","point":"누구, 어디, 어느 것 표현과 가장/제일 표현 배우기","section":"의문사 수식","ko":"누가 귀여워요?","jp":"誰がかわいいですか？","jp_speak":"誰がかわいいですか？","id":86},{"lesson":"12강","lessonTitle":"의문사 및 최상급","point":"누구, 어디, 어느 것 표현과 가장/제일 표현 배우기","section":"의문사 수식","ko":"어디가 신선해요?","jp":"どこが新鮮ですか？","jp_speak":"どこが新鮮ですか？","id":87},{"lesson":"12강","lessonTitle":"의문사 및 최상급","point":"누구, 어디, 어느 것 표현과 가장/제일 표현 배우기","section":"의문사 수식","ko":"어느 것이 귀여워요?","jp":"どれがかわいいですか？","jp_speak":"どれがかわいいですか？","id":88},{"lesson":"12강","lessonTitle":"의문사 및 최상급","point":"누구, 어디, 어느 것 표현과 가장/제일 표현 배우기","section":"최상급 표현","ko":"무엇이 가장 유명해요?","jp":"何が一番有名ですか？","jp_speak":"何が一番有名ですか？","id":89},{"lesson":"12강","lessonTitle":"의문사 및 최상급","point":"누구, 어디, 어느 것 표현과 가장/제일 표현 배우기","section":"최상급 표현","ko":"카스텔라가 가장 유명해요.","jp":"カステラが一番有名です。","jp_speak":"カステラが一番有名です。","id":90},{"lesson":"14강","lessonTitle":"'가'를 사용하는 형용사","point":"'가(が)' 조사와 함께 쓰이는 형용사들 익히기","section":"희망 (~을 원해요)","ko":"가방을 원해요.","jp":"かばんがほしいです。","jp_speak":"かばんがほしいです。","id":91},{"lesson":"14강","lessonTitle":"'가'를 사용하는 형용사","point":"'가(が)' 조사와 함께 쓰이는 형용사들 익히기","section":"희망 (~을 원해요)","ko":"자동차를 원했어요.","jp":"車がほしかったです。","jp_speak":"車がほしかったです。","id":92},{"lesson":"14강","lessonTitle":"'가'를 사용하는 형용사","point":"'가(が)' 조사와 함께 쓰이는 형용사들 익히기","section":"기호 (~을 좋아해요/싫어해요)","ko":"중국어를 좋아해요.","jp":"中国語が好きです。","jp_speak":"中国語が好きです。","id":93},{"lesson":"14강","lessonTitle":"'가'를 사용하는 형용사","point":"'가(が)' 조사와 함께 쓰이는 형용사들 익히기","section":"기호 (~을 좋아해요/싫어해요)","ko":"일본어를 싫어해요.","jp":"日本語が嫌いです。","jp_speak":"日本語が嫌いです。","id":94},{"lesson":"14강","lessonTitle":"'가'를 사용하는 형용사","point":"'가(が)' 조사와 함께 쓰이는 형용사들 익히기","section":"능력 (~을 잘해요/못해요)","ko":"한국어를 잘해요.","jp":"韓国語が得意です。","jp_speak":"韓国語が得意です。","id":95},{"lesson":"14강","lessonTitle":"'가'를 사용하는 형용사","point":"'가(が)' 조사와 함께 쓰이는 형용사들 익히기","section":"능력 (~을 잘해요/못해요)","ko":"영어를 못해요.","jp":"英語が苦手です。","jp_speak":"英語が苦手です。","id":96},{"lesson":"15~18강","lessonTitle":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기","section":"무생물 (사물, 식물)","ko":"수건이 없어요.","jp":"タオルがありません。","jp_speak":"タオルがありません。","id":97},{"lesson":"15~18강","lessonTitle":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기","section":"무생물 (사물, 식물)","ko":"수건이 없었어요.","jp":"タオルがありませんでした。","jp_speak":"タオルがありませんでした。","id":98},{"lesson":"15~18강","lessonTitle":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기","section":"무생물 (사물, 식물)","ko":"버스가 있어요.","jp":"バスがあります。","jp_speak":"バスがあります。","id":99},{"lesson":"15~18강","lessonTitle":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기","section":"무생물 (사물, 식물)","ko":"버스가 있었어요.","jp":"バスがありました。","jp_speak":"バスがありました。","id":100},{"lesson":"15~18강","lessonTitle":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기","section":"생물 (사람, 동물)","ko":"친구들이 있어요.","jp":"友達がいます。","jp_speak":"友達がいます。","id":101},{"lesson":"15~18강","lessonTitle":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기","section":"생물 (사람, 동물)","ko":"친구가 없어요.","jp":"友達がいません。","jp_speak":"友達がいません。","id":102},{"lesson":"15~18강","lessonTitle":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기","section":"생물 (사람, 동물)","ko":"모두가 있다.","jp":"皆がいる。","jp_speak":"皆がいる。","id":103},{"lesson":"15~18강","lessonTitle":"존재 표현 (있어요/없어요)","point":"무생물과 생물의 존재 구분하기","section":"생물 (사람, 동물)","ko":"그가 없다.","jp":"彼がいない。","jp_speak":"彼がいない。","id":104},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"ます형 (정중)","ko":"삽니다.","jp":"買います。","jp_speak":"買います。","id":105},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"ます형 (정중)","ko":"만납니다.","jp":"会います。","jp_speak":"会います。","id":106},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"ます형 (정중)","ko":"먹습니다.","jp":"食べます。","jp_speak":"食べます。","id":107},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"ます형 (정중)","ko":"합니다.","jp":"します。","jp_speak":"します。","id":108},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"ない형 (부정)","ko":"읽지 않는다.","jp":"読まない。","jp_speak":"読まない。","id":109},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"ない형 (부정)","ko":"만나지 않는다.","jp":"会わない。","jp_speak":"会わない。","id":110},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"ない형 (부정)","ko":"보지 않는다.","jp":"見ない。","jp_speak":"見ない。","id":111},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"ない형 (부정)","ko":"하지 않는다.","jp":"しない。","jp_speak":"しない。","id":112},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"권유형 (~합시다 / ~하자)","ko":"갑시다.","jp":"行きましょう。","jp_speak":"行きましょう。","id":113},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"권유형 (~합시다 / ~하자)","ko":"마십시다.","jp":"飲みましょう。","jp_speak":"飲みましょう。","id":114},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"권유형 (~합시다 / ~하자)","ko":"가자.","jp":"行こう。","jp_speak":"行こう。","id":115},{"lesson":"20~22강","lessonTitle":"동사의 기본형, 부정형, 권유형","point":"동사의 핵심 변형 규칙과 실습","section":"권유형 (~합시다 / ~하자)","ko":"보자.","jp":"見よう。","jp_speak":"見よう。","id":116},{"lesson":"25~27강","lessonTitle":"희망, 용이성, 난이성","point":"ます형을 활용한 다양한 의사표현","section":"희망 (~하고 싶다)","ko":"먹고 싶어요.","jp":"食べたいです。","jp_speak":"食べたいです。","id":117},{"lesson":"25~27강","lessonTitle":"희망, 용이성, 난이성","point":"ます형을 활용한 다양한 의사표현","section":"희망 (~하고 싶다)","ko":"만나고 싶었어요.","jp":"会いたかったです。","jp_speak":"会いたかったです。","id":118},{"lesson":"25~27강","lessonTitle":"희망, 용이성, 난이성","point":"ます형을 활용한 다양한 의사표현","section":"희망 (~하고 싶다)","ko":"하고 싶지 않아요.","jp":"したくないです。","jp_speak":"したくないです。","id":119},{"lesson":"25~27강","lessonTitle":"희망, 용이성, 난이성","point":"ます형을 활용한 다양한 의사표현","section":"용이성 (~하기 쉽다)","ko":"마시기 편해요.","jp":"飲みやすいです。","jp_speak":"飲みやすいです。","id":120},{"lesson":"25~27강","lessonTitle":"희망, 용이성, 난이성","point":"ます형을 활용한 다양한 의사표현","section":"용이성 (~하기 쉽다)","ko":"쓰기 편해요.","jp":"使いやすいです。","jp_speak":"使いやすいです。","id":121},{"lesson":"25~27강","lessonTitle":"희망, 용이성, 난이성","point":"ます형을 활용한 다양한 의사표현","section":"난이성 (~하기 어렵다)","ko":"읽기 힘들었어요.","jp":"読みにくかったです。","jp_speak":"読みにくかったです。","id":122},{"lesson":"25~27강","lessonTitle":"희망, 용이성, 난이성","point":"ます형을 활용한 다양한 의사표현","section":"난이성 (~하기 어렵다)","ko":"말하기 힘들어요.","jp":"話しにくいです。","jp_speak":"話しにくいです。","id":123},{"lesson":"30강","lessonTitle":"형용사의 과도함 표현","point":"형용사 어간을 활용한 '너무 ~하다' 표현","section":"이형용사 + すぎる","ko":"너무 추워요.","jp":"寒すぎます。","jp_speak":"寒すぎます。","id":124},{"lesson":"30강","lessonTitle":"형용사의 과도함 표현","point":"형용사 어간을 활용한 '너무 ~하다' 표현","section":"이형용사 + すぎる","ko":"너무 비싸요.","jp":"高すぎます。","jp_speak":"高すぎます。","id":125},{"lesson":"30강","lessonTitle":"형용사의 과도함 표현","point":"형용사 어간을 활용한 '너무 ~하다' 표현","section":"이형용사 + すぎる","ko":"지나치게 무서웠다.","jp":"怖すぎた。","jp_speak":"怖すぎた。","id":126},{"lesson":"30강","lessonTitle":"형용사의 과도함 표현","point":"형용사 어간을 활용한 '너무 ~하다' 표현","section":"나형용사 + すぎる","ko":"지나치게 간단해요.","jp":"簡単すぎます。","jp_speak":"簡単すぎます。","id":127},{"lesson":"30강","lessonTitle":"형용사의 과도함 표현","point":"형용사 어간을 활용한 '너무 ~하다' 표현","section":"나형용사 + すぎる","ko":"너무 조용했어요.","jp":"静かすぎました。","jp_speak":"静かすぎました。","id":128},{"lesson":"30강","lessonTitle":"형용사의 과도함 표현","point":"형용사 어간을 활용한 '너무 ~하다' 표현","section":"나형용사 + すぎる","ko":"지나치게 예쁘다.","jp":"綺麗すぎる。","jp_speak":"綺麗すぎる。","id":129}]}; const DATA=RAW.items; const LESSONS=RAW.lessons; const LS='jpshiwon_v1';
+let state=load();
+function load(){ try{const s=JSON.parse(localStorage.getItem(LS)||'{}');
+  return {mode:s.mode||'ko', lesson:s.lesson||'all', scope:s.scope||'all',
+    autoSpeak:s.autoSpeak!==false, rate:typeof s.rate==='number'?s.rate:1,
+    repeat:typeof s.repeat==='number'?s.repeat:3, known:Array.isArray(s.known)?s.known:[]};
+  }catch{return {mode:'ko',lesson:'all',scope:'all',autoSpeak:true,rate:1,repeat:3,known:[]};} }
+function save(){ localStorage.setItem(LS, JSON.stringify(state)); }
+const knownSet=()=>new Set(state.known);
+const $=s=>document.querySelector(s);
+
+let jpVoice=null;
+function pickVoice(){ if(!('speechSynthesis' in window))return null; const v=speechSynthesis.getVoices();
+  return v.find(x=>x.lang==='ja-JP')||v.find(x=>x.lang&&x.lang.toLowerCase().startsWith('ja'))||v.find(x=>/japan|kyoko|otoya|hattori|ichiro/i.test(x.name))||null; }
+function initTTS(){ if(!('speechSynthesis' in window)){$('#ttsWarn').style.display='block';return;}
+  const t=()=>{jpVoice=pickVoice(); $('#ttsWarn').style.display=(!jpVoice&&speechSynthesis.getVoices().length)?'block':'none';};
+  t(); if('onvoiceschanged' in speechSynthesis) speechSynthesis.onvoiceschanged=t; }
+function stopSpeak(){ try{speechSynthesis.cancel();}catch{} const b=$('#speakBtn'); if(b)b.classList.remove('speaking'); }
+function speak(text){ if(!('speechSynthesis' in window)||!text)return; try{speechSynthesis.cancel();}catch{}
+  const u=new SpeechSynthesisUtterance(text); u.lang='ja-JP'; if(jpVoice)u.voice=jpVoice; u.rate=state.rate||1;
+  const b=$('#speakBtn'); if(b)b.classList.add('speaking');
+  u.onend=u.onerror=()=>{if(b)b.classList.remove('speaking');}; speechSynthesis.speak(u); }
+
+let deck=[], idx=0;
+function buildDeck(){ let d=DATA.filter(it=>state.lesson==='all'||it.lesson===state.lesson);
+  if(state.scope==='todo'){const k=knownSet(); d=d.filter(it=>!k.has(it.id));} return d; }
+
+function showHome(){ stopAll(); $('#homeView').classList.remove('hidden'); $('#studyView').classList.add('hidden'); $('#endView').classList.add('hidden'); renderHome(); }
+function renderHome(){
+  const chips=$('#lessonChips'); chips.innerHTML='';
+  const mk=(key,label)=>{const el=document.createElement('div'); el.className='chip'+(state.lesson===key?' active':'');
+    el.textContent=label; el.onclick=()=>{state.lesson=key; save(); renderHome();}; chips.appendChild(el);};
+  mk('all','전체');
+  LESSONS.forEach(l=>mk(l.lesson, l.lesson));
+  document.querySelectorAll('.mode-card').forEach(el=>el.classList.toggle('active', el.dataset.mode===state.mode));
+  document.querySelectorAll('#scopeSwitch button').forEach(b=>b.classList.toggle('on', b.dataset.scope===state.scope));
+  document.querySelectorAll('#autoSpeakSwitch button').forEach(b=>b.classList.toggle('on',(b.dataset.as==='1')===state.autoSpeak));
+  document.querySelectorAll('#rateSwitch button').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.rate)===state.rate));
+  document.querySelectorAll('#repeatSwitch button').forEach(b=>b.classList.toggle('on',parseInt(b.dataset.rep)===state.repeat));
+  const d=buildDeck();
+  $('#startBtn').textContent=d.length?`▶ 학습 시작 (${d.length}문장)`:'학습할 문장이 없어요 (미완만 해제)';
+  $('#startBtn').disabled=d.length===0;
+  const k=knownSet(); const done=DATA.filter(it=>k.has(it.id)).length;
+  $('#masterInfo').textContent=`익힘 ${done}/${DATA.length} (${Math.round(done/DATA.length*100)}%)`;
+  const list=$('#lvList'); list.innerHTML='';
+  LESSONS.forEach(l=>{const items=DATA.filter(it=>it.lesson===l.lesson); const dn=items.filter(it=>k.has(it.id)).length;
+    const el=document.createElement('div'); el.className='lvitem';
+    el.innerHTML=`<span class="lt"><b>${l.lesson}</b> ${l.title}</span><span class="lvbar"><span style="width:${Math.round(dn/items.length*100)}%"></span></span><b>${dn}/${items.length}</b>`;
+    list.appendChild(el);});
+}
+function startStudy(){ deck=buildDeck(); if(!deck.length)return; idx=0; autoPlay=false;
+  $('#homeView').classList.add('hidden'); $('#studyView').classList.remove('hidden'); $('#endView').classList.add('hidden'); renderCard(); }
+
+let revealTimer=null;
+function clearTimers(){ if(revealTimer){clearTimeout(revealTimer);revealTimer=null;}
+  if(autoPlayTimer){clearTimeout(autoPlayTimer);autoPlayTimer=null;} stopSpeak(); }
+
+function renderCard(){
+  clearTimers(); const it=deck[idx];
+  $('#crumbs').textContent=`${it.lesson} · ${it.lessonTitle} · ${idx+1}/${deck.length}`;
+  $('#progressBar').style.width=`${idx/deck.length*100}%`;
+  $('#lvBadge').textContent=it.lesson; $('#secTag').textContent=it.section||'';
+  const card=$('#card'); card.classList.remove('flipped'); $('#countdown').textContent='';
+  const qL=$('#qLabel'), qT=$('#qText'), ans=$('#answerEl');
+  if(state.mode==='ko'){ qL.textContent='한국어'; qT.className='qtext ko'; qT.textContent=it.ko;
+    ans.innerHTML=`<div class="atext jp">${it.jp}</div>`; $('#hint').textContent='탭하여 일본어 보기'; }
+  else{ qL.textContent='일본어'; qT.className='qtext jp'; qT.textContent=it.jp;
+    ans.innerHTML=`<div class="atext">${it.ko}</div>`; $('#hint').textContent='탭하여 뜻 보기'; }
+  const known=knownSet().has(it.id);
+  $('#knowBtn').classList.toggle('on',known); $('#knowBtn').textContent=known?'✓ 익힘됨':'✓ 익힘';
+  document.querySelectorAll('#rateSwitchStudy button').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.rate)===state.rate));
+  document.querySelectorAll('#repeatSwitchStudy button').forEach(b=>b.classList.toggle('on',parseInt(b.dataset.rep)===state.repeat));
+  updateAutoPlayBtn();
+  if(autoPlay){ autoPlayStep(); }
+  else if(state.autoSpeak){ revealTimer=setTimeout(()=>speak(it.jp_speak),250); }
+}
+function flip(){ const c=$('#card'); const was=c.classList.contains('flipped'); c.classList.add('flipped');
+  clearTimers(); $('#hint').textContent='탭하여 다음으로';
+  if(!was && state.autoSpeak && !autoPlay) speak(deck[idx].jp_speak); }
+function next(){ if(idx+1>=deck.length){finish();return;} idx++; renderCard(); }
+function prev(){ if(idx>0){idx--; renderCard();} }
+function markKnown(){ const it=deck[idx]; const k=knownSet(); if(k.has(it.id))k.delete(it.id); else k.add(it.id);
+  state.known=[...k]; save(); const on=k.has(it.id); $('#knowBtn').classList.toggle('on',on); $('#knowBtn').textContent=on?'✓ 익힘됨':'✓ 익힘'; }
+function finish(){ autoPlay=false; clearTimers(); updateAutoPlayBtn();
+  $('#studyView').classList.add('hidden'); $('#endView').classList.remove('hidden');
+  const k=knownSet(); const dn=deck.filter(it=>k.has(it.id)).length;
+  $('#endTitle').textContent='한 바퀴 완료! 🎉'; $('#endDesc').textContent=`${deck.length}문장을 봤어요. 이 세트 익힘 ${dn}/${deck.length}.`; }
+
+let autoPlay=false, autoPlayTimer=null; const AP_GAP=450, AP_CARD_GAP=800;
+function updateAutoPlayBtn(){ const b=$('#autoPlayBtn'); if(!b)return; b.classList.toggle('on',autoPlay);
+  b.textContent=autoPlay?'⏸ 자동재생 멈춤':`▶ 자동재생 (${state.repeat}회 반복)`; }
+function speakRepeat(text,times,done){ if(!('speechSynthesis' in window)||!text){if(done)done();return;}
+  try{speechSynthesis.cancel();}catch{} const btn=$('#speakBtn'); let rep=0;
+  const one=()=>{ if(!autoPlay)return; $('#countdown').textContent=`🔁 ${rep+1}/${times}`;
+    const u=new SpeechSynthesisUtterance(text); u.lang='ja-JP'; if(jpVoice)u.voice=jpVoice; u.rate=state.rate||1;
+    if(btn)btn.classList.add('speaking');
+    u.onend=u.onerror=()=>{ if(btn)btn.classList.remove('speaking'); if(!autoPlay)return; rep++;
+      if(rep<times){autoPlayTimer=setTimeout(one,AP_GAP);} else if(done){done();} };
+    speechSynthesis.speak(u); }; one(); }
+function autoPlayStep(){ if(!autoPlay)return; const it=deck[idx]; if(!it){stopAutoPlay();return;}
+  $('#card').classList.add('flipped'); $('#hint').textContent='⏵ 자동재생 중… (탭하면 멈춤)';
+  speakRepeat(it.jp_speak, state.repeat, ()=>{ if(!autoPlay)return;
+    autoPlayTimer=setTimeout(()=>{ if(!autoPlay)return; if(idx+1>=deck.length){stopAutoPlay();finish();return;} idx++; renderCard(); }, AP_CARD_GAP); }); }
+function startAutoPlay(){ if(!deck.length)return; autoPlay=true; updateAutoPlayBtn(); clearTimers(); autoPlayStep(); }
+function stopAutoPlay(){ autoPlay=false; if(autoPlayTimer){clearTimeout(autoPlayTimer);autoPlayTimer=null;} try{speechSynthesis.cancel();}catch{}
+  const b=$('#speakBtn'); if(b)b.classList.remove('speaking'); $('#countdown').textContent=''; $('#hint').textContent='탭하여 다음으로'; updateAutoPlayBtn(); }
+function toggleAutoPlay(){ autoPlay?stopAutoPlay():startAutoPlay(); }
+function stopAll(){ stopAutoPlay(); clearTimers(); }
+
+document.querySelectorAll('.mode-card').forEach(el=>el.onclick=()=>{state.mode=el.dataset.mode; save(); renderHome();});
+document.querySelectorAll('#scopeSwitch button').forEach(b=>b.onclick=()=>{state.scope=b.dataset.scope; save(); renderHome();});
+document.querySelectorAll('#autoSpeakSwitch button').forEach(b=>b.onclick=()=>{state.autoSpeak=b.dataset.as==='1'; save(); renderHome();});
+function setRate(r){ state.rate=r; save(); document.querySelectorAll('#rateSwitch button, #rateSwitchStudy button').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.rate)===r)); }
+function setRep(n){ state.repeat=n; save(); document.querySelectorAll('#repeatSwitch button, #repeatSwitchStudy button').forEach(b=>b.classList.toggle('on',parseInt(b.dataset.rep)===n)); updateAutoPlayBtn(); }
+document.querySelectorAll('#rateSwitch button').forEach(b=>b.onclick=()=>setRate(parseFloat(b.dataset.rate)));
+document.querySelectorAll('#repeatSwitch button').forEach(b=>b.onclick=()=>setRep(parseInt(b.dataset.rep)));
+document.querySelectorAll('#rateSwitchStudy button').forEach(b=>b.onclick=e=>{e.stopPropagation();setRate(parseFloat(b.dataset.rate));});
+document.querySelectorAll('#repeatSwitchStudy button').forEach(b=>b.onclick=e=>{e.stopPropagation();setRep(parseInt(b.dataset.rep));});
+$('#startBtn').onclick=startStudy;
+$('#resetBtn').onclick=()=>{ if(confirm('익힘 기록을 모두 지울까요?')){state.known=[]; save(); renderHome();} };
+$('#card').onclick=()=>{ if(autoPlay){stopAutoPlay();return;} if($('#card').classList.contains('flipped'))next(); else flip(); };
+$('#flipBtn').onclick=e=>{e.stopPropagation();flip();};
+$('#nextBtn').onclick=e=>{e.stopPropagation();next();};
+$('#prevBtn').onclick=e=>{e.stopPropagation();prev();};
+$('#knowBtn').onclick=e=>{e.stopPropagation();markKnown();};
+$('#againBtn').onclick=e=>{e.stopPropagation(); const it=deck[idx]; const k=knownSet(); if(k.has(it.id)){k.delete(it.id);state.known=[...k];save();} next();};
+$('#speakBtn').onclick=e=>{e.stopPropagation(); if(deck[idx])speak(deck[idx].jp_speak);};
+$('#autoPlayBtn').onclick=e=>{e.stopPropagation();toggleAutoPlay();};
+$('#exitStudy').onclick=()=>showHome(); $('#goHome').onclick=()=>showHome();
+$('#endRestart').onclick=()=>startStudy(); $('#endHome').onclick=()=>showHome();
+document.addEventListener('keydown',e=>{ if($('#studyView').classList.contains('hidden'))return;
+  if(e.key===' '||e.code==='Space'){e.preventDefault();flip();}
+  else if(e.key==='ArrowRight'){e.preventDefault();next();}
+  else if(e.key==='ArrowLeft'){e.preventDefault();prev();}
+  else if(e.key==='s'||e.key==='S'){e.preventDefault(); if(deck[idx])speak(deck[idx].jp_speak);}
+  else if(e.key==='a'||e.key==='A'){e.preventDefault();toggleAutoPlay();}
+  else if(e.key==='k'||e.key==='K'){e.preventDefault();markKnown();} });
+initTTS(); showHome();
+</script>
+</body>
+</html>

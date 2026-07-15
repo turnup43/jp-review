@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"/>
+<title>일본어 문장 정리 복습 (Lv.1~3)</title>
+<style>
+  :root{
+    --bg:#0e1116; --panel:#161b22; --panel2:#1f262e; --line:#2a323c;
+    --text:#e6edf3; --muted:#8b98a5; --accent:#4a9eff; --accent2:#3b82f6;
+    --good:#3fb950; --warn:#e3b341; --lv1:#3fb950; --lv2:#4a9eff; --lv3:#f85149;
+  }
+  *{box-sizing:border-box; -webkit-tap-highlight-color:transparent;}
+  body{margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;
+    line-height:1.5; padding-bottom:40px;}
+  .wrap{max-width:560px; margin:0 auto; padding:16px;}
+  .jp{font-family:"Hiragino Kaku Gothic ProN","Yu Gothic","Noto Sans JP",sans-serif;}
+  header.top{display:flex; align-items:center; justify-content:space-between; gap:10px; margin:6px 0 14px;}
+  header.top h1{font-size:18px; margin:0;}
+  .sub{font-size:12px; color:var(--muted); margin-top:2px;}
+  button{font-family:inherit; cursor:pointer; border:1px solid var(--line); background:var(--panel2);
+    color:var(--text); border-radius:10px; padding:10px 14px; font-size:14px;}
+  button:hover{border-color:var(--accent2);}
+  button.primary{background:var(--accent2); border-color:var(--accent2); color:#fff; font-weight:600;}
+  button.warn{color:var(--warn); border-color:var(--warn);}
+  .btn{padding:8px 12px; font-size:13px;}
+  .panel{background:var(--panel); border:1px solid var(--line); border-radius:14px; padding:16px; margin-bottom:14px;}
+  .panel h3{margin:0 0 12px; font-size:13px; color:var(--muted); font-weight:600; letter-spacing:.03em;}
+  .row{display:flex; align-items:center; gap:10px;}
+  .hidden{display:none !important;}
+
+  .chips{display:flex; gap:8px; flex-wrap:wrap;}
+  .chip{flex:1; min-width:64px; text-align:center; padding:12px 8px; border-radius:12px;
+    border:1px solid var(--line); background:var(--panel2); color:var(--muted); font-size:13px;}
+  .chip.active{background:var(--accent2); border-color:var(--accent2); color:#fff; font-weight:700;}
+  .chip .c{display:block; font-size:11px; margin-top:2px; opacity:.85;}
+
+  .modes{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .mode-card{border:1px solid var(--line); background:var(--panel2); border-radius:12px; padding:14px; cursor:pointer;}
+  .mode-card.active{border-color:var(--accent2); background:rgba(59,130,246,.12);}
+  .mode-card .ttl{font-weight:700; font-size:14px;}
+  .mode-card .desc{font-size:11px; color:var(--muted); margin-top:4px;}
+
+  .switch{display:flex; gap:0; background:var(--panel2); border:1px solid var(--line); border-radius:10px; padding:2px;}
+  .switch button{padding:7px 11px; font-size:12px; border:none; background:transparent; color:var(--muted); border-radius:8px;}
+  .switch button.on{background:var(--accent2); color:#fff;}
+
+  .toggle-row{display:flex; align-items:center; justify-content:space-between; padding:6px 0; font-size:13px; color:var(--muted);}
+  .stat{display:flex; justify-content:space-between; padding:6px 0; font-size:13px; color:var(--muted);}
+  .stat b{color:var(--text);}
+
+  .lvlist{display:flex; flex-direction:column; gap:8px;}
+  .lvitem{display:flex; align-items:center; justify-content:space-between; gap:8px; padding:10px 12px;
+    border:1px solid var(--line); border-radius:10px; background:var(--panel2); font-size:13px;}
+  .lvbar{height:6px; background:var(--bg); border-radius:99px; overflow:hidden; flex:1; margin:0 10px;}
+  .lvbar>span{display:block; height:100%; background:var(--good);}
+
+  /* study */
+  .topbar{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:10px;}
+  .crumbs{font-size:12px; color:var(--muted);}
+  .progress{height:5px; background:var(--panel2); border:1px solid var(--line); border-radius:99px; overflow:hidden; margin-bottom:14px;}
+  .progress>span{display:block; height:100%; width:0; background:var(--accent2); transition:width .3s;}
+
+  .card{position:relative; background:var(--panel); border:1px solid var(--line); border-radius:18px;
+    padding:22px 18px 60px; min-height:300px; display:flex; flex-direction:column; cursor:pointer; user-select:none;}
+  .card .meta{display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:14px;}
+  .lvbadge{font-size:11px; font-weight:700; padding:3px 9px; border-radius:99px; color:#fff;}
+  .lv1{background:var(--lv1);} .lv2{background:var(--lv2);} .lv3{background:var(--lv3);}
+  .unitbadge{font-size:11px; color:var(--muted); border:1px solid var(--line); background:var(--panel2); border-radius:99px; padding:3px 9px;}
+  .pattern{font-size:14px; font-weight:700; color:var(--accent); margin-left:auto; text-align:right;}
+  .front{flex:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; gap:14px;}
+  .qlabel{font-size:11px; color:var(--muted); letter-spacing:.08em; text-transform:uppercase;}
+  .qtext{font-size:30px; font-weight:700; word-break:keep-all; line-height:1.45;}
+  .qtext.ko{font-size:26px;}
+  .qsub{font-size:18px; color:var(--muted); word-break:keep-all;}
+  .answer{margin-top:16px; padding-top:16px; border-top:1px dashed var(--line); text-align:center;
+    opacity:0; transform:translateY(6px); transition:all .22s;}
+  .card.flipped .answer{opacity:1; transform:none;}
+  .answer .atext{font-size:24px; font-weight:700; word-break:keep-all; line-height:1.45;}
+  .answer .asub{font-size:16px; color:var(--muted); margin-top:8px; word-break:keep-all;}
+  .answer .shadow{margin-top:12px; font-size:15px; color:var(--good); word-break:keep-all;}
+  .answer .shadow .lbl{font-size:10px; color:var(--muted); display:block; margin-bottom:2px;}
+  .hint{position:absolute; left:0; right:0; bottom:14px; text-align:center; font-size:11px; color:var(--muted);
+    letter-spacing:.05em; text-transform:uppercase;}
+  .countdown{position:absolute; top:14px; right:14px; font-size:11px; color:var(--muted); font-variant-numeric:tabular-nums;}
+  .speak-btn{position:absolute; bottom:12px; left:12px; width:44px; height:44px; border-radius:50%; padding:0;
+    font-size:18px; background:var(--panel2); display:flex; align-items:center; justify-content:center;}
+  .speak-btn.speaking{background:var(--accent2); color:#fff; border-color:var(--accent2); animation:pulse 1s infinite;}
+  @keyframes pulse{0%,100%{transform:scale(1);}50%{transform:scale(1.12);}}
+
+  .nav-row{display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px; margin-top:14px;}
+  .nav-row button{padding:12px;}
+  #autoPlayBtn{width:100%;}
+  #autoPlayBtn.on{background:var(--warn); border-color:var(--warn); color:#111; animation:pulse 1.4s infinite;}
+  .knowrow{display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:10px;}
+  .knowrow .know.on{background:var(--good); border-color:var(--good); color:#fff;}
+  .knowrow .again.on{background:var(--warn); border-color:var(--warn); color:#111;}
+
+  .end{ text-align:center; padding:34px 18px;}
+  .end .big{font-size:44px;}
+  .footer-note{font-size:11px; color:var(--muted); text-align:center; margin-top:24px;}
+  kbd{background:var(--panel2); border:1px solid var(--line); border-radius:4px; padding:1px 5px; font-size:11px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>📖 일본어 문장 정리 복습</h1>
+      <div class="sub" id="sub">53 문형 · 3레벨 · <span id="masterInfo"></span></div>
+    </div>
+    <button class="btn" id="goHome">🏠 홈</button>
+  </header>
+
+  <!-- HOME -->
+  <section id="homeView">
+    <div class="panel">
+      <h3>레벨 선택</h3>
+      <div class="chips" id="levelChips"></div>
+    </div>
+    <div class="panel">
+      <h3>학습 모드</h3>
+      <div class="modes">
+        <div class="mode-card" data-mode="jp">
+          <div class="ttl jp">🇯🇵 일본어 → 한국어</div>
+          <div class="desc">문장 보고 뜻 떠올리기 · 탭하면 정답</div>
+        </div>
+        <div class="mode-card" data-mode="ko">
+          <div class="ttl">🇰🇷 한국어 → 일본어</div>
+          <div class="desc">뜻 보고 일본어 떠올리기 · 탭하면 정답</div>
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <div class="toggle-row">
+          <span>안 익힌 것만 학습</span>
+          <div class="switch" id="scopeSwitch">
+            <button data-scope="all" class="on">전체</button>
+            <button data-scope="todo">미완만</button>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <span>쉐도잉 응용문장 표시</span>
+          <div class="switch" id="shadowSwitch">
+            <button data-sh="1" class="on">ON</button>
+            <button data-sh="0">OFF</button>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <span>자동발음</span>
+          <div class="switch" id="autoSpeakSwitch">
+            <button data-as="1" class="on">ON</button>
+            <button data-as="0">OFF</button>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <span>발음 속도</span>
+          <div class="switch" id="rateSwitch">
+            <button data-rate="0.5">0.5×</button>
+            <button data-rate="0.75">0.75×</button>
+            <button data-rate="1" class="on">1×</button>
+            <button data-rate="1.25">1.25×</button>
+          </div>
+        </div>
+        <div class="toggle-row">
+          <span>자동재생 반복</span>
+          <div class="switch" id="repeatSwitch">
+            <button data-rep="1">1회</button>
+            <button data-rep="2">2회</button>
+            <button data-rep="3" class="on">3회</button>
+            <button data-rep="5">5회</button>
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:14px;">
+        <button class="primary" id="startBtn" style="width:100%; padding:14px;">▶ 학습 시작</button>
+      </div>
+      <div id="ttsWarn" style="font-size:11px; color:var(--warn); margin-top:10px; display:none;">
+        ⚠️ 이 브라우저/기기에 일본어 음성이 없어 발음이 어색할 수 있어요. (macOS Safari · Kyoko 권장)
+      </div>
+    </div>
+    <div class="panel">
+      <h3>레벨별 진도</h3>
+      <div class="lvlist" id="lvList"></div>
+      <div class="row" style="margin-top:12px;">
+        <button class="warn btn" id="resetBtn">↺ 익힘 기록 초기화</button>
+      </div>
+    </div>
+    <div class="footer-note">
+      원본: <b>일본어 문장정리.docx</b> (Lv.1~3 문형 패턴) · 진도는 이 브라우저에 저장됩니다<br>
+      키보드: <kbd>Space</kbd> 뒤집기 · <kbd>←</kbd><kbd>→</kbd> 이동 · <kbd>S</kbd> 발음 · <kbd>A</kbd> 자동재생 · <kbd>K</kbd> 익힘
+    </div>
+  </section>
+
+  <!-- STUDY -->
+  <section id="studyView" class="hidden">
+    <div class="topbar">
+      <div class="crumbs" id="crumbs"></div>
+      <button class="btn" id="exitStudy">← 홈으로</button>
+    </div>
+    <div class="progress"><span id="progressBar"></span></div>
+    <div class="card" id="card">
+      <div class="meta">
+        <span class="lvbadge" id="lvBadge"></span>
+        <span class="unitbadge" id="unitBadge"></span>
+        <span class="pattern jp" id="patternEl"></span>
+      </div>
+      <div class="front">
+        <div class="qlabel" id="qLabel"></div>
+        <div class="qtext" id="qText"></div>
+        <div class="qsub" id="qSub"></div>
+      </div>
+      <div class="answer" id="answerEl"></div>
+      <div class="countdown" id="countdown"></div>
+      <button class="speak-btn" id="speakBtn" title="발음">🔊</button>
+      <div class="hint" id="hint">탭하여 정답 보기</div>
+    </div>
+    <div class="nav-row">
+      <button id="prevBtn">← 이전</button>
+      <button id="flipBtn">뒤집기 ↻</button>
+      <button id="nextBtn" class="primary">다음 →</button>
+    </div>
+    <div class="knowrow">
+      <button class="know" id="knowBtn">✓ 익힘</button>
+      <button class="again" id="againBtn">↻ 다시</button>
+    </div>
+    <div class="row" style="margin-top:10px;">
+      <button id="autoPlayBtn" class="primary">▶ 자동재생 (3회 반복)</button>
+    </div>
+    <div class="row" style="justify-content:space-between; margin-top:10px; gap:10px; flex-wrap:wrap;">
+      <div class="switch" id="rateSwitchStudy">
+        <button data-rate="0.5">0.5×</button>
+        <button data-rate="0.75">0.75×</button>
+        <button data-rate="1">1×</button>
+        <button data-rate="1.25">1.25×</button>
+      </div>
+      <div class="switch" id="repeatSwitchStudy">
+        <button data-rep="1">1회</button>
+        <button data-rep="2">2회</button>
+        <button data-rep="3">3회</button>
+        <button data-rep="5">5회</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- END -->
+  <section id="endView" class="hidden">
+    <div class="panel end">
+      <div class="big">🎉</div>
+      <h3 id="endTitle" style="color:var(--text); font-size:18px;">학습 완료!</h3>
+      <p id="endDesc" style="color:var(--muted); font-size:13px;"></p>
+      <div class="row" style="justify-content:center; gap:8px;">
+        <button class="primary" id="endRestart">한 번 더</button>
+        <button class="btn" id="endHome">홈으로</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+const RAW = {"levels":[{"emoji":"🟢","n":1,"title":"기초 명사 & 형용사 패턴 (상태와 감정 표현)"},{"emoji":"🔵","n":2,"title":"동사 기본 활용 패턴 (의지, 희망, 금지)"},{"emoji":"🔴","n":3,"title":"동사 고급 활용 패턴 (て형, た형의 마스터)"}],"items":[{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"08","pattern":"~は ~です (~는 ~입니다)","book_jp":"わたしは がくせいです。","book_ko":"저는 학생이에요.","book_speak":"わたしは がくせいです。","shadow_jp":"私は 会社員(かいしゃいん)です。","shadow_ko":"저는 회사원이에요.","shadow_speak":"私は 会社員です。","id":0},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"09","pattern":"~じゃありません (~가 아닙니다)","book_jp":"きょうは やすみじゃありません。","book_ko":"오늘은 휴일이 아니에요.","book_speak":"きょうは やすみじゃありません。","shadow_jp":"肉(にく)じゃありません。","shadow_ko":"고기가 아니에요.","shadow_speak":"肉じゃありません。","id":1},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"10","pattern":"~ください (~주세요)","book_jp":"コーヒーください。","book_ko":"커피 주세요.","book_speak":"コーヒーください。","shadow_jp":"お水(みず)を ください。","shadow_ko":"물 좀 주세요.","shadow_speak":"お水を ください。","id":2},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"11","pattern":"~です (な형용사) (~합니다)","book_jp":"てんいんさんは しんせつです。","book_ko":"점원은 친절해요.","book_speak":"てんいんさんは しんせつです。","shadow_jp":"この ホテルは きれいです。","shadow_ko":"이 호텔은 깨끗해요.","shadow_speak":"この ホテルは きれいです。","id":3},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"12","pattern":"~じゃありません (~하지 않습니다)","book_jp":"あまり ゆうめいじゃありません。","book_ko":"별로 유명하지 않아요.","book_speak":"あまり ゆうめいじゃありません。","shadow_jp":"ここは 静(しず)かじゃありません。","shadow_ko":"여기는 조용하지 않아요.","shadow_speak":"ここは 静かじゃありません。","id":4},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"13","pattern":"~な 名詞 (~한 명사)","book_jp":"たいせつな ひとです。","book_ko":"소중한 사람이에요.","book_speak":"たいせつな ひとです。","shadow_jp":"静(しず)かな 所(ところ)です。","shadow_ko":"조용한 곳이에요.","shadow_speak":"静かな 所です。","id":5},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"14","pattern":"~いです (い형용사) (~합니다)","book_jp":"とても おいしいです。","book_ko":"아주 맛있어요.","book_speak":"とても おいしいです。","shadow_jp":"ちょっと 高(たか)いです。","shadow_ko":"조금 비싸요.","shadow_speak":"ちょっと 高いです。","id":6},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"15","pattern":"~くありません (~하지 않습니다)","book_jp":"あまり いそがしくありません。","book_ko":"별로 바쁘지 않아요.","book_speak":"あまり いそがしくありません。","shadow_jp":"辛(から)くありません。","shadow_ko":"맵지 않아요.","shadow_speak":"辛くありません。","id":7},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"16","pattern":"~い 名詞 (~한 명사)","book_jp":"たかい かばんです。","book_ko":"비싼 가방이에요.","book_speak":"たかい かばんです。","shadow_jp":"おいしい パンです。","shadow_ko":"맛있는 빵이에요.","shadow_speak":"おいしい パンです。","id":8},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"17","pattern":"~が すきです (~을/를 좋아해요)","book_jp":"アニメが すきです。","book_ko":"애니메이션을 좋아해요.","book_speak":"アニメが すきです。","shadow_jp":"生(なま)ビールが 好きです。","shadow_ko":"생맥주를 좋아해요.","shadow_speak":"生ビールが 好きです。","id":9},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"18","pattern":"どちらが ~ですか (어느 쪽이 ~한가요?)","book_jp":"すしと さしみと どちらが しんせんですか。","book_ko":"초밥과 회 중 어느 쪽이 신선한가요?","book_speak":"すしと さしみと どちらが しんせんですか。","shadow_jp":"肉(にく)と 魚(さかな)と どちらが 好きですか。","shadow_ko":"고기와 생선 중 어느 쪽을 좋아하나요?","shadow_speak":"肉と 魚と どちらが 好きですか。","id":10},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"19","pattern":"~ですが (~입니다만, ~하지만)","book_jp":"こどもですが、おとなしいです。","book_ko":"아이입니다만, 얌전해요.","book_speak":"こどもですが、おとなしいです。","shadow_jp":"高(たか)いですが、おいしいです。","shadow_ko":"비싸지만 맛있어요.","shadow_speak":"高いですが、おいしいです。","id":11},{"level":1,"levelTitle":"기초 명사 & 형용사 패턴 (상태와 감정 표현)","emoji":"🟢","unit":"20","pattern":"~で (~이고, ~해서)","book_jp":"げんきで あかるい ひとです。","book_ko":"활기차고 밝은 사람이에요.","book_speak":"げんきで あかるい ひとです。","shadow_jp":"安(やす)くて おいしいです。","shadow_ko":"싸고 맛있어요.","shadow_speak":"安くて おいしいです。","id":12},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"01","pattern":"동사 기본형 (~해 / 반말)","book_jp":"パスタを食べる。","book_ko":"파스타를 먹어.","book_speak":"パスタを食べる。","shadow_jp":"映画(えいが)を見(み)る。","shadow_ko":"영화를 봐.","shadow_speak":"映画を見る。","id":13},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"02","pattern":"~ます (~합니다)","book_jp":"地下鉄に乗ります。","book_ko":"지하철을 타요.","book_speak":"地下鉄に乗ります。","shadow_jp":"バスに乗(の)ります。","shadow_ko":"버스를 타요.","shadow_speak":"バスに乗ります。","id":14},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"03","pattern":"~ました (~했습니다)","book_jp":"買い物をしました。","book_ko":"쇼핑을 했어요.","book_speak":"買い物をしました。","shadow_jp":"日本語(にほんご)を勉強(べんきょう)しました。","shadow_ko":"일본어를 공부했어요.","shadow_speak":"日本語を勉強しました。","id":15},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"04","pattern":"~に あります (사물이 ~에 있습니다)","book_jp":"カードが机の上にあります。","book_ko":"카드가 책상 위에 있어요.","book_speak":"カードが机の上にあります。","shadow_jp":"かばんが椅子(いす)の下(した)にあります。","shadow_ko":"가방이 의자 아래에 있어요.","shadow_speak":"かばんが椅子の下にあります。","id":16},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"05","pattern":"~に います (사람/동물이 ~에 있습니다)","book_jp":"カフェの中にいます。","book_ko":"카페 안에 있어요.","book_speak":"カフェの中にいます。","shadow_jp":"友達(ともだち)が部屋(へや)の中(なか)にいます。","shadow_ko":"친구가 방 안에 있어요.","shadow_speak":"友達が部屋の中にいます。","id":17},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"06","pattern":"~ましょう (~합시다 / 권유)","book_jp":"あのお店に入りましょう。","book_ko":"저 가게에 들어갑시다.","book_speak":"あのお店に入りましょう。","shadow_jp":"一緒(いっしょ)に行(い)きましょう。","shadow_ko":"같이 갑시다.","shadow_speak":"一緒に行きましょう。","id":18},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"07","pattern":"~ながら (~하면서)","book_jp":"音楽を聞きながら運転します。","book_ko":"음악을 들으면서 운전해요.","book_speak":"音楽を聞きながら運転します。","shadow_jp":"コーヒーを飲(の)みながら本(ほん)を読(よ)みます。","shadow_ko":"커피를 마시면서 책을 읽어요.","shadow_speak":"コーヒーを飲みながら本を読みます。","id":19},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"08","pattern":"~に 行きます (~하러 갑니다)","book_jp":"本を借りに行きます。","book_ko":"책을 빌리러 가요.","book_speak":"本を借りに行きます。","shadow_jp":"ご飯(はん)を食(た)べに行(い)きます。","shadow_ko":"밥을 먹으러 가요.","shadow_speak":"ご飯を食べに行きます。","id":20},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"09","pattern":"~たいです (~하고 싶어요)","book_jp":"お土産を買いたいです。","book_ko":"기념품을 사고 싶어요.","book_speak":"お土産を買いたいです。","shadow_jp":"日本(にほん)へ行(い)きたいです。","shadow_ko":"일본에 가고 싶어요.","shadow_speak":"日本へ行きたいです。","id":21},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"10","pattern":"~やすいです (~하기 편해요/쉬워요)","book_jp":"このアプリは使いやすいです。","book_ko":"이 앱은 사용하기 편해요.","book_speak":"このアプリは使いやすいです。","shadow_jp":"この本(ほん)は読(よ)みやすいです。","shadow_ko":"이 책은 읽기 쉬워요.","shadow_speak":"この本は読みやすいです。","id":22},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"11","pattern":"~にくいです (~하기 힘들어요/어려워요)","book_jp":"漢字は覚えにくいです。","book_ko":"한자는 외우기 힘들어요.","book_speak":"漢字は覚えにくいです。","shadow_jp":"この靴(くつ)は歩(ある)きにくいです。","shadow_ko":"이 신발은 걷기 불편해요.","shadow_speak":"この靴は歩きにくいです。","id":23},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"12","pattern":"~すぎました (너무 ~했습니다)","book_jp":"ゲームをしすぎました。","book_ko":"게임을 너무 많이 했어요.","book_speak":"ゲームをしすぎました。","shadow_jp":"今日(きょう)は 食(た)べすぎました。","shadow_ko":"오늘은 너무 많이 먹었어요.","shadow_speak":"今日は 食べすぎました。","id":24},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"13","pattern":"형용사 부사형+見えます (~게 보입니다)","book_jp":"景色がきれいに見えます。","book_ko":"경치가 예쁘게 보여요.","book_speak":"景色がきれいに見えます。","shadow_jp":"字(じ)が 大(おお)きく見(み)えます。","shadow_ko":"글씨가 크게 보여요.","shadow_speak":"字が 大きく見えます。","id":25},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"14","pattern":"~ことが できます (~할 수 있습니다)","book_jp":"海で泳ぐことができます。","book_ko":"바다에서 헤엄칠 수 있어요.","book_speak":"海で泳ぐことができます。","shadow_jp":"英語(えいご)を話(はな)すことができます。","shadow_ko":"영어를 할 수 있어요.","shadow_speak":"英語を話すことができます。","id":26},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"15","pattern":"~つもりです (~할 생각입니다)","book_jp":"家でゆっくり休むつもりです。","book_ko":"집에서 느긋하게 쉴 생각이에요.","book_speak":"家でゆっくり休むつもりです。","shadow_jp":"明日(あした) 帰(かえ)るつもりです。","shadow_ko":"내일 돌아갈 생각이에요.","shadow_speak":"明日 帰るつもりです。","id":27},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"16","pattern":"~ない (~하지 않아 / 부정 반말)","book_jp":"ぜったいに買わない。","book_ko":"절대로 사지 않아.","book_speak":"ぜったいに買わない。","shadow_jp":"今日(きょう)は 行(い)かない。","shadow_ko":"오늘은 가지 않아.","shadow_speak":"今日は 行かない。","id":28},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"17","pattern":"~ないで ください (~하지 말아 주세요)","book_jp":"大きい声で話さないでください。","book_ko":"큰 소리로 이야기하지 말아 주세요.","book_speak":"大きい声で話さないでください。","shadow_jp":"写真(しゃしん)を 撮(と)らないでください。","shadow_ko":"사진을 찍지 말아 주세요.","shadow_speak":"写真を 撮らないでください。","id":29},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"18","pattern":"~なくても いいです (~하지 않아도 됩니다)","book_jp":"謝らなくてもいいです。","book_ko":"사과하지 않아도 돼요.","book_speak":"謝らなくてもいいです。","shadow_jp":"無理(むり)しなくてもいいです。","shadow_ko":"무리하지 않아도 돼요.","shadow_speak":"無理しなくてもいいです。","id":30},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"19","pattern":"~ないといけません (~하지 않으면 안 됩니다)","book_jp":"お金を払わないといけません。","book_ko":"돈을 지불해야 해요.","book_speak":"お金を払わないといけません。","shadow_jp":"薬(くすり)を飲(の)まないといけません。","shadow_ko":"약을 먹어야 해요.","shadow_speak":"薬を飲まないといけません。","id":31},{"level":2,"levelTitle":"동사 기본 활용 패턴 (의지, 희망, 금지)","emoji":"🔵","unit":"20","pattern":"~から (~때문에)","book_jp":"風邪ですから、休みます。","book_ko":"감기이기 때문에 쉬어요.","book_speak":"風邪ですから、休みます。","shadow_jp":"雨(あめ)ですから、行(い)きません。","shadow_ko":"비가 오기 때문에 가지 않아요.","shadow_speak":"雨ですから、行きません。","id":32},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"01","pattern":"~た (~했다 / 과거 반말)","book_jp":"私は美術館に行った。","book_ko":"나는 미술관에 갔어.","book_speak":"私は美術館に行った。","shadow_jp":"昨日(きのう)、映画(えいが)を見(み)た。","shadow_ko":"어제 영화를 봤어.","shadow_speak":"昨日、映画を見た。","id":33},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"02","pattern":"~たことが あります (~한 적이 있습니다)","book_jp":"富士山に登ったことがあります。","book_ko":"후지산에 오른 적이 있어요.","book_speak":"富士山に登ったことがあります。","shadow_jp":"寿司(すし)を食(た)べたことがあります。","shadow_ko":"스시를 먹어본 적이 있어요.","shadow_speak":"寿司を食べたことがあります。","id":34},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"03","pattern":"~たほうが いいです (~하는 편이 좋습니다)","book_jp":"病院に行った方がいいです。","book_ko":"병원에 가는 편이 좋아요.","book_speak":"病院に行った方がいいです。","shadow_jp":"早(はや)く 寝(ね)たほうがいいです。","shadow_ko":"일찍 자는 편이 좋아요.","shadow_speak":"早く 寝たほうがいいです。","id":35},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"04","pattern":"~たり ~たり します (~하거나 ~하거나 합니다)","book_jp":"ユーチューブを見たりゲームをしたりします。","book_ko":"유튜브를 보거나 게임을 하거나 해요.","book_speak":"ユーチューブを見たりゲームをしたりします。","shadow_jp":"音楽(おんがく)を聞(き)いたり本(ほん)を読(よ)んだりします。","shadow_ko":"음악을 듣거나 책을 읽거나 해요.","shadow_speak":"音楽を聞いたり本を読んだりします。","id":36},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"05","pattern":"~たら どうですか (~하는 게 어때요?)","book_jp":"バイトを探したらどうですか。","book_ko":"아르바이트를 찾는 게 어때요?","book_speak":"バイトを探したらどうですか。","shadow_jp":"先生(せんせい)に聞(き)いたらどうですか。","shadow_ko":"선생님께 물어보는 게 어때요?","shadow_speak":"先生に聞いたらどうですか。","id":37},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"06","pattern":"~て (~하고, ~해서 / 연결형)","book_jp":"友だちに会って映画を見ます。","book_ko":"친구를 만나서 영화를 봐요.","book_speak":"友だちに会って映画を見ます。","shadow_jp":"ご飯(はん)を食(た)べて、お茶(ちゃ)を飲(の)みます。","shadow_ko":"밥을 먹고, 차를 마십니다.","shadow_speak":"ご飯を食べて、お茶を飲みます。","id":38},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"07","pattern":"~ています (~하고 있습니다)","book_jp":"今、横になっています。","book_ko":"지금, 누워 있어요.","book_speak":"今、横になっています。","shadow_jp":"今(いま)、音楽(おんがく)を聞(き)いています。","shadow_ko":"지금 음악을 듣고 있어요.","shadow_speak":"今、音楽を聞いています。","id":39},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"08","pattern":"~て みます (~해 보겠습니다)","book_jp":"ドラマを見てみます。","book_ko":"드라마를 봐 볼게요.","book_speak":"ドラマを見てみます。","shadow_jp":"この靴(くつ)を 履(は)いてみます。","shadow_ko":"이 신발을 신어 볼게요.","shadow_speak":"この靴を 履いてみます。","id":40},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"09","pattern":"~て ください (~해 주세요)","book_jp":"ちょっと待ってください。","book_ko":"잠깐 기다려 주세요.","book_speak":"ちょっと待ってください。","shadow_jp":"ゆっくり 話(はな)してください。","shadow_ko":"천천히 말해 주세요.","shadow_speak":"ゆっくり 話してください。","id":41},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"10","pattern":"~て ほしいです (~해 줬으면 좋겠습니다)","book_jp":"手伝ってほしいです。","book_ko":"도와줬으면 좋겠어요.","book_speak":"手伝ってほしいです。","shadow_jp":"教(おし)えてほしいです。","shadow_ko":"알려줬으면 좋겠어요.","shadow_speak":"教えてほしいです。","id":42},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"11","pattern":"~て おきます (~해 둡니다 / 미리 해둠)","book_jp":"飲み物を買っておきます。","book_ko":"음료를 사 두어요.","book_speak":"飲み物を買っておきます。","shadow_jp":"ホテルを予約(よやく)しておきます。","shadow_ko":"호텔을 예약해 둘게요.","shadow_speak":"ホテルを予約しておきます。","id":43},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"12","pattern":"~ても いいですか (~해도 될까요? / 허락)","book_jp":"出前をとってもいいですか。","book_ko":"배달을 시켜도 될까요?","book_speak":"出前をとってもいいですか。","shadow_jp":"ここに座(すわ)ってもいいですか。","shadow_ko":"여기에 앉아도 될까요?","shadow_speak":"ここに座ってもいいですか。","id":44},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"13","pattern":"~てはいけません (~하면 안 됩니다 / 금지)","book_jp":"作品を触ってはいけません。","book_ko":"작품을 만지면 안 돼요.","book_speak":"作品を触ってはいけません。","shadow_jp":"ここに駐車(ちゅうしゃ)してはいけません。","shadow_ko":"여기에 주차하면 안 됩니다.","shadow_speak":"ここに駐車してはいけません。","id":45},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"14","pattern":"가능형 (~할 수 있습니다)","book_jp":"ワイファイが使えます。","book_ko":"와이파이를 사용할 수 있어요.","book_speak":"ワイファイが使えます。","shadow_jp":"日本語(にほんご)が話(はな)せます。","shadow_ko":"일본어를 말할 수 있어요.","shadow_speak":"日本語が話せます。","id":46},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"15","pattern":"~ように なりました (~하게 되었습니다)","book_jp":"自転車に乗れるようになりました。","book_ko":"자전거를 탈 수 있게 되었어요.","book_speak":"自転車に乗れるようになりました。","shadow_jp":"刺身(さしみ)が食(た)べられるようになりました。","shadow_ko":"회를 먹을 수 있게 되었어요.","shadow_speak":"刺身が食べられるようになりました。","id":47},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"16","pattern":"~て あげます (~해 줍니다)","book_jp":"友だちにお土産をあげます。","book_ko":"친구에게 기념품을 주어요.","book_speak":"友だちにお土産をあげます。","shadow_jp":"先生(せんせい)に プレゼントをあげます。","shadow_ko":"선생님께 선물을 드립니다.","shadow_speak":"先生に プレゼントをあげます。","id":48},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"17","pattern":"~て くれました (~해 주었습니다)","book_jp":"友だちがノートを貸してくれました。","book_ko":"친구가 노트를 빌려주었어요.","book_speak":"友だちがノートを貸してくれました。","shadow_jp":"友達(ともだち)が 手伝(てつだ)ってくれました。","shadow_ko":"친구가 도와주었어요.","shadow_speak":"友達が 手伝ってくれました。","id":49},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"18","pattern":"~ことに します (~하기로 합니다)","book_jp":"ジムに通うことにしました。","book_ko":"헬스장에 다니기로 했어요.","book_speak":"ジムに通うことにしました。","shadow_jp":"タバコを やめることにしました。","shadow_ko":"담배를 끊기로 했어요.","shadow_speak":"タバコを やめることにしました。","id":50},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"19","pattern":"~ことに なりました (~하게 되었습니다)","book_jp":"日本で働くことになりました。","book_ko":"일본에서 일하게 되었어요.","book_speak":"日本で働くことになりました。","shadow_jp":"来月(らいげつ)、引(ひ)っ越(こ)すことになりました。","shadow_ko":"다음 달에 이사하게 되었어요.","shadow_speak":"来月、引っ越すことになりました。","id":51},{"level":3,"levelTitle":"동사 고급 활용 패턴 (て형, た형의 마스터)","emoji":"🔴","unit":"20","pattern":"~と 思います (~라고 생각합니다)","book_jp":"天気も晴れると思います。","book_ko":"날씨도 맑을 거라고 생각해요.","book_speak":"天気も晴れると思います。","shadow_jp":"彼(かれ)は来(こ)ないと 思(おも)います。","shadow_ko":"그는 오지 않을 거라고 생각해요.","shadow_speak":"彼は来ないと 思います。","id":52}]};
+const DATA = RAW.items;
+const LEVELS = RAW.levels;
+const LS = 'jpsent_v1';
+
+let state = load();
+function load(){
+  try{
+    const s = JSON.parse(localStorage.getItem(LS)||'{}');
+    return {
+      mode: s.mode||'jp',
+      level: s.level||'all',        // 'all' | 1 | 2 | 3
+      scope: s.scope||'all',        // 'all' | 'todo'
+      showShadow: s.showShadow!==false,
+      autoSpeak: s.autoSpeak!==false,
+      rate: typeof s.rate==='number'?s.rate:1,
+      repeat: typeof s.repeat==='number'?s.repeat:3,
+      known: Array.isArray(s.known)?s.known:[],
+    };
+  }catch{ return {mode:'jp',level:'all',scope:'all',showShadow:true,autoSpeak:true,rate:1,repeat:3,known:[]}; }
+}
+function save(){ localStorage.setItem(LS, JSON.stringify(state)); }
+const knownSet = () => new Set(state.known);
+const $ = s => document.querySelector(s);
+
+// ---- TTS ----
+let jpVoice=null;
+function pickVoice(){
+  if(!('speechSynthesis' in window)) return null;
+  const v=speechSynthesis.getVoices();
+  return v.find(x=>x.lang==='ja-JP')||v.find(x=>x.lang&&x.lang.toLowerCase().startsWith('ja'))||
+         v.find(x=>/japan|kyoko|otoya|hattori|ichiro/i.test(x.name))||null;
+}
+function initTTS(){
+  if(!('speechSynthesis' in window)){ $('#ttsWarn').style.display='block'; return; }
+  const t=()=>{ jpVoice=pickVoice(); $('#ttsWarn').style.display=(!jpVoice&&speechSynthesis.getVoices().length)?'block':'none'; };
+  t(); if('onvoiceschanged' in speechSynthesis) speechSynthesis.onvoiceschanged=t;
+}
+function speak(text){
+  if(!('speechSynthesis' in window)||!text) return;
+  try{speechSynthesis.cancel();}catch{}
+  const u=new SpeechSynthesisUtterance(text); u.lang='ja-JP'; if(jpVoice)u.voice=jpVoice; u.rate=state.rate||1;
+  const b=$('#speakBtn'); if(b)b.classList.add('speaking');
+  u.onend=u.onerror=()=>{ if(b)b.classList.remove('speaking'); };
+  speechSynthesis.speak(u);
+}
+function stopSpeak(){ try{speechSynthesis.cancel();}catch{} const b=$('#speakBtn'); if(b)b.classList.remove('speaking'); }
+
+// speak book + (optional) shadow, in sequence
+function speakItem(it){
+  const parts=[it.book_speak]; if(state.showShadow&&it.shadow_speak) parts.push(it.shadow_speak);
+  speakSeq(parts,0);
+}
+let seqTimer=null;
+function speakSeq(parts,i){
+  if(i>=parts.length) return;
+  if(!('speechSynthesis' in window)){ return; }
+  try{speechSynthesis.cancel();}catch{}
+  const u=new SpeechSynthesisUtterance(parts[i]); u.lang='ja-JP'; if(jpVoice)u.voice=jpVoice; u.rate=state.rate||1;
+  const b=$('#speakBtn'); if(b)b.classList.add('speaking');
+  u.onend=u.onerror=()=>{ if(b)b.classList.remove('speaking'); if(i+1<parts.length){ seqTimer=setTimeout(()=>speakSeq(parts,i+1),350);} };
+  speechSynthesis.speak(u);
+}
+
+// ---- deck ----
+let deck=[], idx=0;
+function buildDeck(){
+  let d = DATA.filter(it => state.level==='all' || it.level===state.level);
+  if(state.scope==='todo'){ const k=knownSet(); d=d.filter(it=>!k.has(it.id)); }
+  return d;
+}
+
+// ---- views ----
+function showHome(){ stopAll(); $('#homeView').classList.remove('hidden'); $('#studyView').classList.add('hidden'); $('#endView').classList.add('hidden'); renderHome(); }
+
+function renderHome(){
+  // level chips
+  const chips=$('#levelChips'); chips.innerHTML='';
+  const mk=(key,label,count)=>{ const el=document.createElement('div'); el.className='chip'+(state.level===key?' active':'');
+    el.innerHTML=`${label}<span class="c">${count}문형</span>`; el.onclick=()=>{ state.level=key; save(); renderHome(); }; chips.appendChild(el); };
+  mk('all','전체', DATA.length);
+  LEVELS.forEach(l=> mk(l.n, `${l.emoji} Lv.${l.n}`, DATA.filter(it=>it.level===l.n).length));
+  // mode
+  document.querySelectorAll('.mode-card').forEach(el=>el.classList.toggle('active', el.dataset.mode===state.mode));
+  // switches
+  syncSwitch('#scopeSwitch','scope','scope',state.scope);
+  document.querySelectorAll('#shadowSwitch button').forEach(b=>b.classList.toggle('on',(b.dataset.sh==='1')===state.showShadow));
+  document.querySelectorAll('#autoSpeakSwitch button').forEach(b=>b.classList.toggle('on',(b.dataset.as==='1')===state.autoSpeak));
+  document.querySelectorAll('#rateSwitch button').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.rate)===state.rate));
+  document.querySelectorAll('#repeatSwitch button').forEach(b=>b.classList.toggle('on',parseInt(b.dataset.rep)===state.repeat));
+  // start label
+  const d=buildDeck();
+  $('#startBtn').textContent = d.length? `▶ 학습 시작 (${d.length}문형)` : '학습할 문형이 없어요 (미완만 필터 해제)';
+  $('#startBtn').disabled = d.length===0;
+  // stats
+  const k=knownSet(); const tot=DATA.length, done=DATA.filter(it=>k.has(it.id)).length;
+  $('#masterInfo').textContent = `익힘 ${done}/${tot} (${Math.round(done/tot*100)}%)`;
+  // level progress list
+  const list=$('#lvList'); list.innerHTML='';
+  LEVELS.forEach(l=>{ const items=DATA.filter(it=>it.level===l.n); const dn=items.filter(it=>k.has(it.id)).length;
+    const el=document.createElement('div'); el.className='lvitem';
+    el.innerHTML=`<span>${l.emoji} Lv.${l.n}</span><span class="lvbar"><span style="width:${Math.round(dn/items.length*100)}%"></span></span><b>${dn}/${items.length}</b>`;
+    list.appendChild(el); });
+}
+function syncSwitch(sel,dataKey,stateKey,val){ document.querySelectorAll(sel+' button').forEach(b=>b.classList.toggle('on', b.dataset[dataKey]===val)); }
+
+function startStudy(){
+  deck=buildDeck(); if(!deck.length) return; idx=0; autoPlay=false;
+  $('#homeView').classList.add('hidden'); $('#studyView').classList.remove('hidden'); $('#endView').classList.add('hidden');
+  renderCard();
+}
+
+let autoTimer=null, revealTimer=null;
+function clearTimers(){ if(autoTimer){clearTimeout(autoTimer);autoTimer=null;} if(revealTimer){clearTimeout(revealTimer);revealTimer=null;}
+  if(autoPlayTimer){clearTimeout(autoPlayTimer);autoPlayTimer=null;} if(seqTimer){clearTimeout(seqTimer);seqTimer=null;} stopSpeak(); }
+
+function renderCard(){
+  clearTimers();
+  const it=deck[idx];
+  $('#crumbs').textContent=`${it.emoji} Lv.${it.level} · ${idx+1}/${deck.length}`;
+  $('#progressBar').style.width=`${idx/deck.length*100}%`;
+  $('#lvBadge').className='lvbadge lv'+it.level; $('#lvBadge').textContent=`Lv.${it.level}`;
+  $('#unitBadge').textContent='UNIT '+it.unit;
+  $('#patternEl').textContent=it.pattern;
+  const card=$('#card'); card.classList.remove('flipped');
+  $('#countdown').textContent='';
+
+  const qL=$('#qLabel'), qT=$('#qText'), qS=$('#qSub'), ans=$('#answerEl');
+  if(state.mode==='jp'){
+    qL.textContent='일본어'; qT.className='qtext jp'; qT.textContent=it.book_jp;
+    qS.className='qsub jp'; qS.textContent=(state.showShadow&&it.shadow_jp)?('↳ '+it.shadow_jp):'';
+    ans.innerHTML=`<div class="atext">${it.book_ko}</div>`+
+      (state.showShadow&&it.shadow_ko?`<div class="shadow"><span class="lbl">🗣️ 쉐도잉 응용</span><span class="jp">${it.shadow_jp}</span><br>${it.shadow_ko}</div>`:'');
+    $('#hint').textContent='탭하여 뜻 보기';
+  }else{
+    qL.textContent='한국어'; qT.className='qtext ko'; qT.textContent=it.book_ko;
+    qS.className='qsub'; qS.textContent=(state.showShadow&&it.shadow_ko)?('↳ '+it.shadow_ko):'';
+    ans.innerHTML=`<div class="atext jp">${it.book_jp}</div>`+
+      (state.showShadow&&it.shadow_jp?`<div class="shadow"><span class="lbl">🗣️ 쉐도잉 응용</span><span class="jp">${it.shadow_jp}</span></div>`:'');
+    $('#hint').textContent='탭하여 일본어 보기';
+  }
+  // know buttons
+  const known=knownSet().has(it.id);
+  $('#knowBtn').classList.toggle('on',known); $('#knowBtn').textContent=known?'✓ 익힘됨':'✓ 익힘';
+  $('#againBtn').classList.toggle('on',false);
+  // rate/repeat study switches + autoplay label
+  document.querySelectorAll('#rateSwitchStudy button').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.rate)===state.rate));
+  document.querySelectorAll('#repeatSwitchStudy button').forEach(b=>b.classList.toggle('on',parseInt(b.dataset.rep)===state.repeat));
+  updateAutoPlayBtn();
+
+  if(autoPlay){ autoPlayStep(); }
+  else if(state.autoSpeak){ revealTimer=setTimeout(()=>speakItem(it),250); }
+}
+
+function flip(){ const c=$('#card'); const was=c.classList.contains('flipped'); c.classList.add('flipped');
+  clearTimers(); $('#hint').textContent='탭하여 다음으로';
+  if(!was && state.autoSpeak && !autoPlay){ speakItem(deck[idx]); } }
+
+function next(){ if(idx+1>=deck.length){ finish(); return; } idx++; renderCard(); }
+function prev(){ if(idx>0){ idx--; renderCard(); } }
+
+function markKnown(){ const it=deck[idx]; const k=knownSet(); if(k.has(it.id)) k.delete(it.id); else k.add(it.id);
+  state.known=[...k]; save(); const on=k.has(it.id); $('#knowBtn').classList.toggle('on',on); $('#knowBtn').textContent=on?'✓ 익힘됨':'✓ 익힘'; }
+
+function finish(){ autoPlay=false; clearTimers(); updateAutoPlayBtn();
+  $('#studyView').classList.add('hidden'); $('#endView').classList.remove('hidden');
+  const k=knownSet(); const doneInDeck=deck.filter(it=>k.has(it.id)).length;
+  $('#endTitle').textContent='한 바퀴 완료! 🎉';
+  $('#endDesc').textContent=`${deck.length}문형을 봤어요. 이 세트 익힘 ${doneInDeck}/${deck.length}.`; }
+
+// ---- auto-play (speak N times per card then advance) ----
+let autoPlay=false, autoPlayTimer=null;
+const AP_GAP=450, AP_CARD_GAP=800;
+function updateAutoPlayBtn(){ const b=$('#autoPlayBtn'); if(!b)return; b.classList.toggle('on',autoPlay);
+  b.textContent=autoPlay?'⏸ 자동재생 멈춤':`▶ 자동재생 (${state.repeat}회 반복)`; }
+function apParts(it){ const p=[it.book_speak]; if(state.showShadow&&it.shadow_speak)p.push(it.shadow_speak); return p; }
+function speakRepeat(parts,times,done){
+  if(!('speechSynthesis' in window)||!parts.length){ if(done)done(); return; }
+  try{speechSynthesis.cancel();}catch{}
+  const btn=$('#speakBtn'); let rep=0, pi=0;
+  const one=()=>{ if(!autoPlay)return; $('#countdown').textContent=`🔁 ${rep+1}/${times}`;
+    const u=new SpeechSynthesisUtterance(parts[pi]); u.lang='ja-JP'; if(jpVoice)u.voice=jpVoice; u.rate=state.rate||1;
+    if(btn)btn.classList.add('speaking');
+    u.onend=u.onerror=()=>{ if(btn)btn.classList.remove('speaking'); if(!autoPlay)return;
+      pi++; if(pi<parts.length){ autoPlayTimer=setTimeout(one,200); return; }
+      pi=0; rep++; if(rep<times){ autoPlayTimer=setTimeout(one,AP_GAP); } else if(done){ done(); } };
+    speechSynthesis.speak(u); };
+  one();
+}
+function autoPlayStep(){ if(!autoPlay) return; const it=deck[idx]; if(!it){ stopAutoPlay(); return; }
+  $('#card').classList.add('flipped'); $('#hint').textContent='⏵ 자동재생 중… (탭하면 멈춤)';
+  speakRepeat(apParts(it), state.repeat, ()=>{ if(!autoPlay)return;
+    autoPlayTimer=setTimeout(()=>{ if(!autoPlay)return; if(idx+1>=deck.length){ stopAutoPlay(); finish(); return; } idx++; renderCard(); }, AP_CARD_GAP); }); }
+function startAutoPlay(){ if(!deck.length)return; autoPlay=true; updateAutoPlayBtn(); clearTimers(); autoPlayStep(); }
+function stopAutoPlay(){ autoPlay=false; if(autoPlayTimer){clearTimeout(autoPlayTimer);autoPlayTimer=null;} try{speechSynthesis.cancel();}catch{}
+  const b=$('#speakBtn'); if(b)b.classList.remove('speaking'); $('#countdown').textContent=''; $('#hint').textContent='탭하여 다음으로'; updateAutoPlayBtn(); }
+function toggleAutoPlay(){ autoPlay?stopAutoPlay():startAutoPlay(); }
+function stopAll(){ stopAutoPlay(); clearTimers(); }
+
+// ---- events ----
+document.querySelectorAll('.mode-card').forEach(el=>el.onclick=()=>{ state.mode=el.dataset.mode; save(); renderHome(); });
+document.querySelectorAll('#scopeSwitch button').forEach(b=>b.onclick=()=>{ state.scope=b.dataset.scope; save(); renderHome(); });
+document.querySelectorAll('#shadowSwitch button').forEach(b=>b.onclick=()=>{ state.showShadow=b.dataset.sh==='1'; save(); renderHome(); });
+document.querySelectorAll('#autoSpeakSwitch button').forEach(b=>b.onclick=()=>{ state.autoSpeak=b.dataset.as==='1'; save(); renderHome(); });
+function setRate(r){ state.rate=r; save();
+  document.querySelectorAll('#rateSwitch button, #rateSwitchStudy button').forEach(b=>b.classList.toggle('on',parseFloat(b.dataset.rate)===r)); }
+function setRep(n){ state.repeat=n; save();
+  document.querySelectorAll('#repeatSwitch button, #repeatSwitchStudy button').forEach(b=>b.classList.toggle('on',parseInt(b.dataset.rep)===n)); updateAutoPlayBtn(); }
+document.querySelectorAll('#rateSwitch button').forEach(b=>b.onclick=()=>setRate(parseFloat(b.dataset.rate)));
+document.querySelectorAll('#repeatSwitch button').forEach(b=>b.onclick=()=>setRep(parseInt(b.dataset.rep)));
+document.querySelectorAll('#rateSwitchStudy button').forEach(b=>b.onclick=e=>{e.stopPropagation();setRate(parseFloat(b.dataset.rate));});
+document.querySelectorAll('#repeatSwitchStudy button').forEach(b=>b.onclick=e=>{e.stopPropagation();setRep(parseInt(b.dataset.rep));});
+
+$('#startBtn').onclick=startStudy;
+$('#resetBtn').onclick=()=>{ if(confirm('익힘 기록을 모두 지울까요?')){ state.known=[]; save(); renderHome(); } };
+$('#card').onclick=()=>{ if(autoPlay){ stopAutoPlay(); return; } if($('#card').classList.contains('flipped')) next(); else flip(); };
+$('#flipBtn').onclick=e=>{e.stopPropagation();flip();};
+$('#nextBtn').onclick=e=>{e.stopPropagation();next();};
+$('#prevBtn').onclick=e=>{e.stopPropagation();prev();};
+$('#knowBtn').onclick=e=>{e.stopPropagation();markKnown();};
+$('#againBtn').onclick=e=>{e.stopPropagation(); const it=deck[idx]; const k=knownSet(); if(k.has(it.id)){k.delete(it.id);state.known=[...k];save();} $('#knowBtn').classList.remove('on');$('#knowBtn').textContent='✓ 익힘'; next();};
+$('#speakBtn').onclick=e=>{e.stopPropagation(); if(deck[idx])speakItem(deck[idx]);};
+$('#autoPlayBtn').onclick=e=>{e.stopPropagation();toggleAutoPlay();};
+$('#exitStudy').onclick=()=>showHome();
+$('#goHome').onclick=()=>showHome();
+$('#endRestart').onclick=()=>startStudy();
+$('#endHome').onclick=()=>showHome();
+
+document.addEventListener('keydown',e=>{
+  if($('#studyView').classList.contains('hidden'))return;
+  if(e.key===' '||e.code==='Space'){e.preventDefault();flip();}
+  else if(e.key==='ArrowRight'){e.preventDefault();next();}
+  else if(e.key==='ArrowLeft'){e.preventDefault();prev();}
+  else if(e.key==='s'||e.key==='S'){e.preventDefault(); if(deck[idx])speakItem(deck[idx]);}
+  else if(e.key==='a'||e.key==='A'){e.preventDefault();toggleAutoPlay();}
+  else if(e.key==='k'||e.key==='K'){e.preventDefault();markKnown();}
+});
+
+initTTS(); showHome();
+</script>
+</body>
+</html>
