@@ -106,7 +106,7 @@
   <section id="homeView">
     <div class="panel">
       <h3>강(講) 선택</h3>
-      <div class="chips" id="lessonChips"></div>
+      <div class="chips" id="lessonChips"></div><div style="font-size:11px;color:var(--muted);margin-top:8px;">▶ 선택한 강부터 끝까지 이어서 재생됩니다</div>
     </div>
     <div class="panel">
       <h3>학습 모드</h3>
@@ -206,7 +206,7 @@ function speak(text){ if(!('speechSynthesis' in window)||!text)return; try{speec
   u.onend=u.onerror=()=>{if(b)b.classList.remove('speaking');}; speechSynthesis.speak(u); }
 
 let deck=[], idx=0;
-function buildDeck(){ let d=DATA.filter(it=>state.lesson==='all'||it.lesson===state.lesson);
+function buildDeck(){ const ORD=Object.fromEntries(LESSONS.map((l,i)=>[l.lesson,i])); let d=(state.lesson==='all')?DATA.slice():DATA.filter(it=>ORD[it.lesson]>=ORD[state.lesson]);
   if(state.scope==='todo'){const k=knownSet(); d=d.filter(it=>!k.has(it.id));} return d; }
 
 function showHome(){ stopAll(); $('#homeView').classList.remove('hidden'); $('#studyView').classList.add('hidden'); $('#endView').classList.add('hidden'); renderHome(); }

@@ -117,7 +117,7 @@
   <section id="homeView">
     <div class="panel">
       <h3>레벨 선택</h3>
-      <div class="chips" id="levelChips"></div>
+      <div class="chips" id="levelChips"></div><div style="font-size:11px;color:var(--muted);margin-top:8px;">▶ 선택한 레벨부터 끝까지 이어서 재생됩니다</div>
     </div>
     <div class="panel">
       <h3>학습 모드</h3>
@@ -325,7 +325,7 @@ function speakSeq(parts,i){
 // ---- deck ----
 let deck=[], idx=0;
 function buildDeck(){
-  let d = DATA.filter(it => state.level==='all' || it.level===state.level);
+  let d = (state.level==='all') ? DATA.slice() : DATA.filter(it => it.level>=state.level);
   if(state.scope==='todo'){ const k=knownSet(); d=d.filter(it=>!k.has(it.id)); }
   return d;
 }
