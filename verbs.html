@@ -104,6 +104,7 @@
     .day-play-btn { background: #eff6ff; border: 1px solid #bfdbfe; color: var(--secondary); border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
     .day-play-btn:hover { background: #dbeafe; }
     .day-play-btn.playing { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .drill-gear { display:inline-block; background:var(--accent); color:#fff; font-size:10px; font-weight:700; border-radius:4px; padding:1px 6px; margin-right:4px; vertical-align:middle; }
   </style>
 </head>
 <body>
@@ -151,22 +152,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>はゴルフをしに<ruby>行<rt>い</rt></ruby>こう。</span>
-            <button class="audio-btn" onclick="speakText('あしたはゴルフをしにいこう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>毎日<rt>まいにち</rt></ruby><ruby>会社<rt>かいしゃ</rt></ruby>に<ruby>行<rt>い</rt></ruby>きます。</span>
+            <button class="audio-btn" onclick="speakText('毎日会社に行きます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">아시타와 고루후오 시니 이코-</div>
-          <div class="drill-trans">해석: 내일은 골프 치러 가야지 (가자).</div>
+          <div class="drill-kr-read">마이니치까이샤니이끼마스</div>
+          <div class="drill-trans">해석: 매일 회사에 갑니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>東京<rt>とうきょう</rt></ruby>に<ruby>行<rt>い</rt></ruby>ったことがあります。</span>
-            <button class="audio-btn" onclick="speakText('とうきょうにいったことがあります。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>今日<rt>きょう</rt></ruby>はどこにも<ruby>行<rt>い</rt></ruby>かない。</span>
+            <button class="audio-btn" onclick="speakText('今日はどこにも行かない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">토-쿄-니 잇타 코토가 아리마스</div>
-          <div class="drill-trans">해석: 도쿄에 가 본 적이 있습니다.</div>
+          <div class="drill-kr-read">꾜우와도꼬니모이까나이</div>
+          <div class="drill-trans">해석: 오늘은 아무 데도 안 간다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>学校<rt>がっこう</rt></ruby>に<ruby>行<rt>い</rt></ruby>って<ruby>勉強<rt>べんきょう</rt></ruby>する。</span>
+            <button class="audio-btn" onclick="speakText('学校に行って勉強する。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">갓꼬우니잇떼벤꾜우스루</div>
+          <div class="drill-trans">해석: 학교에 가서 공부한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>去年<rt>きょねん</rt></ruby><ruby>日本<rt>にっぽん</rt></ruby>に<ruby>行<rt>い</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('去年日本に行った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꾜넨닛뽄니잇따</div>
+          <div class="drill-trans">해석: 작년에 일본에 갔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>明日<rt>あした</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>行<rt>い</rt></ruby>こう。</span>
+            <button class="audio-btn" onclick="speakText('明日は早く行こう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시따와하야꾸이꼬우</div>
+          <div class="drill-trans">해석: 내일은 일찍 가자.</div>
         </div>
       </div>
     </div>
@@ -190,22 +215,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>退勤<rt>たいきん</rt></ruby>して<ruby>美味<rt>おい</rt></ruby>しい<ruby>日本酒<rt>にほんしゅ</rt></ruby>が<ruby>飲<rt>の</rt></ruby>みたい。</span>
-            <button class="audio-btn" onclick="speakText('たいきんしておいしいにほんしゅがのみたい。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>毎朝<rt>まいあさ</rt></ruby>コーヒーを<ruby>飲<rt>の</rt></ruby>みます。</span>
+            <button class="audio-btn" onclick="speakText('毎朝コーヒーを飲みます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">타이킨시테 오이시- 니혼슈가 노미타이</div>
-          <div class="drill-trans">해석: 퇴근하고 맛있는 일본 사케를 마시고 싶다.</div>
+          <div class="drill-kr-read">마이아사꼬오히이오노미마스</div>
+          <div class="drill-trans">해석: 매일 아침 커피를 마십니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>昨日<rt>きのう</rt></ruby><ruby>飲<rt>の</rt></ruby>みすぎてしまった。</span>
-            <button class="audio-btn" onclick="speakText('きのうのみすぎてしまった。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> お<ruby>酒<rt>さけ</rt></ruby>は<ruby>飲<rt>の</rt></ruby>まない。</span>
+            <button class="audio-btn" onclick="speakText('お酒は飲まない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">키노- 노미스기테 시맛타</div>
-          <div class="drill-trans">해석: 어제 술을 너무 많이 마셔버렸다 (과음했다).</div>
+          <div class="drill-kr-read">오사께와노마나이</div>
+          <div class="drill-trans">해석: 술은 안 마신다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>薬<rt>くすり</rt></ruby>を<ruby>飲<rt>の</rt></ruby>んで<ruby>寝<rt>ね</rt></ruby>る。</span>
+            <button class="audio-btn" onclick="speakText('薬を飲んで寝る。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꾸스리오논데네루</div>
+          <div class="drill-trans">해석: 약을 먹고 잔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昨日<rt>きのう</rt></ruby>ビールを<ruby>飲<rt>の</rt></ruby>んだ。</span>
+            <button class="audio-btn" onclick="speakText('昨日ビールを飲んだ。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">끼노우비이루오논다</div>
+          <div class="drill-trans">해석: 어제 맥주를 마셨다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>今夜<rt>こんや</rt></ruby>は<ruby>少<rt>すこ</rt></ruby>し<ruby>飲<rt>の</rt></ruby>もう。</span>
+            <button class="audio-btn" onclick="speakText('今夜は少し飲もう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꼰야와스꼬시노모우</div>
+          <div class="drill-trans">해석: 오늘 밤은 조금 마시자.</div>
         </div>
       </div>
     </div>
@@ -229,22 +278,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>友達<rt>ともだち</rt></ruby>が<ruby>良<rt>い</rt></ruby>いワインを<ruby>買<rt>か</rt></ruby>ってくれた。</span>
-            <button class="audio-btn" onclick="speakText('ともだちがいいワインをかってくれた。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> スーパーで<ruby>果物<rt>くだもの</rt></ruby>を<ruby>買<rt>か</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('スーパーで果物を買います。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">토모다치가 이이 와인오 캇테쿠레타</div>
-          <div class="drill-trans">해석: 친구가 좋은 와인을 사 주었다.</div>
+          <div class="drill-kr-read">스으빠아데꾸다모노오까이마스</div>
+          <div class="drill-trans">해석: 슈퍼에서 과일을 삽니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">これは<ruby>前<rt>まえ</rt></ruby>もって<ruby>買<rt>か</rt></ruby>っておいた<ruby>方<rt>ほう</rt></ruby>がいい。</span>
-            <button class="audio-btn" onclick="speakText('これはまえもってかっておいたほうがいい。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>高<rt>たか</rt></ruby>いから<ruby>買<rt>か</rt></ruby>わない。</span>
+            <button class="audio-btn" onclick="speakText('高いから買わない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">코레와 마에못테 캇테오이타 호-가 이이</div>
-          <div class="drill-trans">해석: 이것은 미리 사 두는 편이 좋겠다.</div>
+          <div class="drill-kr-read">따까이까라까와나이</div>
+          <div class="drill-trans">해석: 비싸서 안 산다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>花<rt>はな</rt></ruby>を<ruby>買<rt>か</rt></ruby>って<ruby>帰<rt>かえ</rt></ruby>る。</span>
+            <button class="audio-btn" onclick="speakText('花を買って帰る。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">하나오깟떼까에루</div>
+          <div class="drill-trans">해석: 꽃을 사서 돌아간다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>新<rt>あたら</rt></ruby>しい<ruby>靴<rt>くつ</rt></ruby>を<ruby>買<rt>か</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('新しい靴を買った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아따라시이꾸쓰오깟따</div>
+          <div class="drill-trans">해석: 새 신발을 샀다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>誕生日<rt>たんじょうび</rt></ruby>プレゼントを<ruby>買<rt>か</rt></ruby>おう。</span>
+            <button class="audio-btn" onclick="speakText('誕生日プレゼントを買おう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">딴죠우비뿌레젠또오까오우</div>
+          <div class="drill-trans">해석: 생일 선물을 사자.</div>
         </div>
       </div>
     </div>
@@ -268,22 +341,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>週末<rt>しゅうまつ</rt></ruby>に<ruby>久<rt>ひさ</rt></ruby>しぶりに<ruby>友達<rt>ともだち</rt></ruby>に<ruby>会<rt>あ</rt></ruby>うことにした。</span>
-            <button class="audio-btn" onclick="speakText('しゅうまつにひさしぶりにともだちにあうことにした。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>明日<rt>あした</rt></ruby><ruby>友達<rt>ともだち</rt></ruby>に<ruby>会<rt>あ</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('明日友達に会います。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">슈-마츠니 히사시부리니 토모다치니 아우 코토니 시타</div>
-          <div class="drill-trans">해석: 주말에 오랜만에 친구를 만나기로 했다.</div>
+          <div class="drill-kr-read">아시따또모다치니아이마스</div>
+          <div class="drill-trans">해석: 내일 친구를 만납니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">あの<ruby>人<rt>ひと</rt></ruby>とはもう<ruby>会<rt>あ</rt></ruby>いたくない。</span>
-            <button class="audio-btn" onclick="speakText('あのひととはもうあいたくない。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> もう<ruby>彼<rt>かれ</rt></ruby>には<ruby>会<rt>あ</rt></ruby>わない。</span>
+            <button class="audio-btn" onclick="speakText('もう彼には会わない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">아노 히토토와 모- 아이타쿠나이</div>
-          <div class="drill-trans">해석: 그 사람과는 이제 만나고 싶지 않다.</div>
+          <div class="drill-kr-read">모우까레니하아와나이</div>
+          <div class="drill-trans">해석: 이제 그를 안 만난다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>駅<rt>えき</rt></ruby>で<ruby>会<rt>あ</rt></ruby>って<ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>行<rt>い</rt></ruby>く。</span>
+            <button class="audio-btn" onclick="speakText('駅で会って一緒に行く。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">에끼데앗떼잇쇼니이꾸</div>
+          <div class="drill-trans">해석: 역에서 만나서 같이 간다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昨日<rt>きのう</rt></ruby><ruby>先生<rt>せんせい</rt></ruby>に<ruby>会<rt>あ</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('昨日先生に会った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">끼노우센세이니앗따</div>
+          <div class="drill-trans">해석: 어제 선생님을 만났다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>週末<rt>しゅうまつ</rt></ruby>にみんなで<ruby>会<rt>あ</rt></ruby>おう。</span>
+            <button class="audio-btn" onclick="speakText('週末にみんなで会おう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">슈우마쓰니민나데아오우</div>
+          <div class="drill-trans">해석: 주말에 다 같이 만나자.</div>
         </div>
       </div>
     </div>
@@ -307,21 +404,45 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">ゆっくり<ruby>話<rt>はな</rt></ruby>してください。</span>
-            <button class="audio-btn" onclick="speakText('ゆっくりはなしてください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>日本語<rt>にほんご</rt></ruby>で<ruby>話<rt>はな</rt></ruby>します。</span>
+            <button class="audio-btn" onclick="speakText('日本語で話します。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">윳쿠리 하나시테 쿠다사이</div>
-          <div class="drill-trans">해석: 천천히 이야기해 주세요.</div>
+          <div class="drill-kr-read">니혼고데하나시마스</div>
+          <div class="drill-trans">해석: 일본어로 말합니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>素直<rt>すなお</rt></ruby>に<ruby>話<rt>はな</rt></ruby>そう。</span>
-            <button class="audio-btn" onclick="speakText('すなおにはなそう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>誰<rt>だれ</rt></ruby>にも<ruby>話<rt>はな</rt></ruby>さない。</span>
+            <button class="audio-btn" onclick="speakText('誰にも話さない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">스나오니 하나소-</div>
+          <div class="drill-kr-read">다레니모하나사나이</div>
+          <div class="drill-trans">해석: 아무에게도 말하지 않는다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> ゆっくり<ruby>話<rt>はな</rt></ruby>してください。</span>
+            <button class="audio-btn" onclick="speakText('ゆっくり話してください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">윳꾸리하나시떼꾸다사이</div>
+          <div class="drill-trans">해석: 천천히 말해 주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昨日<rt>きのう</rt></ruby><ruby>部長<rt>ぶちょう</rt></ruby>と<ruby>話<rt>はな</rt></ruby>した。</span>
+            <button class="audio-btn" onclick="speakText('昨日部長と話した。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">끼노우부쵸우또하나시따</div>
+          <div class="drill-trans">해석: 어제 부장님과 이야기했다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>正直<rt>しょうじき</rt></ruby>に<ruby>話<rt>はな</rt></ruby>そう。</span>
+            <button class="audio-btn" onclick="speakText('正直に話そう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">쇼우지끼니하나소우</div>
           <div class="drill-trans">해석: 솔직하게 이야기하자.</div>
         </div>
       </div>
@@ -346,22 +467,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">ここでもう<ruby>少<rt>すこ</rt></ruby>し<ruby>待<rt>ま</rt></ruby>ってください。</span>
-            <button class="audio-btn" onclick="speakText('ここでもうすこしまってください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> ここで<ruby>待<rt>ま</rt></ruby>ちます。</span>
+            <button class="audio-btn" onclick="speakText('ここで待ちます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">코코데 모-스코시 맛테 쿠다사이</div>
-          <div class="drill-trans">해석: 여기서 조금만 더 기다려 주세요.</div>
+          <div class="drill-kr-read">꼬꼬데마치마스</div>
+          <div class="drill-trans">해석: 여기서 기다립니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">もう<ruby>待<rt>ま</rt></ruby>てない。</span>
-            <button class="audio-btn" onclick="speakText('もうまてない。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> もう<ruby>待<rt>ま</rt></ruby>たない。</span>
+            <button class="audio-btn" onclick="speakText('もう待たない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">모- 마테나이</div>
-          <div class="drill-trans">해석: 더 이상 기다릴 수 없어.</div>
+          <div class="drill-kr-read">모우마따나이</div>
+          <div class="drill-trans">해석: 더는 안 기다린다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>少<rt>すこ</rt></ruby>し<ruby>待<rt>ま</rt></ruby>ってください。</span>
+            <button class="audio-btn" onclick="speakText('少し待ってください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">스꼬시맛떼꾸다사이</div>
+          <div class="drill-trans">해석: 조금 기다려 주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>一時間<rt>いちじかん</rt></ruby><ruby>待<rt>ま</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('一時間待った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">이치지깐맛따</div>
+          <div class="drill-trans">해석: 한 시간 기다렸다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> もう<ruby>少<rt>すこ</rt></ruby>し<ruby>待<rt>ま</rt></ruby>とう。</span>
+            <button class="audio-btn" onclick="speakText('もう少し待とう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">모우스꼬시마또우</div>
+          <div class="drill-trans">해석: 조금만 더 기다리자.</div>
         </div>
       </div>
     </div>
@@ -385,22 +530,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>忘<rt>わす</rt></ruby>れないようにメモを<ruby>書<rt>か</rt></ruby>いておこう。</span>
-            <button class="audio-btn" onclick="speakText('わすれないようにメモをかいておこう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>手紙<rt>てがみ</rt></ruby>を<ruby>書<rt>か</rt></ruby>きます。</span>
+            <button class="audio-btn" onclick="speakText('手紙を書きます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">와스레나이요-니 메모오 카이테 오코-</div>
-          <div class="drill-trans">해석: 잊지 않도록 메모를 써 두자.</div>
+          <div class="drill-kr-read">떼가미오까끼마스</div>
+          <div class="drill-trans">해석: 편지를 씁니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">このペンはとても<ruby>書<rt>か</rt></ruby>きやすい。</span>
-            <button class="audio-btn" onclick="speakText('このペンはとてもかきやすい。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>名前<rt>なまえ</rt></ruby>を<ruby>書<rt>か</rt></ruby>かない。</span>
+            <button class="audio-btn" onclick="speakText('名前を書かない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">코노 펜와 토테모 카키야스이</div>
-          <div class="drill-trans">해석: 이 펜은 정말 쓰기 편하다 (필기감이 좋다).</div>
+          <div class="drill-kr-read">나마에오까까나이</div>
+          <div class="drill-trans">해석: 이름을 안 쓴다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> メモを<ruby>書<rt>か</rt></ruby>いておく。</span>
+            <button class="audio-btn" onclick="speakText('メモを書いておく。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">메모오까이떼오꾸</div>
+          <div class="drill-trans">해석: 메모를 써 둔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>日記<rt>にっき</rt></ruby>を<ruby>書<rt>か</rt></ruby>いた。</span>
+            <button class="audio-btn" onclick="speakText('日記を書いた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">닛끼오까이따</div>
+          <div class="drill-trans">해석: 일기를 썼다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>感想<rt>かんそう</rt></ruby>を<ruby>書<rt>か</rt></ruby>こう。</span>
+            <button class="audio-btn" onclick="speakText('感想を書こう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">깐소우오까꼬우</div>
+          <div class="drill-trans">해석: 감상을 쓰자.</div>
         </div>
       </div>
     </div>
@@ -427,22 +596,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>昼<rt>ひる</rt></ruby>ご飯は<ruby>軽<rt>かる</rt></ruby>く蕎麦でも<ruby>食<rt>た</rt></ruby>べよう。</span>
-            <button class="audio-btn" onclick="speakText('ひるごはんはかるくそばでもたべよう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>朝<rt>あさ</rt></ruby>ご<ruby>飯<rt>はん</rt></ruby>を<ruby>食<rt>た</rt></ruby>べます。</span>
+            <button class="audio-btn" onclick="speakText('朝ご飯を食べます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">히루고항와 카루쿠 소바데모 타베요-</div>
-          <div class="drill-trans">해석: 점심은 가볍게 소바나 먹자.</div>
+          <div class="drill-kr-read">아사고한오따베마스</div>
+          <div class="drill-trans">해석: 아침을 먹습니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">このデザートは<ruby>一度<rt>いちど</rt></ruby><ruby>食<rt>た</rt></ruby>べてみたい。</span>
-            <button class="audio-btn" onclick="speakText('このデザートはいちどたべてみたい。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>朝<rt>あさ</rt></ruby>は<ruby>何<rt>なに</rt></ruby>も<ruby>食<rt>た</rt></ruby>べない。</span>
+            <button class="audio-btn" onclick="speakText('朝は何も食べない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">코노 데자-토와 이치도 타베테 미타이</div>
-          <div class="drill-trans">해석: 이 디저트는 한 번 먹어보고 싶다.</div>
+          <div class="drill-kr-read">아사와나니모따베나이</div>
+          <div class="drill-trans">해석: 아침엔 아무것도 안 먹는다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> パンを<ruby>食<rt>た</rt></ruby>べて<ruby>学校<rt>がっこう</rt></ruby>へ<ruby>行<rt>い</rt></ruby>く。</span>
+            <button class="audio-btn" onclick="speakText('パンを食べて学校へ行く。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">빤오따베떼갓꼬우에이꾸</div>
+          <div class="drill-trans">해석: 빵을 먹고 학교에 간다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昼<rt>ひる</rt></ruby>にラーメンを<ruby>食<rt>た</rt></ruby>べた。</span>
+            <button class="audio-btn" onclick="speakText('昼にラーメンを食べた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">히루니라아멘오따베따</div>
+          <div class="drill-trans">해석: 점심에 라멘을 먹었다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>食<rt>た</rt></ruby>べよう。</span>
+            <button class="audio-btn" onclick="speakText('一緒に食べよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">잇쇼니따베요우</div>
+          <div class="drill-trans">해석: 같이 먹자.</div>
         </div>
       </div>
     </div>
@@ -466,22 +659,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">この<ruby>映画<rt>えいが</rt></ruby>は<ruby>前<rt>まえ</rt></ruby>に<ruby>見<rt>み</rt></ruby>たことがある。</span>
-            <button class="audio-btn" onclick="speakText('このえいがはまえにみたことがある。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>映画<rt>えいが</rt></ruby>を<ruby>見<rt>み</rt></ruby>ます。</span>
+            <button class="audio-btn" onclick="speakText('映画を見ます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">코노 에-가와 마에니 미타 코토가 아루</div>
-          <div class="drill-trans">해석: 이 영화는 예전에 본 적이 있어.</div>
+          <div class="drill-kr-read">에이가오미마스</div>
+          <div class="drill-trans">해석: 영화를 봅니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>夜<rt>よる</rt></ruby>はスマホを<ruby>見<rt>み</rt></ruby>ないようにしよう。</span>
-            <button class="audio-btn" onclick="speakText('よるはスマホをみないようにしよう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> テレビは<ruby>見<rt>み</rt></ruby>ない。</span>
+            <button class="audio-btn" onclick="speakText('テレビは見ない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">요루와 스마호오 미나이 요-니 시요-</div>
-          <div class="drill-trans">해석: 밤에는 스마트폰을 보지 않도록 하자.</div>
+          <div class="drill-kr-read">떼레비와미나이</div>
+          <div class="drill-trans">해석: 텔레비전은 안 본다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>写真<rt>しゃしん</rt></ruby>を<ruby>見<rt>み</rt></ruby>て<ruby>笑<rt>わら</rt></ruby>う。</span>
+            <button class="audio-btn" onclick="speakText('写真を見て笑う。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">샤신오미떼와라우</div>
+          <div class="drill-trans">해석: 사진을 보고 웃는다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昨日<rt>きのう</rt></ruby>ドラマを<ruby>見<rt>み</rt></ruby>た。</span>
+            <button class="audio-btn" onclick="speakText('昨日ドラマを見た。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">끼노우도라마오미따</div>
+          <div class="drill-trans">해석: 어제 드라마를 봤다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>星<rt>ほし</rt></ruby>を<ruby>見<rt>み</rt></ruby>よう。</span>
+            <button class="audio-btn" onclick="speakText('星を見よう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">호시오미요우</div>
+          <div class="drill-trans">해석: 별을 보자.</div>
         </div>
       </div>
     </div>
@@ -505,22 +722,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>疲<rt>つか</rt></ruby>れたから<ruby>今日<rt>きょう</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>寝<rt>ね</rt></ruby>よう。</span>
-            <button class="audio-btn" onclick="speakText('つかれたからきょうははやくねよう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>毎晩<rt>まいばん</rt></ruby>ぐっすり<ruby>寝<rt>ね</rt></ruby>ます。</span>
+            <button class="audio-btn" onclick="speakText('毎晩ぐっすり寝ます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">츠카레타카라 쿄-와 하야쿠 네요-</div>
-          <div class="drill-trans">해석: 피곤하니까 오늘은 일찍 자자.</div>
+          <div class="drill-kr-read">마이반굿스리네마스</div>
+          <div class="drill-trans">해석: 매일 밤 푹 잡니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">クーラーをつけたまま<ruby>寝<rt>ね</rt></ruby>てしまった。</span>
-            <button class="audio-btn" onclick="speakText('クーラーをつけたままねてしまった。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>今夜<rt>こんや</rt></ruby>は<ruby>寝<rt>ね</rt></ruby>ない。</span>
+            <button class="audio-btn" onclick="speakText('今夜は寝ない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">쿠-라-오 츠케타마마 네테 시맛타</div>
-          <div class="drill-trans">해석: 에어컨을 켠 채로 잠들어 버렸다.</div>
+          <div class="drill-kr-read">꼰야와네나이</div>
+          <div class="drill-trans">해석: 오늘 밤은 안 잔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>早<rt>はや</rt></ruby>く<ruby>寝<rt>ね</rt></ruby>て<ruby>早<rt>はや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きる。</span>
+            <button class="audio-btn" onclick="speakText('早く寝て早く起きる。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">하야꾸네떼하야꾸오끼루</div>
+          <div class="drill-trans">해석: 일찍 자고 일찍 일어난다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昨日<rt>きのう</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>寝<rt>ね</rt></ruby>た。</span>
+            <button class="audio-btn" onclick="speakText('昨日は早く寝た。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">끼노우와하야꾸네따</div>
+          <div class="drill-trans">해석: 어제는 일찍 잤다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>今日<rt>きょう</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>寝<rt>ね</rt></ruby>よう。</span>
+            <button class="audio-btn" onclick="speakText('今日は早く寝よう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꾜우와하야꾸네요우</div>
+          <div class="drill-trans">해석: 오늘은 일찍 자자.</div>
         </div>
       </div>
     </div>
@@ -544,22 +785,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>は5<ruby>時<rt>じ</rt></ruby>に<ruby>起<rt>お</rt></ruby>きなければならない。</span>
-            <button class="audio-btn" onclick="speakText('あしたはごじにおきなければならない。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>毎朝<rt>まいあさ</rt></ruby><ruby>七時<rt>しちじ</rt></ruby>に<ruby>起<rt>お</rt></ruby>きます。</span>
+            <button class="audio-btn" onclick="speakText('毎朝七時に起きます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">아시타와 고지니 오키나케레바 나라나이</div>
-          <div class="drill-trans">해석: 내일은 5시에 일어나야 해.</div>
+          <div class="drill-kr-read">마이아사시치지니오끼마스</div>
+          <div class="drill-trans">해석: 매일 아침 7시에 일어납니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>週末<rt>しゅうまつ</rt></ruby>は<ruby>早起<rt>はやお</rt></ruby>きが<ruby>苦手<rt>にがて</rt></ruby>だ。</span>
-            <button class="audio-btn" onclick="speakText('しゅうまつははやおきがにがてだ。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>休<rt>やす</rt></ruby>みの<ruby>日<rt>にち</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きない。</span>
+            <button class="audio-btn" onclick="speakText('休みの日は早く起きない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">슈-마츠와 하야오키가 니가테다</div>
-          <div class="drill-trans">해석: 주말에는 일찍 일어나는 게 쥐약(서투름)이다.</div>
+          <div class="drill-kr-read">야스미노니치와하야꾸오끼나이</div>
+          <div class="drill-trans">해석: 쉬는 날은 일찍 안 일어난다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>起<rt>お</rt></ruby>きて<ruby>顔<rt>かお</rt></ruby>を<ruby>洗<rt>あら</rt></ruby>う。</span>
+            <button class="audio-btn" onclick="speakText('起きて顔を洗う。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오끼떼까오오아라우</div>
+          <div class="drill-trans">해석: 일어나서 세수한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>今日<rt>きょう</rt></ruby>は<ruby>遅<rt>おそ</rt></ruby>く<ruby>起<rt>お</rt></ruby>きた。</span>
+            <button class="audio-btn" onclick="speakText('今日は遅く起きた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꾜우와오소꾸오끼따</div>
+          <div class="drill-trans">해석: 오늘은 늦게 일어났다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>明日<rt>あした</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きよう。</span>
+            <button class="audio-btn" onclick="speakText('明日は早く起きよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시따와하야꾸오끼요우</div>
+          <div class="drill-trans">해석: 내일은 일찍 일어나자.</div>
         </div>
       </div>
     </div>
@@ -583,22 +848,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>から<ruby>毎日<rt>まいにち</rt></ruby>30<ruby>分<rt>ぷん</rt></ruby><ruby>勉強<rt>べんきょう</rt></ruby>することにした。</span>
-            <button class="audio-btn" onclick="speakText('あしたからまいにちさんじゅっぷんべんきょうすることにした。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>毎日<rt>まいにち</rt></ruby><ruby>運動<rt>うんどう</rt></ruby>します。</span>
+            <button class="audio-btn" onclick="speakText('毎日運動します。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">아시타카라 마이니치 산쥿푼 벵쿄-스루 코토니 시타</div>
-          <div class="drill-trans">해석: 내일부터 매일 30분씩 공부하기로 했다.</div>
+          <div class="drill-kr-read">마이니치운도우시마스</div>
+          <div class="drill-trans">해석: 매일 운동합니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">そんなに<ruby>無理<rt>むり</rt></ruby>しないでください。</span>
-            <button class="audio-btn" onclick="speakText('そんなにむりしないでください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>今日<rt>きょう</rt></ruby>は<ruby>何<rt>なに</rt></ruby>もしない。</span>
+            <button class="audio-btn" onclick="speakText('今日は何もしない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">손나니 무리시나이데 쿠다사이</div>
-          <div class="drill-trans">해석: 그렇게 무리하지 마세요.</div>
+          <div class="drill-kr-read">꾜우와나니모시나이</div>
+          <div class="drill-trans">해석: 오늘은 아무것도 안 한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>宿題<rt>しゅくだい</rt></ruby>をしてから<ruby>遊<rt>あそ</rt></ruby>ぶ。</span>
+            <button class="audio-btn" onclick="speakText('宿題をしてから遊ぶ。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">슈꾸다이오시떼까라아소부</div>
+          <div class="drill-trans">해석: 숙제를 하고 나서 논다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昨日<rt>きのう</rt></ruby><ruby>買い物<rt>かいもの</rt></ruby>をした。</span>
+            <button class="audio-btn" onclick="speakText('昨日買い物をした。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">끼노우까이모노오시따</div>
+          <div class="drill-trans">해석: 어제 쇼핑을 했다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>一緒<rt>いっしょ</rt></ruby>に<ruby>勉強<rt>べんきょう</rt></ruby>しよう。</span>
+            <button class="audio-btn" onclick="speakText('一緒に勉強しよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">잇쇼니벤꾜우시요우</div>
+          <div class="drill-trans">해석: 같이 공부하자.</div>
         </div>
       </div>
     </div>
@@ -622,22 +911,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>りそうですね。</span>
-            <button class="audio-btn" onclick="speakText('あめがふりそうですね。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>友達<rt>ともだち</rt></ruby>が<ruby>家<rt>いえ</rt></ruby>に<ruby>来<rt>き</rt></ruby>ます。</span>
+            <button class="audio-btn" onclick="speakText('友達が家に来ます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">아메가 후리소-데스네</div>
-          <div class="drill-trans">해석: 비가 올 것 같네요.</div>
+          <div class="drill-kr-read">또모다치가이에니끼마스</div>
+          <div class="drill-trans">해석: 친구가 집에 옵니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">いつでもうちへ<ruby>遊<rt>あそ</rt></ruby>びに<ruby>来<rt>き</rt></ruby>てください。</span>
-            <button class="audio-btn" onclick="speakText('いつでもうちへあそびにきてください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>彼<rt>かれ</rt></ruby>は<ruby>今日<rt>きょう</rt></ruby><ruby>来<rt>こ</rt></ruby>ない。</span>
+            <button class="audio-btn" onclick="speakText('彼は今日来ない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">이츠데모 우치에 아소비니 키테 쿠다사이</div>
-          <div class="drill-trans">해석: 언제든지 우리 집에 놀러 오세요.</div>
+          <div class="drill-kr-read">까레와꾜우꼬나이</div>
+          <div class="drill-trans">해석: 그는 오늘 안 온다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>早<rt>はや</rt></ruby>く<ruby>来<rt>き</rt></ruby>てください。</span>
+            <button class="audio-btn" onclick="speakText('早く来てください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">하야꾸끼떼꾸다사이</div>
+          <div class="drill-trans">해석: 일찍 와 주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> バスがやっと<ruby>来<rt>き</rt></ruby>た。</span>
+            <button class="audio-btn" onclick="speakText('バスがやっと来た。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">바스가얏또끼따</div>
+          <div class="drill-trans">해석: 버스가 드디어 왔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> また<ruby>遊<rt>あそ</rt></ruby>びに<ruby>来<rt>こ</rt></ruby>よう。</span>
+            <button class="audio-btn" onclick="speakText('また遊びに来よう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마따아소비니꼬요우</div>
+          <div class="drill-trans">해석: 또 놀러 오자.</div>
         </div>
       </div>
     </div>
@@ -661,22 +974,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>今週<rt>こんしゅう</rt></ruby>はゆっくり<ruby>休<rt>やす</rt></ruby>みたい。</span>
-            <button class="audio-btn" onclick="speakText('こんしゅうはゆっくりやすみたい。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>日曜日<rt>にちようび</rt></ruby>は<ruby>休<rt>やす</rt></ruby>みます。</span>
+            <button class="audio-btn" onclick="speakText('日曜日は休みます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">콘슈-와 윳쿠리 야스미타이</div>
-          <div class="drill-trans">해석: 이번 주는 좀 푹 쉬고 싶다.</div>
+          <div class="drill-kr-read">니치요우비와야스미마스</div>
+          <div class="drill-trans">해석: 일요일은 쉽니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>無理<rt>むり</rt></ruby>しないで<ruby>休<rt>やす</rt></ruby>むようにしてください。</span>
-            <button class="audio-btn" onclick="speakText('むりしないでやすむようにしてください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>今日<rt>きょう</rt></ruby>は<ruby>休<rt>やす</rt></ruby>まない。</span>
+            <button class="audio-btn" onclick="speakText('今日は休まない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">무리시나이데 야스무 요-니 시테 쿠다사이</div>
-          <div class="drill-trans">해석: 무리하지 말고 쉬도록 하세요.</div>
+          <div class="drill-kr-read">꾜우와야스마나이</div>
+          <div class="drill-trans">해석: 오늘은 안 쉰다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>少<rt>すこ</rt></ruby>し<ruby>休<rt>やす</rt></ruby>んでから<ruby>続<rt>つづ</rt></ruby>ける。</span>
+            <button class="audio-btn" onclick="speakText('少し休んでから続ける。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">스꼬시야슨데까라쓰즈께루</div>
+          <div class="drill-trans">해석: 조금 쉬고 나서 계속한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>週末<rt>しゅうまつ</rt></ruby>はゆっくり<ruby>休<rt>やす</rt></ruby>んだ。</span>
+            <button class="audio-btn" onclick="speakText('週末はゆっくり休んだ。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">슈우마쓰하윳꾸리야슨다</div>
+          <div class="drill-trans">해석: 주말은 푹 쉬었다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>今日<rt>きょう</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>休<rt>やす</rt></ruby>もう。</span>
+            <button class="audio-btn" onclick="speakText('今日は早く休もう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꾜우와하야꾸야스모우</div>
+          <div class="drill-trans">해석: 오늘은 일찍 쉬자.</div>
         </div>
       </div>
     </div>
@@ -703,22 +1040,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">ソウルで20<ruby>年間<rt>ねんかん</rt></ruby><ruby>働<rt>はたら</rt></ruby>いてきました。</span>
-            <button class="audio-btn" onclick="speakText('ソウルでにじゅうねんかんはたらいてきました。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>銀行<rt>ぎんこう</rt></ruby>で<ruby>働<rt>はたら</rt></ruby>きます。</span>
+            <button class="audio-btn" onclick="speakText('銀行で働きます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">소우루데 니쥬-넨칸 하타라이테 키마시타</div>
-          <div class="drill-trans">해석: 서울에서 20년간 일해 왔습니다.</div>
+          <div class="drill-kr-read">긴꼬우데하따라끼마스</div>
+          <div class="drill-trans">해석: 은행에서 일합니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>週末<rt>しゅうまつ</rt></ruby>には<ruby>働<rt>はたら</rt></ruby>きたくないです。</span>
-            <button class="audio-btn" onclick="speakText('しゅうまつにははたらきたくないです。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>土曜日<rt>どようび</rt></ruby>は<ruby>働<rt>はたら</rt></ruby>かない。</span>
+            <button class="audio-btn" onclick="speakText('土曜日は働かない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">슈-마츠니와 하타라키타쿠 나이데스</div>
-          <div class="drill-trans">해석: 주말에는 일하고 싶지 않아요.</div>
+          <div class="drill-kr-read">도요우비와하따라까나이</div>
+          <div class="drill-trans">해석: 토요일은 일 안 한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>朝<rt>あさ</rt></ruby>から<ruby>晩<rt>ばん</rt></ruby>まで<ruby>働<rt>はたら</rt></ruby>いて<ruby>疲<rt>つか</rt></ruby>れた。</span>
+            <button class="audio-btn" onclick="speakText('朝から晩まで働いて疲れた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아사까라반마데하따라이떼쓰까레따</div>
+          <div class="drill-trans">해석: 아침부터 밤까지 일해서 지쳤다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>十年<rt>じゅうねん</rt></ruby><ruby>間<rt>かん</rt></ruby>ここで<ruby>働<rt>はたら</rt></ruby>いた。</span>
+            <button class="audio-btn" onclick="speakText('十年間ここで働いた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">쥬우넨깐꼬꼬데하따라이따</div>
+          <div class="drill-trans">해석: 10년간 여기서 일했다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>明日<rt>あした</rt></ruby>も<ruby>頑張<rt>がんば</rt></ruby>って<ruby>働<rt>はたら</rt></ruby>こう。</span>
+            <button class="audio-btn" onclick="speakText('明日も頑張って働こう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시따모간밧떼하따라꼬우</div>
+          <div class="drill-trans">해석: 내일도 열심히 일하자.</div>
         </div>
       </div>
     </div>
@@ -742,22 +1103,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>家族<rt>かぞく</rt></ruby>のために<ruby>料理<rt>りょうり</rt></ruby>を<ruby>作<rt>つく</rt></ruby>っておこう。</span>
-            <button class="audio-btn" onclick="speakText('かぞくのためにりょうりをつくっておこう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>夕<rt>ゆう</rt></ruby>ご<ruby>飯<rt>はん</rt></ruby>を<ruby>作<rt>つく</rt></ruby>ります。</span>
+            <button class="audio-btn" onclick="speakText('夕ご飯を作ります。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">카조쿠노 타메니 료-리오 츠쿳테 오코-</div>
-          <div class="drill-trans">해석: 가족을 위해 요리를 만들어 두자.</div>
+          <div class="drill-kr-read">유우고한오쓰꾸리마스</div>
+          <div class="drill-trans">해석: 저녁을 만듭니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">これは<ruby>自分<rt>じぶん</rt></ruby>で<ruby>作<rt>つく</rt></ruby>った<ruby>資料<rt>しりょう</rt></ruby>です。</span>
-            <button class="audio-btn" onclick="speakText('これはじぶんでつくったしりょうです。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>今日<rt>きょう</rt></ruby>は<ruby>料理<rt>りょうり</rt></ruby>を<ruby>作<rt>つく</rt></ruby>らない。</span>
+            <button class="audio-btn" onclick="speakText('今日は料理を作らない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">코레와 지분데 츠쿳타 시료-데스</div>
-          <div class="drill-trans">해석: 이건 스스로 만든 자료입니다.</div>
+          <div class="drill-kr-read">꾜우와료우리오쓰꾸라나이</div>
+          <div class="drill-trans">해석: 오늘은 요리를 안 한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> ケーキを<ruby>作<rt>つく</rt></ruby>って<ruby>持<rt>も</rt></ruby>っていく。</span>
+            <button class="audio-btn" onclick="speakText('ケーキを作って持っていく。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">께에끼오쓰꿋떼못떼이꾸</div>
+          <div class="drill-trans">해석: 케이크를 만들어서 가져간다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>会議<rt>かいぎ</rt></ruby>の<ruby>資料<rt>しりょう</rt></ruby>を<ruby>作<rt>つく</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('会議の資料を作った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">까이기노시료우오쓰꿋따</div>
+          <div class="drill-trans">해석: 회의 자료를 만들었다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> おいしい<ruby>料理<rt>りょうり</rt></ruby>を<ruby>作<rt>つく</rt></ruby>ろう。</span>
+            <button class="audio-btn" onclick="speakText('おいしい料理を作ろう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오이시이료우리오쓰꾸로우</div>
+          <div class="drill-trans">해석: 맛있는 요리를 만들자.</div>
         </div>
       </div>
     </div>
@@ -781,22 +1166,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">このアプリはとても<ruby>使<rt>つか</rt></ruby>いやすいです。</span>
-            <button class="audio-btn" onclick="speakText('このアプリはとてもつかいやすいです。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> パソコンを<ruby>使<rt>つか</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('パソコンを使います。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">코노 아푸리와 토테모 츠카이야스이데스</div>
-          <div class="drill-trans">해석: 이 앱은 아주 사용하기 편합니다.</div>
+          <div class="drill-kr-read">빠소꼰오쓰까이마스</div>
+          <div class="drill-trans">해석: 컴퓨터를 씁니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">この<ruby>会議室<rt>かいぎしつ</rt></ruby>を<ruby>使<rt>つか</rt></ruby>ってもいいですか？</span>
-            <button class="audio-btn" onclick="speakText('このかいぎしつをつかってもいいですか？')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>現金<rt>げんきん</rt></ruby>は<ruby>使<rt>つか</rt></ruby>わない。</span>
+            <button class="audio-btn" onclick="speakText('現金は使わない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">코노 카이기시츠오 츠캇테모 이이데스카</div>
-          <div class="drill-trans">해석: 이 회의실을 써도 됩니까?</div>
+          <div class="drill-kr-read">겐낀와쓰까와나이</div>
+          <div class="drill-trans">해석: 현금은 안 쓴다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>辞書<rt>じしょ</rt></ruby>を<ruby>使<rt>つか</rt></ruby>って<ruby>調<rt>しら</rt></ruby>べる。</span>
+            <button class="audio-btn" onclick="speakText('辞書を使って調べる。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">지쇼오쓰깟떼시라베루</div>
+          <div class="drill-trans">해석: 사전을 써서 찾아본다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> お<ruby>金<rt>きん</rt></ruby>を<ruby>全部<rt>ぜんぶ</rt></ruby><ruby>使<rt>つか</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('お金を全部使った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오낀오젠부쓰깟따</div>
+          <div class="drill-trans">해석: 돈을 다 썼다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>新<rt>あたら</rt></ruby>しいアプリを<ruby>使<rt>つか</rt></ruby>おう。</span>
+            <button class="audio-btn" onclick="speakText('新しいアプリを使おう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아따라시이아뿌리오쓰까오우</div>
+          <div class="drill-trans">해석: 새 앱을 써 보자.</div>
         </div>
       </div>
     </div>
@@ -820,22 +1229,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>分<rt>わ</rt></ruby>からないところは<ruby>担当者<rt>たんとうしゃ</rt></ruby>に<ruby>聞<rt>き</rt></ruby>いてみよう。</span>
-            <button class="audio-btn" onclick="speakText('わからないところはたんとうしゃにきいてみよう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>音楽<rt>おんがく</rt></ruby>を<ruby>聞<rt>き</rt></ruby>きます。</span>
+            <button class="audio-btn" onclick="speakText('音楽を聞きます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">와카라나이 토코로와 탄토-샤니 키이테 미요-</div>
-          <div class="drill-trans">해석: 모르는 부분은 담당자에게 물어보자.</div>
+          <div class="drill-kr-read">온가꾸오끼끼마스</div>
+          <div class="drill-trans">해석: 음악을 듣습니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>先生<rt>せんせい</rt></ruby>が<ruby>話<rt>はなし</rt></ruby>を<ruby>聞<rt>き</rt></ruby>いてくれました。</span>
-            <button class="audio-btn" onclick="speakText('せんせいがはなしをきいてくれました。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>話<rt>はなし</rt></ruby>を<ruby>聞<rt>き</rt></ruby>かない。</span>
+            <button class="audio-btn" onclick="speakText('話を聞かない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">센세-가 하나시오 키이테 쿠레마시타</div>
-          <div class="drill-trans">해석: 선생님께서 제 이야기를 들어주셨습니다.</div>
+          <div class="drill-kr-read">하나시오끼까나이</div>
+          <div class="drill-trans">해석: 말을 안 듣는다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>先生<rt>せんせい</rt></ruby>に<ruby>聞<rt>き</rt></ruby>いて<ruby>確認<rt>かくにん</rt></ruby>する。</span>
+            <button class="audio-btn" onclick="speakText('先生に聞いて確認する。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">센세이니끼이떼까꾸닌스루</div>
+          <div class="drill-trans">해석: 선생님께 물어서 확인한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> ニュースを<ruby>聞<rt>き</rt></ruby>いた。</span>
+            <button class="audio-btn" onclick="speakText('ニュースを聞いた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니이스오끼이따</div>
+          <div class="drill-trans">해석: 뉴스를 들었다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>道<rt>みち</rt></ruby>を<ruby>聞<rt>き</rt></ruby>こう。</span>
+            <button class="audio-btn" onclick="speakText('道を聞こう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">미치오끼꼬우</div>
+          <div class="drill-trans">해석: 길을 물어보자.</div>
         </div>
       </div>
     </div>
@@ -859,22 +1292,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>仕事<rt>しごと</rt></ruby>が<ruby>終<rt>お</rt></ruby>わってすぐ<ruby>家<rt>いえ</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>った。</span>
-            <button class="audio-btn" onclick="speakText('しごとがおわってすぐいえにかえった。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>六<rt>ろく</rt></ruby><ruby>時<rt>とき</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>ります。</span>
+            <button class="audio-btn" onclick="speakText('六時に帰ります。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">시고토가 오왓테 스구 이에니 카엣타</div>
-          <div class="drill-trans">해석: 일이 끝나고 바로 집으로 돌아갔다.</div>
+          <div class="drill-kr-read">로꾸또끼니까에리마스</div>
+          <div class="drill-trans">해석: 6시에 (집에) 갑니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>今日<rt>きょう</rt></ruby>は<ruby>先<rt>さき</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>ってもいいですか？</span>
-            <button class="audio-btn" onclick="speakText('きょうはさきにかえってもいいですか？')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>今日<rt>きょう</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>帰<rt>かえ</rt></ruby>らない。</span>
+            <button class="audio-btn" onclick="speakText('今日は早く帰らない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">쿄-와 사키니 카엣테모 이이데스카</div>
-          <div class="drill-trans">해석: 오늘은 먼저 퇴근해도(돌아가도) 될까요?</div>
+          <div class="drill-kr-read">꾜우와하야꾸까에라나이</div>
+          <div class="drill-trans">해석: 오늘은 일찍 안 간다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>家<rt>いえ</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>ってすぐ<ruby>寝<rt>ね</rt></ruby>る。</span>
+            <button class="audio-btn" onclick="speakText('家に帰ってすぐ寝る。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">이에니까엣떼스구네루</div>
+          <div class="drill-trans">해석: 집에 가서 바로 잔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昨日<rt>きのう</rt></ruby>は<ruby>遅<rt>おそ</rt></ruby>く<ruby>帰<rt>かえ</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('昨日は遅く帰った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">끼노우와오소꾸까엣따</div>
+          <div class="drill-trans">해석: 어제는 늦게 (집에) 갔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> そろそろ<ruby>帰<rt>かえ</rt></ruby>ろう。</span>
+            <button class="audio-btn" onclick="speakText('そろそろ帰ろう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">소로소로까에로우</div>
+          <div class="drill-trans">해석: 슬슬 (집에) 가자.</div>
         </div>
       </div>
     </div>
@@ -898,22 +1355,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>駅<rt>えき</rt></ruby>までの<ruby>道<rt>みち</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてください。</span>
-            <button class="audio-btn" onclick="speakText('えきまでのみちをおしえてください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>日本語<rt>にほんご</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えます。</span>
+            <button class="audio-btn" onclick="speakText('日本語を教えます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">에키마데노 미치오 오시에테 쿠다사이</div>
-          <div class="drill-trans">해석: 역까지 가는 길을 알려 주세요.</div>
+          <div class="drill-kr-read">니혼고오오시에마스</div>
+          <div class="drill-trans">해석: 일본어를 가르칩니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>親切<rt>しんせつ</rt></ruby>に<ruby>連絡先<rt>れんらくさき</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてくれた。</span>
-            <button class="audio-btn" onclick="speakText('しんせつにれんらくさきをおしえてくれた。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>答<rt>こた</rt></ruby>えは<ruby>教<rt>おし</rt></ruby>えない。</span>
+            <button class="audio-btn" onclick="speakText('答えは教えない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">신세츠니 렌라쿠사키오 오시에테 쿠레타</div>
-          <div class="drill-trans">해석: 친절하게 연락처를 알려 주었다.</div>
+          <div class="drill-kr-read">꼬따에와오시에나이</div>
+          <div class="drill-trans">해석: 답은 안 알려준다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>道<rt>みち</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてください。</span>
+            <button class="audio-btn" onclick="speakText('道を教えてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">미치오오시에떼꾸다사이</div>
+          <div class="drill-trans">해석: 길을 알려 주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>使い方<rt>つかいかた</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えた。</span>
+            <button class="audio-btn" onclick="speakText('使い方を教えた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">쓰까이까따오오시에따</div>
+          <div class="drill-trans">해석: 사용법을 알려줬다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>後<rt>あと</rt></ruby>で<ruby>教<rt>おし</rt></ruby>えよう。</span>
+            <button class="audio-btn" onclick="speakText('後で教えよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아또데오시에요우</div>
+          <div class="drill-trans">해석: 나중에 알려주자.</div>
         </div>
       </div>
     </div>
@@ -937,22 +1418,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">スマホを<ruby>忘<rt>わす</rt></ruby>れてしまった。</span>
-            <button class="audio-btn" onclick="speakText('スマホをわすれてしまった。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> よく<ruby>名前<rt>なまえ</rt></ruby>を<ruby>忘<rt>わす</rt></ruby>れます。</span>
+            <button class="audio-btn" onclick="speakText('よく名前を忘れます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">스마호오 와스레테 시맛타</div>
-          <div class="drill-trans">해석: 스마트폰을 깜빡 두고 와 버렸다.</div>
+          <div class="drill-kr-read">요꾸나마에오와스레마스</div>
+          <div class="drill-trans">해석: 자주 이름을 잊어버립니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>約束<rt>やくそく</rt></ruby>の<ruby>時間<rt>じかん</rt></ruby>を<ruby>忘<rt>わす</rt></ruby>れないようにしてください。</span>
-            <button class="audio-btn" onclick="speakText('やくそくのじかんをわすれないようにしてください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> この<ruby>日<rt>にち</rt></ruby>は<ruby>忘<rt>わす</rt></ruby>れない。</span>
+            <button class="audio-btn" onclick="speakText('この日は忘れない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">야쿠소쿠노 지칸오 와스레나이 요-니 시테 쿠다사이</div>
-          <div class="drill-trans">해석: 약속 시간을 잊지 않도록 하세요.</div>
+          <div class="drill-kr-read">꼬노니치와와스레나이</div>
+          <div class="drill-trans">해석: 이 날은 안 잊는다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>傘<rt>かさ</rt></ruby>を<ruby>忘<rt>わす</rt></ruby>れて<ruby>困<rt>こま</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('傘を忘れて困った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">까사오와스레떼꼬맛따</div>
+          <div class="drill-trans">해석: 우산을 두고 와서 곤란했다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>約束<rt>やくそく</rt></ruby>を<ruby>忘<rt>わす</rt></ruby>れた。</span>
+            <button class="audio-btn" onclick="speakText('約束を忘れた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">야꾸소꾸오와스레따</div>
+          <div class="drill-trans">해석: 약속을 잊었다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>嫌<rt>いや</rt></ruby>なことは<ruby>忘<rt>わす</rt></ruby>れよう。</span>
+            <button class="audio-btn" onclick="speakText('嫌なことは忘れよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">이야나꼬또하와스레요우</div>
+          <div class="drill-trans">해석: 싫은 일은 잊자.</div>
         </div>
       </div>
     </div>
@@ -979,22 +1484,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">すみませんが、ちょっと<ruby>手伝<rt>てつだ</rt></ruby>ってください。</span>
-            <button class="audio-btn" onclick="speakText('すみませんが、ちょっとてつだってください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>母<rt>はは</rt></ruby>の<ruby>仕事<rt>しごと</rt></ruby>を<ruby>手伝<rt>てつだ</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('母の仕事を手伝います。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">스미마센가 춋토 테츠닷테 쿠다사이</div>
-          <div class="drill-trans">해석: 죄송한데 좀 도와주세요.</div>
+          <div class="drill-kr-read">하하노시고또오떼쓰다이마스</div>
+          <div class="drill-trans">해석: 어머니 일을 돕습니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>同僚<rt>どうりょう</rt></ruby>が<ruby>手伝<rt>てつだ</rt></ruby>ってくれた。</span>
-            <button class="audio-btn" onclick="speakText('どうりょうがてつだってくれた。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>誰<rt>だれ</rt></ruby>も<ruby>手伝<rt>てつだ</rt></ruby>わない。</span>
+            <button class="audio-btn" onclick="speakText('誰も手伝わない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">도-료-가 테츠닷테 쿠레타</div>
-          <div class="drill-trans">해석: 동료가 날 도와주었다.</div>
+          <div class="drill-kr-read">다레모떼쓰다와나이</div>
+          <div class="drill-trans">해석: 아무도 안 도와준다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>荷物<rt>にもつ</rt></ruby>を<ruby>手伝<rt>てつだ</rt></ruby>って<ruby>運<rt>はこ</rt></ruby>ぶ。</span>
+            <button class="audio-btn" onclick="speakText('荷物を手伝って運ぶ。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니모쓰오떼쓰닷떼하꼬부</div>
+          <div class="drill-trans">해석: 짐을 도와서 옮긴다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>引っ越<rt>ひっこ</rt></ruby>しを<ruby>手伝<rt>てつだ</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('引っ越しを手伝った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">힛꼬시오떼쓰닷따</div>
+          <div class="drill-trans">해석: 이사를 도왔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> みんなで<ruby>手伝<rt>てつだ</rt></ruby>おう。</span>
+            <button class="audio-btn" onclick="speakText('みんなで手伝おう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">민나데떼쓰다오우</div>
+          <div class="drill-trans">해석: 다 같이 돕자.</div>
         </div>
       </div>
     </div>
@@ -1018,22 +1547,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>資料<rt>しりょう</rt></ruby>はメールで<ruby>送<rt>おく</rt></ruby>っておきます。</span>
-            <button class="audio-btn" onclick="speakText('しりょうはメールでおくっておきます。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> メールを<ruby>送<rt>おく</rt></ruby>ります。</span>
+            <button class="audio-btn" onclick="speakText('メールを送ります。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">시료-와 메-루데 오쿳테 오키마스</div>
-          <div class="drill-trans">해석: 자료는 이메일로 보내 두겠습니다.</div>
+          <div class="drill-kr-read">메에루오오꾸리마스</div>
+          <div class="drill-trans">해석: 이메일을 보냅니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">お<ruby>客<rt>きゃく</rt></ruby>さんをホテルまで<ruby>送<rt>おく</rt></ruby>ってあげた。</span>
-            <button class="audio-btn" onclick="speakText('おきゃくさんをホテルまでおくってあげた。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>荷物<rt>にもつ</rt></ruby>を<ruby>送<rt>おく</rt></ruby>らない。</span>
+            <button class="audio-btn" onclick="speakText('荷物を送らない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">오캬쿠상오 호테루마데 오쿳테 아게타</div>
-          <div class="drill-trans">해석: 손님을 호텔까지 배웅해 드렸다.</div>
+          <div class="drill-kr-read">니모쓰오오꾸라나이</div>
+          <div class="drill-trans">해석: 짐을 안 보낸다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>写真<rt>しゃしん</rt></ruby>を<ruby>送<rt>おく</rt></ruby>ってあげる。</span>
+            <button class="audio-btn" onclick="speakText('写真を送ってあげる。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">샤신오오꿋떼아게루</div>
+          <div class="drill-trans">해석: 사진을 보내 준다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>昨日<rt>きのう</rt></ruby><ruby>手紙<rt>てがみ</rt></ruby>を<ruby>送<rt>おく</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('昨日手紙を送った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">끼노우떼가미오오꿋따</div>
+          <div class="drill-trans">해석: 어제 편지를 보냈다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>資料<rt>しりょう</rt></ruby>を<ruby>送<rt>おく</rt></ruby>ろう。</span>
+            <button class="audio-btn" onclick="speakText('資料を送ろう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">시료우오오꾸로우</div>
+          <div class="drill-trans">해석: 자료를 보내자.</div>
         </div>
       </div>
     </div>
@@ -1057,22 +1610,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>傘<rt>かさ</rt></ruby>を<ruby>貸<rt>か</rt></ruby>してください。</span>
-            <button class="audio-btn" onclick="speakText('かさをかしてください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> お<ruby>金<rt>きん</rt></ruby>を<ruby>貸<rt>か</rt></ruby>します。</span>
+            <button class="audio-btn" onclick="speakText('お金を貸します。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">카사오 카시테 쿠다사이</div>
-          <div class="drill-trans">해석: 우산을 빌려주세요.</div>
+          <div class="drill-kr-read">오낀오까시마스</div>
+          <div class="drill-trans">해석: 돈을 빌려줍니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>先生<rt>せんせい</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>を<ruby>貸<rt>か</rt></ruby>してもらった。</span>
-            <button class="audio-btn" onclick="speakText('せんせいにほんをかしてもらった。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>傘<rt>かさ</rt></ruby>は<ruby>貸<rt>か</rt></ruby>さない。</span>
+            <button class="audio-btn" onclick="speakText('傘は貸さない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">센세-니 홍오 카시테 모랏타</div>
-          <div class="drill-trans">해석: 선생님께 책을 빌려 받았다 (선생님이 빌려주셨다).</div>
+          <div class="drill-kr-read">까사와까사나이</div>
+          <div class="drill-trans">해석: 우산은 안 빌려준다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>本<rt>ほん</rt></ruby>を<ruby>貸<rt>か</rt></ruby>してあげる。</span>
+            <button class="audio-btn" onclick="speakText('本を貸してあげる。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">혼오까시떼아게루</div>
+          <div class="drill-trans">해석: 책을 빌려준다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>車<rt>くるま</rt></ruby>を<ruby>貸<rt>か</rt></ruby>した。</span>
+            <button class="audio-btn" onclick="speakText('車を貸した。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꾸루마오까시따</div>
+          <div class="drill-trans">해석: 차를 빌려줬다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> ペンを<ruby>貸<rt>か</rt></ruby>そう。</span>
+            <button class="audio-btn" onclick="speakText('ペンを貸そう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">뻰오까소우</div>
+          <div class="drill-trans">해석: 펜을 빌려주자.</div>
         </div>
       </div>
     </div>
@@ -1096,22 +1673,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>重<rt>おも</rt></ruby>いから<ruby>荷物<rt>にもつ</rt></ruby>を<ruby>持<rt>も</rt></ruby>ってあげます。</span>
-            <button class="audio-btn" onclick="speakText('おもいからにもつをもってあげます。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> かばんを<ruby>持<rt>も</rt></ruby>ちます。</span>
+            <button class="audio-btn" onclick="speakText('かばんを持ちます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">오모이카라 니모츠오 못테 아게마스</div>
-          <div class="drill-trans">해석: 무거우니까 짐을 들어 드릴게요.</div>
+          <div class="drill-kr-read">까반오모치마스</div>
+          <div class="drill-trans">해석: 가방을 듭니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>書類<rt>しょるい</rt></ruby>を<ruby>持<rt>も</rt></ruby>ってきました。</span>
-            <button class="audio-btn" onclick="speakText('しょるいをもってきました。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>傘<rt>かさ</rt></ruby>を<ruby>持<rt>も</rt></ruby>たない。</span>
+            <button class="audio-btn" onclick="speakText('傘を持たない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">쇼루이오 못테 키마시타</div>
-          <div class="drill-trans">해석: 서류를 챙겨(가지고) 왔습니다.</div>
+          <div class="drill-kr-read">까사오모따나이</div>
+          <div class="drill-trans">해석: 우산을 안 챙긴다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>荷物<rt>にもつ</rt></ruby>を<ruby>持<rt>も</rt></ruby>って<ruby>歩<rt>ある</rt></ruby>く。</span>
+            <button class="audio-btn" onclick="speakText('荷物を持って歩く。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니모쓰오못떼아루꾸</div>
+          <div class="drill-trans">해석: 짐을 들고 걷는다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>重<rt>おも</rt></ruby>い<ruby>荷物<rt>にもつ</rt></ruby>を<ruby>持<rt>も</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('重い荷物を持った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오모이니모쓰오못따</div>
+          <div class="drill-trans">해석: 무거운 짐을 들었다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>私<rt>わたし</rt></ruby>が<ruby>持<rt>も</rt></ruby>とう。</span>
+            <button class="audio-btn" onclick="speakText('私が持とう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">와따시가모또우</div>
+          <div class="drill-trans">해석: 내가 들자.</div>
         </div>
       </div>
     </div>
@@ -1135,22 +1736,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>少<rt>すこ</rt></ruby>し<ruby>暑<rt>あつ</rt></ruby>いので<ruby>窓<rt>まど</rt></ruby>を<ruby>開<rt>あ</rt></ruby>けておきましょう。</span>
-            <button class="audio-btn" onclick="speakText('すこしあついのでまどをあけておきましょう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>窓<rt>まど</rt></ruby>を<ruby>開<rt>あ</rt></ruby>けます。</span>
+            <button class="audio-btn" onclick="speakText('窓を開けます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">스코시 아츠이노데 마도오 아케테 오키마쇼-</div>
-          <div class="drill-trans">해석: 좀 더우니 창문을 열어 둡시다.</div>
+          <div class="drill-kr-read">마도오아께마스</div>
+          <div class="drill-trans">해석: 창문을 엽니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp">ドアが<ruby>開<rt>あ</rt></ruby>けてあります。</span>
-            <button class="audio-btn" onclick="speakText('ドアがあけてあります。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> ドアを<ruby>開<rt>あ</rt></ruby>けない。</span>
+            <button class="audio-btn" onclick="speakText('ドアを開けない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">도아가 아케테 아리마스</div>
-          <div class="drill-trans">해석: 문이 열려 있는 상태입니다.</div>
+          <div class="drill-kr-read">도아오아께나이</div>
+          <div class="drill-trans">해석: 문을 안 연다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>窓<rt>まど</rt></ruby>を<ruby>開<rt>あ</rt></ruby>けて<ruby>空気<rt>くうき</rt></ruby>を<ruby>入<rt>い</rt></ruby>れる。</span>
+            <button class="audio-btn" onclick="speakText('窓を開けて空気を入れる。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마도오아께떼꾸우끼오이레루</div>
+          <div class="drill-trans">해석: 창문을 열어 공기를 넣는다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>箱<rt>はこ</rt></ruby>を<ruby>開<rt>あ</rt></ruby>けた。</span>
+            <button class="audio-btn" onclick="speakText('箱を開けた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">하꼬오아께따</div>
+          <div class="drill-trans">해석: 상자를 열었다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>窓<rt>まど</rt></ruby>を<ruby>開<rt>あ</rt></ruby>けよう。</span>
+            <button class="audio-btn" onclick="speakText('窓を開けよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마도오아께요우</div>
+          <div class="drill-trans">해석: 창문을 열자.</div>
         </div>
       </div>
     </div>
@@ -1174,22 +1799,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>出<rt>で</rt></ruby>る<ruby>時<rt>とき</rt></ruby>はドアをちゃんと<ruby>閉<rt>し</rt></ruby>めてください。</span>
-            <button class="audio-btn" onclick="speakText('でるときはドアをちゃんとしめてください。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>店<rt>みせ</rt></ruby>を<ruby>閉<rt>し</rt></ruby>めます。</span>
+            <button class="audio-btn" onclick="speakText('店を閉めます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">데루 토키와 도아오 챤토 시메테 쿠다사이</div>
-          <div class="drill-trans">해석: 나갈 때는 문을 꼭 닫아 주세요.</div>
+          <div class="drill-kr-read">미세오시메마스</div>
+          <div class="drill-trans">해석: 가게를 닫습니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>窓<rt>まど</rt></ruby>が<ruby>閉<rt>し</rt></ruby>まったままで<ruby>息苦<rt>いきぐる</rt></ruby>しい。</span>
-            <button class="audio-btn" onclick="speakText('まどがしまったままでいきぐるしい。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> ドアを<ruby>閉<rt>し</rt></ruby>めない。</span>
+            <button class="audio-btn" onclick="speakText('ドアを閉めない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">마도가 시맛타마마데 이키구루시-</div>
-          <div class="drill-trans">해석: 창문이 닫힌 채로 있어서 답답하다.</div>
+          <div class="drill-kr-read">도아오시메나이</div>
+          <div class="drill-trans">해석: 문을 안 닫는다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>窓<rt>まど</rt></ruby>を<ruby>閉<rt>し</rt></ruby>めて<ruby>出<rt>で</rt></ruby>かける。</span>
+            <button class="audio-btn" onclick="speakText('窓を閉めて出かける。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마도오시메떼데까께루</div>
+          <div class="drill-trans">해석: 창문을 닫고 나간다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> カーテンを<ruby>閉<rt>し</rt></ruby>めた。</span>
+            <button class="audio-btn" onclick="speakText('カーテンを閉めた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">까아뗀오시메따</div>
+          <div class="drill-trans">해석: 커튼을 쳤다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>寒<rt>さむ</rt></ruby>いから<ruby>窓<rt>まど</rt></ruby>を<ruby>閉<rt>し</rt></ruby>めよう。</span>
+            <button class="audio-btn" onclick="speakText('寒いから窓を閉めよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">사무이까라마도오시메요우</div>
+          <div class="drill-trans">해석: 추우니 창문을 닫자.</div>
         </div>
       </div>
     </div>
@@ -1213,22 +1862,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>遅<rt>おく</rt></ruby>れそうだからタクシーに<ruby>乗<rt>の</rt></ruby>った<ruby>方<rt>ほう</rt></ruby>がいい。</span>
-            <button class="audio-btn" onclick="speakText('おくれそうだからタクシーにのったほうがいい。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>電車<rt>でんしゃ</rt></ruby>に<ruby>乗<rt>の</rt></ruby>ります。</span>
+            <button class="audio-btn" onclick="speakText('電車に乗ります。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">오쿠레소-다카라 타쿠시-니 놋타 호-가 이이</div>
-          <div class="drill-trans">해석: 늦을 것 같으니까 택시를 타는 편이 좋겠다.</div>
+          <div class="drill-kr-read">덴샤니노리마스</div>
+          <div class="drill-trans">해석: 전철을 탑니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>終電<rt>しゅうでん</rt></ruby>に<ruby>乗<rt>の</rt></ruby>ることができた。</span>
-            <button class="audio-btn" onclick="speakText('しゅうでんにのることができた。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> タクシーには<ruby>乗<rt>の</rt></ruby>らない。</span>
+            <button class="audio-btn" onclick="speakText('タクシーには乗らない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">슈-덴니 노루 코토가 데키타</div>
-          <div class="drill-trans">해석: 다행히 막차를 탈 수 있었다.</div>
+          <div class="drill-kr-read">따꾸시이니하노라나이</div>
+          <div class="drill-trans">해석: 택시는 안 탄다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> バスに<ruby>乗<rt>の</rt></ruby>って<ruby>会社<rt>かいしゃ</rt></ruby>に<ruby>行<rt>い</rt></ruby>く。</span>
+            <button class="audio-btn" onclick="speakText('バスに乗って会社に行く。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">바스니놋떼까이샤니이꾸</div>
+          <div class="drill-trans">해석: 버스를 타고 회사에 간다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>飛行機<rt>ひこうき</rt></ruby>に<ruby>乗<rt>の</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('飛行機に乗った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">히꼬우끼니놋따</div>
+          <div class="drill-trans">해석: 비행기를 탔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>次<rt>つぎ</rt></ruby>のバスに<ruby>乗<rt>の</rt></ruby>ろう。</span>
+            <button class="audio-btn" onclick="speakText('次のバスに乗ろう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">쓰기노바스니노로우</div>
+          <div class="drill-trans">해석: 다음 버스를 타자.</div>
         </div>
       </div>
     </div>
@@ -1255,22 +1928,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>新<rt>あたら</rt></ruby>しいスポーツを<ruby>習<rt>なら</rt></ruby>ってみることにした。</span>
-            <button class="audio-btn" onclick="speakText('あたらしいスポーツをならってみることにした。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> ピアノを<ruby>習<rt>なら</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('ピアノを習います。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">아타라시- 수포-츠오 나랏테 미루 코토니 시타</div>
-          <div class="drill-trans">해석: 새로운 스포츠를 배워보기로 했다.</div>
+          <div class="drill-kr-read">삐아노오나라이마스</div>
+          <div class="drill-trans">해석: 피아노를 배웁니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>日本語<rt>にほんご</rt></ruby>を<ruby>習<rt>なら</rt></ruby>って本当によかった。</span>
-            <button class="audio-btn" onclick="speakText('にほんごをならってほんとうによかった。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>中国語<rt>ちゅうごくご</rt></ruby>は<ruby>習<rt>なら</rt></ruby>わない。</span>
+            <button class="audio-btn" onclick="speakText('中国語は習わない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">니혼고오 나랏테 혼토-니 요캇타</div>
-          <div class="drill-trans">해석: 일본어를 배워서 정말 다행이다(좋았다).</div>
+          <div class="drill-kr-read">츄우고꾸고와나라와나이</div>
+          <div class="drill-trans">해석: 중국어는 안 배운다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>先生<rt>せんせい</rt></ruby>に<ruby>習<rt>なら</rt></ruby>って<ruby>練習<rt>れんしゅう</rt></ruby>する。</span>
+            <button class="audio-btn" onclick="speakText('先生に習って練習する。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">센세이니나랏떼렌슈우스루</div>
+          <div class="drill-trans">해석: 선생님께 배워서 연습한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>去年<rt>きょねん</rt></ruby><ruby>水泳<rt>すいえい</rt></ruby>を<ruby>習<rt>なら</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('去年水泳を習った。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꾜넨스이에이오나랏따</div>
+          <div class="drill-trans">해석: 작년에 수영을 배웠다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>日本語<rt>にほんご</rt></ruby>を<ruby>習<rt>なら</rt></ruby>おう。</span>
+            <button class="audio-btn" onclick="speakText('日本語を習おう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니혼고오나라오우</div>
+          <div class="drill-trans">해석: 일본어를 배우자.</div>
         </div>
       </div>
     </div>
@@ -1294,22 +1991,46 @@
         </tr>
       </table>
       <div class="drill-section">
-        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-label">실전 독백 트레이닝 · 1~5단 각 1문장</div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>毎日<rt>まいにち</rt></ruby>10<ruby>分<rt>ぷん</rt></ruby>ずつ<ruby>続<rt>つづ</rt></ruby>けよう。</span>
-            <button class="audio-btn" onclick="speakText('まいにちじゅっぷんずつつづけよう。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">1단</span> <ruby>毎日<rt>まいにち</rt></ruby><ruby>運動<rt>うんどう</rt></ruby>を<ruby>続<rt>つづ</rt></ruby>けます。</span>
+            <button class="audio-btn" onclick="speakText('毎日運動を続けます。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">마이니치 쥿푼즈츠 츠즈케요-</div>
-          <div class="drill-trans">해석: 매일 10분씩 계속하자.</div>
+          <div class="drill-kr-read">마이니치운도우오쓰즈께마스</div>
+          <div class="drill-trans">해석: 매일 운동을 계속합니다.</div>
         </div>
         <div class="drill-item">
           <div class="drill-main">
-            <span class="drill-jp"><ruby>諦<rt>あきら</rt></ruby>めずに<ruby>続<rt>つづ</rt></ruby>けてきてよかった。</span>
-            <button class="audio-btn" onclick="speakText('あきらめずにつづけてきてよかった。')">🔊 듣기</button>
+            <span class="drill-jp"><span class="drill-gear">2단</span> <ruby>無理<rt>むり</rt></ruby>は<ruby>続<rt>つづ</rt></ruby>けない。</span>
+            <button class="audio-btn" onclick="speakText('無理は続けない。')">🔊 듣기</button>
           </div>
-          <div class="drill-kr-read">아키라메즈니 츠즈케테 키테 요캇타</div>
-          <div class="drill-trans">해석: 포기하지 않고 지속해 오길 잘했다.</div>
+          <div class="drill-kr-read">무리와쓰즈께나이</div>
+          <div class="drill-trans">해석: 무리는 계속 안 한다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">3단</span> <ruby>運動<rt>うんどう</rt></ruby>を<ruby>続<rt>つづ</rt></ruby>けて<ruby>健康<rt>けんこう</rt></ruby>になる。</span>
+            <button class="audio-btn" onclick="speakText('運動を続けて健康になる。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">운도우오쓰즈께떼껜꼬우니나루</div>
+          <div class="drill-trans">해석: 운동을 계속해서 건강해진다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">4단</span> <ruby>三年<rt>さんねん</rt></ruby><ruby>間<rt>かん</rt></ruby><ruby>続<rt>つづ</rt></ruby>けた。</span>
+            <button class="audio-btn" onclick="speakText('三年間続けた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">산넨깐쓰즈께따</div>
+          <div class="drill-trans">해석: 3년간 계속했다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><span class="drill-gear">5단</span> <ruby>最後<rt>さいご</rt></ruby>まで<ruby>続<rt>つづ</rt></ruby>けよう。</span>
+            <button class="audio-btn" onclick="speakText('最後まで続けよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">사이고마데쓰즈께요우</div>
+          <div class="drill-trans">해석: 끝까지 계속하자.</div>
         </div>
       </div>
     </div>
