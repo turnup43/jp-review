@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>일본어 동사 변형 30일 완성 워크북 (음성 지원)</title>
+  <style>
+    :root {
+      --primary: #1e293b;
+      --secondary: #2563eb;
+      --accent: #ea580c;
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border: #e2e8f0;
+      --text: #0f172a;
+      --text-muted: #64748b;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "Noto Sans KR", sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding: 30px 16px 80px; }
+    .container { max-width: 920px; margin: 0 auto; }
+    header { text-align: center; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 2px solid var(--border); }
+    h1 { font-size: 26px; color: var(--primary); margin-bottom: 6px; }
+    .subtitle { color: var(--text-muted); font-size: 14px; }
+
+    /* 플로팅/상단 오디오 컨트롤 바 */
+    .audio-toolbar {
+      position: sticky;
+      top: 12px;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      border: 1px solid var(--secondary);
+      border-radius: 12px;
+      padding: 12px 20px;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .toolbar-title { font-size: 14px; font-weight: 700; color: var(--secondary); display: flex; align-items: center; gap: 6px; }
+    .speed-controls { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .speed-btn {
+      border: 1px solid var(--border);
+      background: #fff;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .speed-btn.active { background: var(--secondary); color: #fff; border-color: var(--secondary); }
+
+    .week-header { font-size: 18px; color: var(--primary); margin: 30px 0 14px; padding-left: 10px; border-left: 4px solid var(--accent); font-weight: 700; }
+    .day-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 18px 20px; margin-bottom: 18px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    .day-title-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; border-bottom: 1px dashed var(--border); padding-bottom: 8px; }
+    .day-tag { font-weight: 700; color: var(--secondary); font-size: 15px; }
+    .day-verb { font-size: 17px; font-weight: 700; color: var(--primary); }
+    .check-label { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--text-muted); cursor: pointer; }
+    .check-label input { width: 16px; height: 16px; cursor: pointer; }
+
+    /* 변형 표 */
+    table { width: 100%; border-collapse: collapse; margin-bottom: 14px; font-size: 13px; }
+    th, td { border: 1px solid var(--border); padding: 7px 6px; text-align: center; }
+    th { background-color: #f8fafc; color: var(--text-muted); font-weight: 600; font-size: 12px; }
+    .reading-kr { display: block; font-size: 11px; color: #64748b; margin-top: 2px; }
+    .table-speak-btn { background: none; border: none; cursor: pointer; font-size: 13px; color: var(--secondary); vertical-align: middle; margin-left: 2px; padding: 2px; }
+
+    /* 문장 훈련 섹션 */
+    .drill-section { background: #f8fafc; border-radius: 8px; padding: 12px 16px; border: 1px solid #f1f5f9; }
+    .drill-label { font-size: 12px; font-weight: 700; color: var(--accent); margin-bottom: 8px; }
+    .drill-item { margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dotted var(--border); }
+    .drill-item:last-child { margin-bottom: 0; padding-bottom: 0; border-bottom: none; }
+    .drill-main { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .drill-jp { font-size: 15px; font-weight: 600; color: #0f172a; }
+    .drill-kr-read { font-size: 12px; color: #475569; margin: 1px 0; }
+    .drill-trans { font-size: 13px; color: #0284c7; font-weight: 500; }
+    .audio-btn {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: var(--secondary);
+      border-radius: 6px;
+      padding: 4px 8px;
+      font-size: 12px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      flex-shrink: 0;
+      transition: background 0.15s;
+    }
+    .audio-btn:hover { background: #dbeafe; }
+
+    ruby { ruby-position: over; }
+    rt { font-size: 9px; color: var(--text-muted); }
+    .progress-line { color: var(--secondary); font-weight: 700; font-size: 14px; margin-top: 6px; }
+    .hub-link { display: inline-block; margin-top: 8px; font-size: 12px; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); border-radius: 6px; padding: 3px 10px; }
+    .hub-link:hover { color: var(--secondary); border-color: var(--secondary); }
+    .day-title-row { flex-wrap: wrap; gap: 8px; }
+    .day-play-btn { background: #eff6ff; border: 1px solid #bfdbfe; color: var(--secondary); border-radius: 6px; padding: 4px 10px; font-size: 12px; font-weight: 700; cursor: pointer; transition: background 0.15s; }
+    .day-play-btn:hover { background: #dbeafe; }
+    .day-play-btn.playing { background: var(--accent); color: #fff; border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>일본어 동사 변형 체화 30일 완성 워크북</h1>
+      <p class="subtitle">한글 독음 · 한국어 해석 · 속도 조절 발음 오디오 엔진 탑재</p>
+      <p class="progress-line" id="progressLine">완료 0 / 30</p>
+      <a class="hub-link" href="index.html">← 일본어 복습 허브</a>
+    </header>
+
+    <!-- 오디오 배속 컨트롤 바 -->
+    <div class="audio-toolbar">
+      <div class="toolbar-title">
+        🔊 발음 재생 설정 (Web Speech Engine)
+      </div>
+      <div class="speed-controls">
+        <span>재생 속도:</span>
+        <button class="speed-btn" onclick="setSpeed(0.6, this)">0.6x (느리게)</button>
+        <button class="speed-btn" onclick="setSpeed(0.8, this)">0.8x</button>
+        <button class="speed-btn active" onclick="setSpeed(1.0, this)">1.0x (표준)</button>
+        <button class="speed-btn" onclick="setSpeed(1.2, this)">1.2x (빠르게)</button>
+      </div>
+    </div>
+
+    <!-- WEEK 1 -->
+    <div class="week-header">Week 1. 1그룹 핵심 동사 & 기본 5단 기어 체화</div>
+
+    <!-- DAY 01 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 01</span>
+        <span class="day-verb"><ruby>行<rt>い</rt></ruby>く (가다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>行<rt>い</rt></ruby>きます<button class="table-speak-btn" onclick="speakText('いきます')">🔊</button><span class="reading-kr">이키마스</span></td>
+          <td><ruby>行<rt>い</rt></ruby>かない<button class="table-speak-btn" onclick="speakText('いかない')">🔊</button><span class="reading-kr">이카나이</span></td>
+          <td><ruby>行<rt>い</rt></ruby>って<button class="table-speak-btn" onclick="speakText('いって')">🔊</button><span class="reading-kr">잇테</span></td>
+          <td><ruby>行<rt>い</rt></ruby>った<button class="table-speak-btn" onclick="speakText('いった')">🔊</button><span class="reading-kr">잇타</span></td>
+          <td><ruby>行<rt>い</rt></ruby>こう<button class="table-speak-btn" onclick="speakText('いこう')">🔊</button><span class="reading-kr">이코-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>はゴルフをしに<ruby>行<rt>い</rt></ruby>こう。</span>
+            <button class="audio-btn" onclick="speakText('あしたはゴルフをしにいこう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시타와 고루후오 시니 이코-</div>
+          <div class="drill-trans">해석: 내일은 골프 치러 가야지 (가자).</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>東京<rt>とうきょう</rt></ruby>に<ruby>行<rt>い</rt></ruby>ったことがあります。</span>
+            <button class="audio-btn" onclick="speakText('とうきょうにいったことがあります。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">토-쿄-니 잇타 코토가 아리마스</div>
+          <div class="drill-trans">해석: 도쿄에 가 본 적이 있습니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 02 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 02</span>
+        <span class="day-verb"><ruby>飲<rt>の</rt></ruby>む (마시다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>飲<rt>の</rt></ruby>みます<button class="table-speak-btn" onclick="speakText('のみます')">🔊</button><span class="reading-kr">노미마스</span></td>
+          <td><ruby>飲<rt>の</rt></ruby>まない<button class="table-speak-btn" onclick="speakText('のまない')">🔊</button><span class="reading-kr">노마나이</span></td>
+          <td><ruby>飲<rt>の</rt></ruby>んで<button class="table-speak-btn" onclick="speakText('のんで')">🔊</button><span class="reading-kr">논데</span></td>
+          <td><ruby>飲<rt>の</rt></ruby>んだ<button class="table-speak-btn" onclick="speakText('のんだ')">🔊</button><span class="reading-kr">논다</span></td>
+          <td><ruby>飲<rt>の</rt></ruby>もう<button class="table-speak-btn" onclick="speakText('のもう')">🔊</button><span class="reading-kr">노모-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>退勤<rt>たいきん</rt></ruby>して<ruby>美味<rt>おい</rt></ruby>しい<ruby>日本酒<rt>にほんしゅ</rt></ruby>が<ruby>飲<rt>の</rt></ruby>みたい。</span>
+            <button class="audio-btn" onclick="speakText('たいきんしておいしいにほんしゅがのみたい。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">타이킨시테 오이시- 니혼슈가 노미타이</div>
+          <div class="drill-trans">해석: 퇴근하고 맛있는 일본 사케를 마시고 싶다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>昨日<rt>きのう</rt></ruby><ruby>飲<rt>の</rt></ruby>みすぎてしまった。</span>
+            <button class="audio-btn" onclick="speakText('きのうのみすぎてしまった。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">키노- 노미스기테 시맛타</div>
+          <div class="drill-trans">해석: 어제 술을 너무 많이 마셔버렸다 (과음했다).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 03 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 03</span>
+        <span class="day-verb"><ruby>買<rt>か</rt></ruby>う (사다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>買<rt>か</rt></ruby>います<button class="table-speak-btn" onclick="speakText('かいます')">🔊</button><span class="reading-kr">카이마스</span></td>
+          <td><ruby>買<rt>か</rt></ruby>わない<button class="table-speak-btn" onclick="speakText('かわない')">🔊</button><span class="reading-kr">카와나이</span></td>
+          <td><ruby>買<rt>か</rt></ruby>って<button class="table-speak-btn" onclick="speakText('かって')">🔊</button><span class="reading-kr">캇테</span></td>
+          <td><ruby>買<rt>か</rt></ruby>った<button class="table-speak-btn" onclick="speakText('かった')">🔊</button><span class="reading-kr">캇타</span></td>
+          <td><ruby>買<rt>か</rt></ruby>おう<button class="table-speak-btn" onclick="speakText('かおう')">🔊</button><span class="reading-kr">카오-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>友達<rt>ともだち</rt></ruby>が<ruby>良<rt>い</rt></ruby>いワインを<ruby>買<rt>か</rt></ruby>ってくれた。</span>
+            <button class="audio-btn" onclick="speakText('ともだちがいいワインをかってくれた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">토모다치가 이이 와인오 캇테쿠레타</div>
+          <div class="drill-trans">해석: 친구가 좋은 와인을 사 주었다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">これは<ruby>前<rt>まえ</rt></ruby>もって<ruby>買<rt>か</rt></ruby>っておいた<ruby>方<rt>ほう</rt></ruby>がいい。</span>
+            <button class="audio-btn" onclick="speakText('これはまえもってかっておいたほうがいい。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">코레와 마에못테 캇테오이타 호-가 이이</div>
+          <div class="drill-trans">해석: 이것은 미리 사 두는 편이 좋겠다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 04 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 04</span>
+        <span class="day-verb"><ruby>会<rt>あ</rt></ruby>う (만나다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>会<rt>あ</rt></ruby>います<button class="table-speak-btn" onclick="speakText('あいます')">🔊</button><span class="reading-kr">아이마스</span></td>
+          <td><ruby>会<rt>あ</rt></ruby>わない<button class="table-speak-btn" onclick="speakText('あわない')">🔊</button><span class="reading-kr">아와나이</span></td>
+          <td><ruby>会<rt>あ</rt></ruby>って<button class="table-speak-btn" onclick="speakText('あって')">🔊</button><span class="reading-kr">앗테</span></td>
+          <td><ruby>会<rt>あ</rt></ruby>った<button class="table-speak-btn" onclick="speakText('あった')">🔊</button><span class="reading-kr">앗타</span></td>
+          <td><ruby>会<rt>あ</rt></ruby>おう<button class="table-speak-btn" onclick="speakText('あおう')">🔊</button><span class="reading-kr">아오-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>週末<rt>しゅうまつ</rt></ruby>に<ruby>久<rt>ひさ</rt></ruby>しぶりに<ruby>友達<rt>ともだち</rt></ruby>に<ruby>会<rt>あ</rt></ruby>うことにした。</span>
+            <button class="audio-btn" onclick="speakText('しゅうまつにひさしぶりにともだちにあうことにした。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">슈-마츠니 히사시부리니 토모다치니 아우 코토니 시타</div>
+          <div class="drill-trans">해석: 주말에 오랜만에 친구를 만나기로 했다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">あの<ruby>人<rt>ひと</rt></ruby>とはもう<ruby>会<rt>あ</rt></ruby>いたくない。</span>
+            <button class="audio-btn" onclick="speakText('あのひととはもうあいたくない。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아노 히토토와 모- 아이타쿠나이</div>
+          <div class="drill-trans">해석: 그 사람과는 이제 만나고 싶지 않다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 05 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 05</span>
+        <span class="day-verb"><ruby>話<rt>はな</rt></ruby>す (말하다/이야기하다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>話<rt>はな</rt></ruby>します<button class="table-speak-btn" onclick="speakText('はなします')">🔊</button><span class="reading-kr">하나시마스</span></td>
+          <td><ruby>話<rt>はな</rt></ruby>さない<button class="table-speak-btn" onclick="speakText('はなさない')">🔊</button><span class="reading-kr">하나사나이</span></td>
+          <td><ruby>話<rt>はな</rt></ruby>して<button class="table-speak-btn" onclick="speakText('はなして')">🔊</button><span class="reading-kr">하나시테</span></td>
+          <td><ruby>話<rt>はな</rt></ruby>した<button class="table-speak-btn" onclick="speakText('はなした')">🔊</button><span class="reading-kr">하나시타</span></td>
+          <td><ruby>話<rt>はな</rt></ruby>そう<button class="table-speak-btn" onclick="speakText('はなそう')">🔊</button><span class="reading-kr">하나소-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">ゆっくり<ruby>話<rt>はな</rt></ruby>してください。</span>
+            <button class="audio-btn" onclick="speakText('ゆっくりはなしてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">윳쿠리 하나시테 쿠다사이</div>
+          <div class="drill-trans">해석: 천천히 이야기해 주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>素直<rt>すなお</rt></ruby>に<ruby>話<rt>はな</rt></ruby>そう。</span>
+            <button class="audio-btn" onclick="speakText('すなおにはなそう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">스나오니 하나소-</div>
+          <div class="drill-trans">해석: 솔직하게 이야기하자.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 06 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 06</span>
+        <span class="day-verb"><ruby>待<rt>ま</rt></ruby>つ (기다리다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>待<rt>ま</rt></ruby>ちます<button class="table-speak-btn" onclick="speakText('まちます')">🔊</button><span class="reading-kr">마치마스</span></td>
+          <td><ruby>待<rt>ま</rt></ruby>たない<button class="table-speak-btn" onclick="speakText('またない')">🔊</button><span class="reading-kr">마타나이</span></td>
+          <td><ruby>待<rt>ま</rt></ruby>って<button class="table-speak-btn" onclick="speakText('まって')">🔊</button><span class="reading-kr">맛테</span></td>
+          <td><ruby>待<rt>ま</rt></ruby>った<button class="table-speak-btn" onclick="speakText('まった')">🔊</button><span class="reading-kr">맛타</span></td>
+          <td><ruby>待<rt>ま</rt></ruby>とう<button class="table-speak-btn" onclick="speakText('まとう')">🔊</button><span class="reading-kr">마토-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">ここでもう<ruby>少<rt>すこ</rt></ruby>し<ruby>待<rt>ま</rt></ruby>ってください。</span>
+            <button class="audio-btn" onclick="speakText('ここでもうすこしまってください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">코코데 모-스코시 맛테 쿠다사이</div>
+          <div class="drill-trans">해석: 여기서 조금만 더 기다려 주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">もう<ruby>待<rt>ま</rt></ruby>てない。</span>
+            <button class="audio-btn" onclick="speakText('もうまてない。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">모- 마테나이</div>
+          <div class="drill-trans">해석: 더 이상 기다릴 수 없어.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 07 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 07</span>
+        <span class="day-verb"><ruby>書<rt>か</rt></ruby>く (쓰다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>書<rt>か</rt></ruby>きます<button class="table-speak-btn" onclick="speakText('かきます')">🔊</button><span class="reading-kr">카키마스</span></td>
+          <td><ruby>書<rt>か</rt></ruby>かない<button class="table-speak-btn" onclick="speakText('かかない')">🔊</button><span class="reading-kr">카카나이</span></td>
+          <td><ruby>書<rt>か</rt></ruby>いて<button class="table-speak-btn" onclick="speakText('かいて')">🔊</button><span class="reading-kr">카이테</span></td>
+          <td><ruby>書<rt>か</rt></ruby>いた<button class="table-speak-btn" onclick="speakText('かいた')">🔊</button><span class="reading-kr">카이타</span></td>
+          <td><ruby>書<rt>か</rt></ruby>こう<button class="table-speak-btn" onclick="speakText('かこう')">🔊</button><span class="reading-kr">카코-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>忘<rt>わす</rt></ruby>れないようにメモを<ruby>書<rt>か</rt></ruby>いておこう。</span>
+            <button class="audio-btn" onclick="speakText('わすれないようにメモをかいておこう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">와스레나이요-니 메모오 카이테 오코-</div>
+          <div class="drill-trans">해석: 잊지 않도록 메모를 써 두자.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">このペンはとても<ruby>書<rt>か</rt></ruby>きやすい。</span>
+            <button class="audio-btn" onclick="speakText('このペンはとてもかきやすい。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">코노 펜와 토테모 카키야스이</div>
+          <div class="drill-trans">해석: 이 펜은 정말 쓰기 편하다 (필기감이 좋다).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 2 -->
+    <div class="week-header">Week 2. 2그룹·3그룹 동사 및 일상 루틴 체화</div>
+
+    <!-- DAY 08 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 08</span>
+        <span class="day-verb"><ruby>食<rt>た</rt></ruby>べる (먹다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>食<rt>た</rt></ruby>べます<button class="table-speak-btn" onclick="speakText('たべます')">🔊</button><span class="reading-kr">타베마스</span></td>
+          <td><ruby>食<rt>た</rt></ruby>べない<button class="table-speak-btn" onclick="speakText('たべない')">🔊</button><span class="reading-kr">타베나이</span></td>
+          <td><ruby>食<rt>た</rt></ruby>べて<button class="table-speak-btn" onclick="speakText('たべて')">🔊</button><span class="reading-kr">타베테</span></td>
+          <td><ruby>食<rt>た</rt></ruby>べた<button class="table-speak-btn" onclick="speakText('たべた')">🔊</button><span class="reading-kr">타베타</span></td>
+          <td><ruby>食<rt>た</rt></ruby>べよう<button class="table-speak-btn" onclick="speakText('たべよう')">🔊</button><span class="reading-kr">타베요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>昼<rt>ひる</rt></ruby>ご飯は<ruby>軽<rt>かる</rt></ruby>く蕎麦でも<ruby>食<rt>た</rt></ruby>べよう。</span>
+            <button class="audio-btn" onclick="speakText('ひるごはんはかるくそばでもたべよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">히루고항와 카루쿠 소바데모 타베요-</div>
+          <div class="drill-trans">해석: 점심은 가볍게 소바나 먹자.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">このデザートは<ruby>一度<rt>いちど</rt></ruby><ruby>食<rt>た</rt></ruby>べてみたい。</span>
+            <button class="audio-btn" onclick="speakText('このデザートはいちどたべてみたい。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">코노 데자-토와 이치도 타베테 미타이</div>
+          <div class="drill-trans">해석: 이 디저트는 한 번 먹어보고 싶다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 09 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 09</span>
+        <span class="day-verb"><ruby>見<rt>み</rt></ruby>る (보다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>見<rt>み</rt></ruby>ます<button class="table-speak-btn" onclick="speakText('みます')">🔊</button><span class="reading-kr">미마스</span></td>
+          <td><ruby>見<rt>み</rt></ruby>ない<button class="table-speak-btn" onclick="speakText('みない')">🔊</button><span class="reading-kr">미나이</span></td>
+          <td><ruby>見<rt>み</rt></ruby>て<button class="table-speak-btn" onclick="speakText('みて')">🔊</button><span class="reading-kr">미테</span></td>
+          <td><ruby>見<rt>み</rt></ruby>た<button class="table-speak-btn" onclick="speakText('みた')">🔊</button><span class="reading-kr">미타</span></td>
+          <td><ruby>見<rt>み</rt></ruby>よう<button class="table-speak-btn" onclick="speakText('みよう')">🔊</button><span class="reading-kr">미요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">この<ruby>映画<rt>えいが</rt></ruby>は<ruby>前<rt>まえ</rt></ruby>に<ruby>見<rt>み</rt></ruby>たことがある。</span>
+            <button class="audio-btn" onclick="speakText('このえいがはまえにみたことがある。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">코노 에-가와 마에니 미타 코토가 아루</div>
+          <div class="drill-trans">해석: 이 영화는 예전에 본 적이 있어.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>夜<rt>よる</rt></ruby>はスマホを<ruby>見<rt>み</rt></ruby>ないようにしよう。</span>
+            <button class="audio-btn" onclick="speakText('よるはスマホをみないようにしよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">요루와 스마호오 미나이 요-니 시요-</div>
+          <div class="drill-trans">해석: 밤에는 스마트폰을 보지 않도록 하자.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 10 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 10</span>
+        <span class="day-verb"><ruby>寝<rt>ね</rt></ruby>る (자다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>寝<rt>ね</rt></ruby>ます<button class="table-speak-btn" onclick="speakText('ねます')">🔊</button><span class="reading-kr">네마스</span></td>
+          <td><ruby>寝<rt>ね</rt></ruby>ない<button class="table-speak-btn" onclick="speakText('ねない')">🔊</button><span class="reading-kr">네나이</span></td>
+          <td><ruby>寝<rt>ね</rt></ruby>て<button class="table-speak-btn" onclick="speakText('ねて')">🔊</button><span class="reading-kr">네테</span></td>
+          <td><ruby>寝<rt>ね</rt></ruby>た<button class="table-speak-btn" onclick="speakText('ねた')">🔊</button><span class="reading-kr">네타</span></td>
+          <td><ruby>寝<rt>ね</rt></ruby>よう<button class="table-speak-btn" onclick="speakText('ねよう')">🔊</button><span class="reading-kr">네요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>疲<rt>つか</rt></ruby>れたから<ruby>今日<rt>きょう</rt></ruby>は<ruby>早<rt>はや</rt></ruby>く<ruby>寝<rt>ね</rt></ruby>よう。</span>
+            <button class="audio-btn" onclick="speakText('つかれたからきょうははやくねよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">츠카레타카라 쿄-와 하야쿠 네요-</div>
+          <div class="drill-trans">해석: 피곤하니까 오늘은 일찍 자자.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">クーラーをつけたまま<ruby>寝<rt>ね</rt></ruby>てしまった。</span>
+            <button class="audio-btn" onclick="speakText('クーラーをつけたままねてしまった。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">쿠-라-오 츠케타마마 네테 시맛타</div>
+          <div class="drill-trans">해석: 에어컨을 켠 채로 잠들어 버렸다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 11 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 11</span>
+        <span class="day-verb"><ruby>起<rt>お</rt></ruby>きる (일어나다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>起<rt>お</rt></ruby>きます<button class="table-speak-btn" onclick="speakText('おきます')">🔊</button><span class="reading-kr">오키마스</span></td>
+          <td><ruby>起<rt>お</rt></ruby>きない<button class="table-speak-btn" onclick="speakText('おきない')">🔊</button><span class="reading-kr">오키나이</span></td>
+          <td><ruby>起<rt>お</rt></ruby>きて<button class="table-speak-btn" onclick="speakText('おきて')">🔊</button><span class="reading-kr">오키테</span></td>
+          <td><ruby>起<rt>お</rt></ruby>きた<button class="table-speak-btn" onclick="speakText('おきた')">🔊</button><span class="reading-kr">오키타</span></td>
+          <td><ruby>起<rt>お</rt></ruby>きよう<button class="table-speak-btn" onclick="speakText('おきよう')">🔊</button><span class="reading-kr">오키요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>は5<ruby>時<rt>じ</rt></ruby>に<ruby>起<rt>お</rt></ruby>きなければならない。</span>
+            <button class="audio-btn" onclick="speakText('あしたはごじにおきなければならない。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시타와 고지니 오키나케레바 나라나이</div>
+          <div class="drill-trans">해석: 내일은 5시에 일어나야 해.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>週末<rt>しゅうまつ</rt></ruby>は<ruby>早起<rt>はやお</rt></ruby>きが<ruby>苦手<rt>にがて</rt></ruby>だ。</span>
+            <button class="audio-btn" onclick="speakText('しゅうまつははやおきがにがてだ。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">슈-마츠와 하야오키가 니가테다</div>
+          <div class="drill-trans">해석: 주말에는 일찍 일어나는 게 쥐약(서투름)이다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 12 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 12</span>
+        <span class="day-verb">する (하다) · 3그룹 불규칙</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td>します<button class="table-speak-btn" onclick="speakText('します')">🔊</button><span class="reading-kr">시마스</span></td>
+          <td>しない<button class="table-speak-btn" onclick="speakText('しない')">🔊</button><span class="reading-kr">시나이</span></td>
+          <td>して<button class="table-speak-btn" onclick="speakText('して')">🔊</button><span class="reading-kr">시테</span></td>
+          <td>した<button class="table-speak-btn" onclick="speakText('した')">🔊</button><span class="reading-kr">시타</span></td>
+          <td>しよう<button class="table-speak-btn" onclick="speakText('しよう')">🔊</button><span class="reading-kr">시요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>から<ruby>毎日<rt>まいにち</rt></ruby>30<ruby>分<rt>ぷん</rt></ruby><ruby>勉強<rt>べんきょう</rt></ruby>することにした。</span>
+            <button class="audio-btn" onclick="speakText('あしたからまいにちさんじゅっぷんべんきょうすることにした。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시타카라 마이니치 산쥿푼 벵쿄-스루 코토니 시타</div>
+          <div class="drill-trans">해석: 내일부터 매일 30분씩 공부하기로 했다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">そんなに<ruby>無理<rt>むり</rt></ruby>しないでください。</span>
+            <button class="audio-btn" onclick="speakText('そんなにむりしないでください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">손나니 무리시나이데 쿠다사이</div>
+          <div class="drill-trans">해석: 그렇게 무리하지 마세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 13 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 13</span>
+        <span class="day-verb"><ruby>来<rt>く</rt></ruby>る (오다) · 3그룹 불규칙</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>来<rt>き</rt></ruby>ます<button class="table-speak-btn" onclick="speakText('きます')">🔊</button><span class="reading-kr">키마스</span></td>
+          <td><ruby>来<rt>こ</rt></ruby>ない<button class="table-speak-btn" onclick="speakText('こない')">🔊</button><span class="reading-kr">코나이</span></td>
+          <td><ruby>来<rt>き</rt></ruby>て<button class="table-speak-btn" onclick="speakText('きて')">🔊</button><span class="reading-kr">키테</span></td>
+          <td><ruby>来<rt>き</rt></ruby>た<button class="table-speak-btn" onclick="speakText('きた')">🔊</button><span class="reading-kr">키타</span></td>
+          <td><ruby>来<rt>こ</rt></ruby>よう<button class="table-speak-btn" onclick="speakText('こよう')">🔊</button><span class="reading-kr">코요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>ふ</rt></ruby>りそうですね。</span>
+            <button class="audio-btn" onclick="speakText('あめがふりそうですね。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아메가 후리소-데스네</div>
+          <div class="drill-trans">해석: 비가 올 것 같네요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">いつでもうちへ<ruby>遊<rt>あそ</rt></ruby>びに<ruby>来<rt>き</rt></ruby>てください。</span>
+            <button class="audio-btn" onclick="speakText('いつでもうちへあそびにきてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">이츠데모 우치에 아소비니 키테 쿠다사이</div>
+          <div class="drill-trans">해석: 언제든지 우리 집에 놀러 오세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 14 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 14</span>
+        <span class="day-verb"><ruby>休<rt>やす</rt></ruby>む (쉬다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>休<rt>やす</rt></ruby>みます<button class="table-speak-btn" onclick="speakText('やすみます')">🔊</button><span class="reading-kr">야스미마스</span></td>
+          <td><ruby>休<rt>やす</rt></ruby>まない<button class="table-speak-btn" onclick="speakText('やすまない')">🔊</button><span class="reading-kr">야스마나이</span></td>
+          <td><ruby>休<rt>やす</rt></ruby>んで<button class="table-speak-btn" onclick="speakText('やすんで')">🔊</button><span class="reading-kr">야슨데</span></td>
+          <td><ruby>休<rt>やす</rt></ruby>んだ<button class="table-speak-btn" onclick="speakText('やすんだ')">🔊</button><span class="reading-kr">야슨다</span></td>
+          <td><ruby>休<rt>やす</rt></ruby>もう<button class="table-speak-btn" onclick="speakText('やすもう')">🔊</button><span class="reading-kr">야스모-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>今週<rt>こんしゅう</rt></ruby>はゆっくり<ruby>休<rt>やす</rt></ruby>みたい。</span>
+            <button class="audio-btn" onclick="speakText('こんしゅうはゆっくりやすみたい。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">콘슈-와 윳쿠리 야스미타이</div>
+          <div class="drill-trans">해석: 이번 주는 좀 푹 쉬고 싶다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>無理<rt>むり</rt></ruby>しないで<ruby>休<rt>やす</rt></ruby>むようにしてください。</span>
+            <button class="audio-btn" onclick="speakText('むりしないでやすむようにしてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">무리시나이데 야스무 요-니 시테 쿠다사이</div>
+          <div class="drill-trans">해석: 무리하지 말고 쉬도록 하세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 3 -->
+    <div class="week-header">Week 3. 행동 확장 및 업무·일상 동사</div>
+
+    <!-- DAY 15 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 15</span>
+        <span class="day-verb"><ruby>働<rt>はたら</rt></ruby>く (일하다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>働<rt>はたら</rt></ruby>きます<button class="table-speak-btn" onclick="speakText('はたらきます')">🔊</button><span class="reading-kr">하타라키마스</span></td>
+          <td><ruby>働<rt>はたら</rt></ruby>かない<button class="table-speak-btn" onclick="speakText('はたらかない')">🔊</button><span class="reading-kr">하타라카나이</span></td>
+          <td><ruby>働<rt>はたら</rt></ruby>いて<button class="table-speak-btn" onclick="speakText('はたらいて')">🔊</button><span class="reading-kr">하타라이테</span></td>
+          <td><ruby>働<rt>はたら</rt></ruby>いた<button class="table-speak-btn" onclick="speakText('はたらいた')">🔊</button><span class="reading-kr">하타라이타</span></td>
+          <td><ruby>働<rt>はたら</rt></ruby>こう<button class="table-speak-btn" onclick="speakText('はたらこう')">🔊</button><span class="reading-kr">하타라코-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">ソウルで20<ruby>年間<rt>ねんかん</rt></ruby><ruby>働<rt>はたら</rt></ruby>いてきました。</span>
+            <button class="audio-btn" onclick="speakText('ソウルでにじゅうねんかんはたらいてきました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">소우루데 니쥬-넨칸 하타라이테 키마시타</div>
+          <div class="drill-trans">해석: 서울에서 20년간 일해 왔습니다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>週末<rt>しゅうまつ</rt></ruby>には<ruby>働<rt>はたら</rt></ruby>きたくないです。</span>
+            <button class="audio-btn" onclick="speakText('しゅうまつにははたらきたくないです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">슈-마츠니와 하타라키타쿠 나이데스</div>
+          <div class="drill-trans">해석: 주말에는 일하고 싶지 않아요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 16 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 16</span>
+        <span class="day-verb"><ruby>作<rt>つく</rt></ruby>る (만들다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>作<rt>つく</rt></ruby>ります<button class="table-speak-btn" onclick="speakText('つくります')">🔊</button><span class="reading-kr">츠쿠리마스</span></td>
+          <td><ruby>作<rt>つく</rt></ruby>らない<button class="table-speak-btn" onclick="speakText('つくらない')">🔊</button><span class="reading-kr">츠쿠라나이</span></td>
+          <td><ruby>作<rt>つく</rt></ruby>って<button class="table-speak-btn" onclick="speakText('つくって')">🔊</button><span class="reading-kr">츠쿳테</span></td>
+          <td><ruby>作<rt>つく</rt></ruby>った<button class="table-speak-btn" onclick="speakText('つくった')">🔊</button><span class="reading-kr">츠쿳타</span></td>
+          <td><ruby>作<rt>つく</rt></ruby>ろう<button class="table-speak-btn" onclick="speakText('つくろう')">🔊</button><span class="reading-kr">츠쿠로-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>家族<rt>かぞく</rt></ruby>のために<ruby>料理<rt>りょうり</rt></ruby>を<ruby>作<rt>つく</rt></ruby>っておこう。</span>
+            <button class="audio-btn" onclick="speakText('かぞくのためにりょうりをつくっておこう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">카조쿠노 타메니 료-리오 츠쿳테 오코-</div>
+          <div class="drill-trans">해석: 가족을 위해 요리를 만들어 두자.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">これは<ruby>自分<rt>じぶん</rt></ruby>で<ruby>作<rt>つく</rt></ruby>った<ruby>資料<rt>しりょう</rt></ruby>です。</span>
+            <button class="audio-btn" onclick="speakText('これはじぶんでつくったしりょうです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">코레와 지분데 츠쿳타 시료-데스</div>
+          <div class="drill-trans">해석: 이건 스스로 만든 자료입니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 17 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 17</span>
+        <span class="day-verb"><ruby>使<rt>つか</rt></ruby>う (사용하다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>使<rt>つか</rt></ruby>います<button class="table-speak-btn" onclick="speakText('つかいます')">🔊</button><span class="reading-kr">츠카이마스</span></td>
+          <td><ruby>使<rt>つか</rt></ruby>わない<button class="table-speak-btn" onclick="speakText('つかわない')">🔊</button><span class="reading-kr">츠카와나이</span></td>
+          <td><ruby>使<rt>つか</rt></ruby>って<button class="table-speak-btn" onclick="speakText('つかって')">🔊</button><span class="reading-kr">츠캇테</span></td>
+          <td><ruby>使<rt>つか</rt></ruby>った<button class="table-speak-btn" onclick="speakText('つかった')">🔊</button><span class="reading-kr">츠캇타</span></td>
+          <td><ruby>使<rt>つか</rt></ruby>おう<button class="table-speak-btn" onclick="speakText('つかおう')">🔊</button><span class="reading-kr">츠카오-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">このアプリはとても<ruby>使<rt>つか</rt></ruby>いやすいです。</span>
+            <button class="audio-btn" onclick="speakText('このアプリはとてもつかいやすいです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">코노 아푸리와 토테모 츠카이야스이데스</div>
+          <div class="drill-trans">해석: 이 앱은 아주 사용하기 편합니다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">この<ruby>会議室<rt>かいぎしつ</rt></ruby>を<ruby>使<rt>つか</rt></ruby>ってもいいですか？</span>
+            <button class="audio-btn" onclick="speakText('このかいぎしつをつかってもいいですか？')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">코노 카이기시츠오 츠캇테모 이이데스카</div>
+          <div class="drill-trans">해석: 이 회의실을 써도 됩니까?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 18 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 18</span>
+        <span class="day-verb"><ruby>聞<rt>き</rt></ruby>く (듣다/묻다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>聞<rt>き</rt></ruby>きます<button class="table-speak-btn" onclick="speakText('ききます')">🔊</button><span class="reading-kr">키키마스</span></td>
+          <td><ruby>聞<rt>き</rt></ruby>かない<button class="table-speak-btn" onclick="speakText('きかない')">🔊</button><span class="reading-kr">키카나이</span></td>
+          <td><ruby>聞<rt>き</rt></ruby>いて<button class="table-speak-btn" onclick="speakText('きいて')">🔊</button><span class="reading-kr">키이테</span></td>
+          <td><ruby>聞<rt>き</rt></ruby>いた<button class="table-speak-btn" onclick="speakText('きいた')">🔊</button><span class="reading-kr">키이타</span></td>
+          <td><ruby>聞<rt>き</rt></ruby>こう<button class="table-speak-btn" onclick="speakText('きこう')">🔊</button><span class="reading-kr">키코-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>分<rt>わ</rt></ruby>からないところは<ruby>担当者<rt>たんとうしゃ</rt></ruby>に<ruby>聞<rt>き</rt></ruby>いてみよう。</span>
+            <button class="audio-btn" onclick="speakText('わからないところはたんとうしゃにきいてみよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">와카라나이 토코로와 탄토-샤니 키이테 미요-</div>
+          <div class="drill-trans">해석: 모르는 부분은 담당자에게 물어보자.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>先生<rt>せんせい</rt></ruby>が<ruby>話<rt>はなし</rt></ruby>を<ruby>聞<rt>き</rt></ruby>いてくれました。</span>
+            <button class="audio-btn" onclick="speakText('せんせいがはなしをきいてくれました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">센세-가 하나시오 키이테 쿠레마시타</div>
+          <div class="drill-trans">해석: 선생님께서 제 이야기를 들어주셨습니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 19 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 19</span>
+        <span class="day-verb"><ruby>帰<rt>かえ</rt></ruby>る (돌아가다) · 1그룹 예외</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>帰<rt>かえ</rt></ruby>ります<button class="table-speak-btn" onclick="speakText('かえります')">🔊</button><span class="reading-kr">카에리마스</span></td>
+          <td><ruby>帰<rt>かえ</rt></ruby>らない<button class="table-speak-btn" onclick="speakText('かえらない')">🔊</button><span class="reading-kr">카에라나이</span></td>
+          <td><ruby>帰<rt>かえ</rt></ruby>って<button class="table-speak-btn" onclick="speakText('かえって')">🔊</button><span class="reading-kr">카엣테</span></td>
+          <td><ruby>帰<rt>かえ</rt></ruby>った<button class="table-speak-btn" onclick="speakText('かえった')">🔊</button><span class="reading-kr">카엣타</span></td>
+          <td><ruby>帰<rt>かえ</rt></ruby>ろう<button class="table-speak-btn" onclick="speakText('かえろう')">🔊</button><span class="reading-kr">카에로-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>仕事<rt>しごと</rt></ruby>が<ruby>終<rt>お</rt></ruby>わってすぐ<ruby>家<rt>いえ</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>った。</span>
+            <button class="audio-btn" onclick="speakText('しごとがおわってすぐいえにかえった。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">시고토가 오왓테 스구 이에니 카엣타</div>
+          <div class="drill-trans">해석: 일이 끝나고 바로 집으로 돌아갔다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>今日<rt>きょう</rt></ruby>は<ruby>先<rt>さき</rt></ruby>に<ruby>帰<rt>かえ</rt></ruby>ってもいいですか？</span>
+            <button class="audio-btn" onclick="speakText('きょうはさきにかえってもいいですか？')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">쿄-와 사키니 카엣테모 이이데스카</div>
+          <div class="drill-trans">해석: 오늘은 먼저 퇴근해도(돌아가도) 될까요?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 20 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 20</span>
+        <span class="day-verb"><ruby>教<rt>おし</rt></ruby>える (가르치다/알려주다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>教<rt>おし</rt></ruby>えます<button class="table-speak-btn" onclick="speakText('おしえます')">🔊</button><span class="reading-kr">오시에마스</span></td>
+          <td><ruby>教<rt>おし</rt></ruby>えない<button class="table-speak-btn" onclick="speakText('おしえない')">🔊</button><span class="reading-kr">오시에나이</span></td>
+          <td><ruby>教<rt>おし</rt></ruby>えて<button class="table-speak-btn" onclick="speakText('おしえて')">🔊</button><span class="reading-kr">오시에테</span></td>
+          <td><ruby>教<rt>おし</rt></ruby>えた<button class="table-speak-btn" onclick="speakText('おしえた')">🔊</button><span class="reading-kr">오시에타</span></td>
+          <td><ruby>教<rt>おし</rt></ruby>えよう<button class="table-speak-btn" onclick="speakText('おしえよう')">🔊</button><span class="reading-kr">오시에요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>駅<rt>えき</rt></ruby>までの<ruby>道<rt>みち</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてください。</span>
+            <button class="audio-btn" onclick="speakText('えきまでのみちをおしえてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">에키마데노 미치오 오시에테 쿠다사이</div>
+          <div class="drill-trans">해석: 역까지 가는 길을 알려 주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>親切<rt>しんせつ</rt></ruby>に<ruby>連絡先<rt>れんらくさき</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてくれた。</span>
+            <button class="audio-btn" onclick="speakText('しんせつにれんらくさきをおしえてくれた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">신세츠니 렌라쿠사키오 오시에테 쿠레타</div>
+          <div class="drill-trans">해석: 친절하게 연락처를 알려 주었다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 21 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 21</span>
+        <span class="day-verb"><ruby>忘<rt>わす</rt></ruby>れる (잊다/두고 오다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>忘<rt>わす</rt></ruby>れます<button class="table-speak-btn" onclick="speakText('わすれます')">🔊</button><span class="reading-kr">와스레마스</span></td>
+          <td><ruby>忘<rt>わす</rt></ruby>れない<button class="table-speak-btn" onclick="speakText('わすれない')">🔊</button><span class="reading-kr">와스레나이</span></td>
+          <td><ruby>忘<rt>わす</rt></ruby>れて<button class="table-speak-btn" onclick="speakText('わすれて')">🔊</button><span class="reading-kr">와스레테</span></td>
+          <td><ruby>忘<rt>わす</rt></ruby>れた<button class="table-speak-btn" onclick="speakText('わすれた')">🔊</button><span class="reading-kr">와스레타</span></td>
+          <td><ruby>忘<rt>わす</rt></ruby>れよう<button class="table-speak-btn" onclick="speakText('わすれよう')">🔊</button><span class="reading-kr">와스레요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">スマホを<ruby>忘<rt>わす</rt></ruby>れてしまった。</span>
+            <button class="audio-btn" onclick="speakText('スマホをわすれてしまった。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">스마호오 와스레테 시맛타</div>
+          <div class="drill-trans">해석: 스마트폰을 깜빡 두고 와 버렸다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>約束<rt>やくそく</rt></ruby>の<ruby>時間<rt>じかん</rt></ruby>を<ruby>忘<rt>わす</rt></ruby>れないようにしてください。</span>
+            <button class="audio-btn" onclick="speakText('やくそくのじかんをわすれないようにしてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">야쿠소쿠노 지칸오 와스레나이 요-니 시테 쿠다사이</div>
+          <div class="drill-trans">해석: 약속 시간을 잊지 않도록 하세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WEEK 4 -->
+    <div class="week-header">Week 4. 관계와 교류 (수수표현 및 상호작용)</div>
+
+    <!-- DAY 22 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 22</span>
+        <span class="day-verb"><ruby>手伝<rt>てつだ</rt></ruby>う (돕다/거들다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>手伝<rt>てつだ</rt></ruby>います<button class="table-speak-btn" onclick="speakText('てつだいます')">🔊</button><span class="reading-kr">테츠다이마스</span></td>
+          <td><ruby>手伝<rt>てつだ</rt></ruby>わない<button class="table-speak-btn" onclick="speakText('てつだわない')">🔊</button><span class="reading-kr">테츠다와나이</span></td>
+          <td><ruby>手伝<rt>てつだ</rt></ruby>って<button class="table-speak-btn" onclick="speakText('てつだって')">🔊</button><span class="reading-kr">테츠닷테</span></td>
+          <td><ruby>手伝<rt>てつだ</rt></ruby>った<button class="table-speak-btn" onclick="speakText('てつだった')">🔊</button><span class="reading-kr">테츠닷타</span></td>
+          <td><ruby>手伝<rt>てつだ</rt></ruby>おう<button class="table-speak-btn" onclick="speakText('てつだおう')">🔊</button><span class="reading-kr">테츠다오-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">すみませんが、ちょっと<ruby>手伝<rt>てつだ</rt></ruby>ってください。</span>
+            <button class="audio-btn" onclick="speakText('すみませんが、ちょっとてつだってください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">스미마센가 춋토 테츠닷테 쿠다사이</div>
+          <div class="drill-trans">해석: 죄송한데 좀 도와주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>同僚<rt>どうりょう</rt></ruby>が<ruby>手伝<rt>てつだ</rt></ruby>ってくれた。</span>
+            <button class="audio-btn" onclick="speakText('どうりょうがてつだってくれた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">도-료-가 테츠닷테 쿠레타</div>
+          <div class="drill-trans">해석: 동료가 날 도와주었다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 23 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 23</span>
+        <span class="day-verb"><ruby>送<rt>おく</rt></ruby>る (보내다/배웅하다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>送<rt>おく</rt></ruby>ります<button class="table-speak-btn" onclick="speakText('おくります')">🔊</button><span class="reading-kr">오쿠리마스</span></td>
+          <td><ruby>送<rt>おく</rt></ruby>らない<button class="table-speak-btn" onclick="speakText('おくらない')">🔊</button><span class="reading-kr">오쿠라나이</span></td>
+          <td><ruby>送<rt>おく</rt></ruby>って<button class="table-speak-btn" onclick="speakText('おくって')">🔊</button><span class="reading-kr">오쿳테</span></td>
+          <td><ruby>送<rt>おく</rt></ruby>った<button class="table-speak-btn" onclick="speakText('おくった')">🔊</button><span class="reading-kr">오쿳타</span></td>
+          <td><ruby>送<rt>おく</rt></ruby>ろう<button class="table-speak-btn" onclick="speakText('おくろう')">🔊</button><span class="reading-kr">오쿠로-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>資料<rt>しりょう</rt></ruby>はメールで<ruby>送<rt>おく</rt></ruby>っておきます。</span>
+            <button class="audio-btn" onclick="speakText('しりょうはメールでおくっておきます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">시료-와 메-루데 오쿳테 오키마스</div>
+          <div class="drill-trans">해석: 자료는 이메일로 보내 두겠습니다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">お<ruby>客<rt>きゃく</rt></ruby>さんをホテルまで<ruby>送<rt>おく</rt></ruby>ってあげた。</span>
+            <button class="audio-btn" onclick="speakText('おきゃくさんをホテルまでおくってあげた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오캬쿠상오 호테루마데 오쿳테 아게타</div>
+          <div class="drill-trans">해석: 손님을 호텔까지 배웅해 드렸다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 24 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 24</span>
+        <span class="day-verb"><ruby>貸<rt>か</rt></ruby>す (빌려주다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>貸<rt>か</rt></ruby>します<button class="table-speak-btn" onclick="speakText('かします')">🔊</button><span class="reading-kr">카시마스</span></td>
+          <td><ruby>貸<rt>か</rt></ruby>さない<button class="table-speak-btn" onclick="speakText('かさない')">🔊</button><span class="reading-kr">카사나이</span></td>
+          <td><ruby>貸<rt>か</rt></ruby>して<button class="table-speak-btn" onclick="speakText('かして')">🔊</button><span class="reading-kr">카시테</span></td>
+          <td><ruby>貸<rt>か</rt></ruby>した<button class="table-speak-btn" onclick="speakText('かした')">🔊</button><span class="reading-kr">카시타</span></td>
+          <td><ruby>貸<rt>か</rt></ruby>そう<button class="table-speak-btn" onclick="speakText('かそう')">🔊</button><span class="reading-kr">카소-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>傘<rt>かさ</rt></ruby>を<ruby>貸<rt>か</rt></ruby>してください。</span>
+            <button class="audio-btn" onclick="speakText('かさをかしてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">카사오 카시테 쿠다사이</div>
+          <div class="drill-trans">해석: 우산을 빌려주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>先生<rt>せんせい</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>を<ruby>貸<rt>か</rt></ruby>してもらった。</span>
+            <button class="audio-btn" onclick="speakText('せんせいにほんをかしてもらった。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">센세-니 홍오 카시테 모랏타</div>
+          <div class="drill-trans">해석: 선생님께 책을 빌려 받았다 (선생님이 빌려주셨다).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 25 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 25</span>
+        <span class="day-verb"><ruby>持<rt>も</rt></ruby>つ (들다/쥐다/가지다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>持<rt>も</rt></ruby>ちます<button class="table-speak-btn" onclick="speakText('もちます')">🔊</button><span class="reading-kr">모치마스</span></td>
+          <td><ruby>持<rt>も</rt></ruby>たない<button class="table-speak-btn" onclick="speakText('もたない')">🔊</button><span class="reading-kr">모타나이</span></td>
+          <td><ruby>持<rt>も</rt></ruby>って<button class="table-speak-btn" onclick="speakText('もって')">🔊</button><span class="reading-kr">못테</span></td>
+          <td><ruby>持<rt>も</rt></ruby>った<button class="table-speak-btn" onclick="speakText('もった')">🔊</button><span class="reading-kr">못타</span></td>
+          <td><ruby>持<rt>も</rt></ruby>とう<button class="table-speak-btn" onclick="speakText('もとう')">🔊</button><span class="reading-kr">모토-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>重<rt>おも</rt></ruby>いから<ruby>荷物<rt>にもつ</rt></ruby>を<ruby>持<rt>も</rt></ruby>ってあげます。</span>
+            <button class="audio-btn" onclick="speakText('おもいからにもつをもってあげます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오모이카라 니모츠오 못테 아게마스</div>
+          <div class="drill-trans">해석: 무거우니까 짐을 들어 드릴게요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>書類<rt>しょるい</rt></ruby>を<ruby>持<rt>も</rt></ruby>ってきました。</span>
+            <button class="audio-btn" onclick="speakText('しょるいをもってきました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">쇼루이오 못테 키마시타</div>
+          <div class="drill-trans">해석: 서류를 챙겨(가지고) 왔습니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 26 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 26</span>
+        <span class="day-verb"><ruby>開<rt>あ</rt></ruby>ける (열다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>開<rt>あ</rt></ruby>けます<button class="table-speak-btn" onclick="speakText('あけます')">🔊</button><span class="reading-kr">아케마스</span></td>
+          <td><ruby>開<rt>あ</rt></ruby>けない<button class="table-speak-btn" onclick="speakText('あけない')">🔊</button><span class="reading-kr">아케나이</span></td>
+          <td><ruby>開<rt>あ</rt></ruby>けて<button class="table-speak-btn" onclick="speakText('あけて')">🔊</button><span class="reading-kr">아케테</span></td>
+          <td><ruby>開<rt>あ</rt></ruby>けた<button class="table-speak-btn" onclick="speakText('あけた')">🔊</button><span class="reading-kr">아케타</span></td>
+          <td><ruby>開<rt>あ</rt></ruby>けよう<button class="table-speak-btn" onclick="speakText('あけよう')">🔊</button><span class="reading-kr">아케요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>少<rt>すこ</rt></ruby>し<ruby>暑<rt>あつ</rt></ruby>いので<ruby>窓<rt>まど</rt></ruby>を<ruby>開<rt>あ</rt></ruby>けておきましょう。</span>
+            <button class="audio-btn" onclick="speakText('すこしあついのでまどをあけておきましょう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">스코시 아츠이노데 마도오 아케테 오키마쇼-</div>
+          <div class="drill-trans">해석: 좀 더우니 창문을 열어 둡시다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">ドアが<ruby>開<rt>あ</rt></ruby>けてあります。</span>
+            <button class="audio-btn" onclick="speakText('ドアがあけてあります。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">도아가 아케테 아리마스</div>
+          <div class="drill-trans">해석: 문이 열려 있는 상태입니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 27 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 27</span>
+        <span class="day-verb"><ruby>閉<rt>し</rt></ruby>める (닫다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>閉<rt>し</rt></ruby>めます<button class="table-speak-btn" onclick="speakText('しめます')">🔊</button><span class="reading-kr">시메마스</span></td>
+          <td><ruby>閉<rt>し</rt></ruby>めない<button class="table-speak-btn" onclick="speakText('しめない')">🔊</button><span class="reading-kr">시메나이</span></td>
+          <td><ruby>閉<rt>し</rt></ruby>めて<button class="table-speak-btn" onclick="speakText('しめて')">🔊</button><span class="reading-kr">시메테</span></td>
+          <td><ruby>閉<rt>し</rt></ruby>めた<button class="table-speak-btn" onclick="speakText('しめた')">🔊</button><span class="reading-kr">시메타</span></td>
+          <td><ruby>閉<rt>し</rt></ruby>めよう<button class="table-speak-btn" onclick="speakText('しめよう')">🔊</button><span class="reading-kr">시메요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>出<rt>で</rt></ruby>る<ruby>時<rt>とき</rt></ruby>はドアをちゃんと<ruby>閉<rt>し</rt></ruby>めてください。</span>
+            <button class="audio-btn" onclick="speakText('でるときはドアをちゃんとしめてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">데루 토키와 도아오 챤토 시메테 쿠다사이</div>
+          <div class="drill-trans">해석: 나갈 때는 문을 꼭 닫아 주세요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>窓<rt>まど</rt></ruby>が<ruby>閉<rt>し</rt></ruby>まったままで<ruby>息苦<rt>いきぐる</rt></ruby>しい。</span>
+            <button class="audio-btn" onclick="speakText('まどがしまったままでいきぐるしい。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마도가 시맛타마마데 이키구루시-</div>
+          <div class="drill-trans">해석: 창문이 닫힌 채로 있어서 답답하다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 28 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 28</span>
+        <span class="day-verb"><ruby>乗<rt>の</rt></ruby>る (타다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>乗<rt>の</rt></ruby>ります<button class="table-speak-btn" onclick="speakText('のります')">🔊</button><span class="reading-kr">노리마스</span></td>
+          <td><ruby>乗<rt>の</rt></ruby>らない<button class="table-speak-btn" onclick="speakText('のらない')">🔊</button><span class="reading-kr">노라나이</span></td>
+          <td><ruby>乗<rt>の</rt></ruby>って<button class="table-speak-btn" onclick="speakText('のって')">🔊</button><span class="reading-kr">놋테</span></td>
+          <td><ruby>乗<rt>の</rt></ruby>った<button class="table-speak-btn" onclick="speakText('のった')">🔊</button><span class="reading-kr">놋타</span></td>
+          <td><ruby>乗<rt>の</rt></ruby>ろう<button class="table-speak-btn" onclick="speakText('のろう')">🔊</button><span class="reading-kr">노로-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>遅<rt>おく</rt></ruby>れそうだからタクシーに<ruby>乗<rt>の</rt></ruby>った<ruby>方<rt>ほう</rt></ruby>がいい。</span>
+            <button class="audio-btn" onclick="speakText('おくれそうだからタクシーにのったほうがいい。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오쿠레소-다카라 타쿠시-니 놋타 호-가 이이</div>
+          <div class="drill-trans">해석: 늦을 것 같으니까 택시를 타는 편이 좋겠다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>終電<rt>しゅうでん</rt></ruby>に<ruby>乗<rt>の</rt></ruby>ることができた。</span>
+            <button class="audio-btn" onclick="speakText('しゅうでんにのることができた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">슈-덴니 노루 코토가 데키타</div>
+          <div class="drill-trans">해석: 다행히 막차를 탈 수 있었다.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FINAL LAP -->
+    <div class="week-header">Final Lap. 습관과 완성</div>
+
+    <!-- DAY 29 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 29</span>
+        <span class="day-verb"><ruby>習<rt>なら</rt></ruby>う (배우다) · 1그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>習<rt>なら</rt></ruby>います<button class="table-speak-btn" onclick="speakText('ならいます')">🔊</button><span class="reading-kr">나라이마스</span></td>
+          <td><ruby>習<rt>なら</rt></ruby>わない<button class="table-speak-btn" onclick="speakText('ならわない')">🔊</button><span class="reading-kr">나라와나이</span></td>
+          <td><ruby>習<rt>なら</rt></ruby>って<button class="table-speak-btn" onclick="speakText('ならって')">🔊</button><span class="reading-kr">나랏테</span></td>
+          <td><ruby>習<rt>なら</rt></ruby>った<button class="table-speak-btn" onclick="speakText('ならった')">🔊</button><span class="reading-kr">나랏타</span></td>
+          <td><ruby>習<rt>なら</rt></ruby>おう<button class="table-speak-btn" onclick="speakText('ならおう')">🔊</button><span class="reading-kr">나라오-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>新<rt>あたら</rt></ruby>しいスポーツを<ruby>習<rt>なら</rt></ruby>ってみることにした。</span>
+            <button class="audio-btn" onclick="speakText('あたらしいスポーツをならってみることにした。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아타라시- 수포-츠오 나랏테 미루 코토니 시타</div>
+          <div class="drill-trans">해석: 새로운 스포츠를 배워보기로 했다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>日本語<rt>にほんご</rt></ruby>を<ruby>習<rt>なら</rt></ruby>って本当によかった。</span>
+            <button class="audio-btn" onclick="speakText('にほんごをならってほんとうによかった。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니혼고오 나랏테 혼토-니 요캇타</div>
+          <div class="drill-trans">해석: 일본어를 배워서 정말 다행이다(좋았다).</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DAY 30 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">DAY 30</span>
+        <span class="day-verb"><ruby>続<rt>つづ</rt></ruby>ける (계속하다/지속하다) · 2그룹</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <table>
+        <tr><th>1단 (정중)</th><th>2단 (부정)</th><th>3단 (연결)</th><th>4단 (과거)</th><th>5단 (의지)</th></tr>
+        <tr>
+          <td><ruby>続<rt>つづ</rt></ruby>けます<button class="table-speak-btn" onclick="speakText('つづけます')">🔊</button><span class="reading-kr">츠즈케마스</span></td>
+          <td><ruby>続<rt>つづ</rt></ruby>けない<button class="table-speak-btn" onclick="speakText('つづけない')">🔊</button><span class="reading-kr">츠즈케나이</span></td>
+          <td><ruby>続<rt>つづ</rt></ruby>けて<button class="table-speak-btn" onclick="speakText('つづけて')">🔊</button><span class="reading-kr">츠즈케테</span></td>
+          <td><ruby>続<rt>つづ</rt></ruby>けた<button class="table-speak-btn" onclick="speakText('つづけた')">🔊</button><span class="reading-kr">츠즈케타</span></td>
+          <td><ruby>続<rt>つづ</rt></ruby>けよう<button class="table-speak-btn" onclick="speakText('つづけよう')">🔊</button><span class="reading-kr">츠즈케요-</span></td>
+        </tr>
+      </table>
+      <div class="drill-section">
+        <div class="drill-label">실전 독백 트레이닝</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>毎日<rt>まいにち</rt></ruby>10<ruby>分<rt>ぷん</rt></ruby>ずつ<ruby>続<rt>つづ</rt></ruby>けよう。</span>
+            <button class="audio-btn" onclick="speakText('まいにちじゅっぷんずつつづけよう。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마이니치 쥿푼즈츠 츠즈케요-</div>
+          <div class="drill-trans">해석: 매일 10분씩 계속하자.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>諦<rt>あきら</rt></ruby>めずに<ruby>続<rt>つづ</rt></ruby>けてきてよかった。</span>
+            <button class="audio-btn" onclick="speakText('あきらめずにつづけてきてよかった。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아키라메즈니 츠즈케테 키테 요캇타</div>
+          <div class="drill-trans">해석: 포기하지 않고 지속해 오길 잘했다.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let speechRate = 1.0;
+    let jaVoice = null;
+    let apActive = false, apTimer = null, apBtn = null;
+
+    function pickVoice() {
+      if (!('speechSynthesis' in window)) return;
+      const vs = window.speechSynthesis.getVoices();
+      jaVoice = vs.find(v => v.lang === 'ja-JP')
+             || vs.find(v => v.lang && v.lang.toLowerCase().startsWith('ja')) || null;
+    }
+    if ('speechSynthesis' in window) { pickVoice(); window.speechSynthesis.onvoiceschanged = pickVoice; }
+
+    function setSpeed(rate, buttonElement) {
+      speechRate = rate;
+      document.querySelectorAll('.speed-btn').forEach(btn => btn.classList.remove('active'));
+      buttonElement.classList.add('active');
+    }
+    function stopAuto() {
+      apActive = false;
+      if (apTimer) { clearTimeout(apTimer); apTimer = null; }
+      if (apBtn) { apBtn.textContent = '▶ 전체 듣기'; apBtn.classList.remove('playing'); apBtn = null; }
+    }
+    function speakText(text) {
+      if (!('speechSynthesis' in window)) { alert('이 브라우저는 음성 재생(Web Speech API)을 지원하지 않습니다. Chrome이나 Safari를 권장합니다.'); return; }
+      stopAuto(); window.speechSynthesis.cancel();
+      if (!jaVoice) pickVoice();
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ja-JP'; u.rate = speechRate; if (jaVoice) u.voice = jaVoice;
+      window.speechSynthesis.speak(u);
+    }
+    function speakOne(text, cb) {
+      const u = new SpeechSynthesisUtterance(text);
+      u.lang = 'ja-JP'; u.rate = speechRate; if (jaVoice) u.voice = jaVoice;
+      u.onend = u.onerror = () => { if (cb) cb(); };
+      window.speechSynthesis.speak(u);
+    }
+    function playCard(btn) {
+      if (!('speechSynthesis' in window)) { alert('이 브라우저는 음성 재생(Web Speech API)을 지원하지 않습니다.'); return; }
+      if (apBtn === btn) { window.speechSynthesis.cancel(); stopAuto(); return; }
+      window.speechSynthesis.cancel(); stopAuto();
+      if (!jaVoice) pickVoice();
+      const card = btn.closest('.day-card');
+      const texts = [...card.querySelectorAll('[onclick^="speakText"]')]
+        .map(e => (e.getAttribute('onclick').match(/speakText\('([^']*)'\)/) || [])[1]).filter(Boolean);
+      if (!texts.length) return;
+      apActive = true; apBtn = btn; btn.textContent = '⏸ 정지'; btn.classList.add('playing');
+      let i = 0;
+      const step = () => {
+        if (!apActive || i >= texts.length) { stopAuto(); return; }
+        speakOne(texts[i], () => { if (!apActive) return; i++; apTimer = setTimeout(step, i <= 5 ? 450 : 650); });
+      };
+      step();
+    }
+    const DONE_KEY = 'jpverb_done_v1';
+    function progressBoxes() { return document.querySelectorAll('.check-label input[type=checkbox]'); }
+    function updateProgress() {
+      const boxes = progressBoxes();
+      const done = [...boxes].filter(b => b.checked).length;
+      const el = document.getElementById('progressLine');
+      if (el) el.textContent = '완료 ' + done + ' / ' + boxes.length;
+    }
+    function saveDone() {
+      try { localStorage.setItem(DONE_KEY, JSON.stringify([...progressBoxes()].map(b => b.checked))); } catch (e) {}
+      updateProgress();
+    }
+    function loadDone() {
+      let saved = [];
+      try { saved = JSON.parse(localStorage.getItem(DONE_KEY) || '[]'); } catch (e) {}
+      progressBoxes().forEach((b, i) => { b.checked = !!saved[i]; b.addEventListener('change', saveDone); });
+      updateProgress();
+    }
+    window.addEventListener('DOMContentLoaded', loadDone);
+  </script>
+</body>
+</html>
