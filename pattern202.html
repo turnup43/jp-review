@@ -39,6 +39,7 @@
   .lvbadge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--accent2);color:#fff;}
   .sectag{font-size:11px;color:var(--muted);border:1px solid var(--line);background:var(--panel2);border-radius:99px;padding:3px 9px;}
   .convtag{font-size:11px;color:#fff;background:var(--good);border-radius:99px;padding:3px 9px;}
+  .addtag{font-size:11px;font-weight:700;color:#fff;background:#f0883e;border:1px solid #f0883e;border-radius:99px;padding:3px 9px;} .card.added .atext.jp,.card.added .qtext.jp{color:#f0883e;} .card.added .reading{color:#f0883e;} .card.added{border-color:#f0883e;}
   .patline{font-size:11px;color:var(--accent);margin-left:auto;max-width:60%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:right;}
   .front{flex:1;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:6px;}
   .qlabel{font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
@@ -162,9 +163,9 @@ function renderCard(){
   $('#crumbs').textContent=`${it.lesson}강 · ${it.title} · ${idx+1}/${deck.length}`;
   $('#progressBar').style.width=`${idx/deck.length*100}%`;
   $('#lvBadge').textContent=it.lesson+'강';
-  const st=$('#secTag'); st.textContent=it.section; st.className=(it.section==='회화')?'convtag':'sectag';
+  const st=$('#secTag'); st.textContent=(it.section==='추가'?'➕ ':'')+it.section; st.className=(it.section==='회화')?'convtag':(it.section==='추가'?'addtag':'sectag');
   $('#patLine').textContent=meta.pat||'';
-  const card=$('#card');card.classList.remove('flipped');$('#countdown').textContent='';
+  const card=$('#card');card.classList.remove('flipped');card.classList.toggle('added',it.section==='추가');$('#countdown').textContent='';
   const qL=$('#qLabel'),qT=$('#qText'),ans=$('#answerEl');
   if(state.mode==='ko'){ qL.textContent='한국어';qT.className='qtext ko';qT.textContent=it.ko;document.getElementById('qRead').textContent='';
     ans.innerHTML=`<div class="atext jp">${it.jp}</div><div class="reading">${it.read_ko}</div>`+(meta.conn?`<div class="conn">접속: ${meta.conn}</div>`:''); $('#hint').textContent='탭하여 일본어 보기'; }
