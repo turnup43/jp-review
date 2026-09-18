@@ -105,13 +105,17 @@
     .day-play-btn:hover { background: #dbeafe; }
     .day-play-btn.playing { background: var(--accent); color: #fff; border-color: var(--accent); }
     .drill-gear { display:inline-block; background:var(--accent); color:#fff; font-size:10px; font-weight:700; border-radius:4px; padding:1px 6px; margin-right:4px; vertical-align:middle; }
+    .conn-note { font-size:12px; color:var(--text-muted); background:#f8fafc; border:1px solid var(--border); border-radius:8px; padding:8px 12px; margin-bottom:12px; line-height:1.5; }
+    .cell-h { display:block; font-size:10px; color:var(--secondary); font-weight:700; margin-bottom:3px; }
+    .playall-btn { border:1px solid var(--secondary); background:var(--secondary); color:#fff; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:12px; font-weight:700; }
+    .playall-btn.active { background:var(--accent); border-color:var(--accent); }
   </style>
 </head>
 <body>
   <div class="container">
     <header>
       <h1>일본어 동사 변형 체화 30일 완성 워크북</h1>
-      <p class="subtitle">한글 독음 · 한국어 해석 · 속도 조절 발음 오디오 엔진 탑재</p>
+      <p class="subtitle">기본 5단 활용(30) + 심화 활용 13종 · 한글 독음 · 발음 오디오</p>
       <p class="progress-line" id="progressLine">완료 0 / 30</p>
       <a class="hub-link" href="index.html">← 일본어 복습 허브</a>
     </header>
@@ -128,6 +132,7 @@
         <button class="speed-btn active" onclick="setSpeed(1.0, this)">1.0x (표준)</button>
         <button class="speed-btn" onclick="setSpeed(1.2, this)">1.2x (빠르게)</button>
       </div>
+      <button class="playall-btn" onclick="togglePlayAll(this)">▶ Day 1부터 전체 이어 듣기</button>
     </div>
 
     <!-- WEEK 1 -->
@@ -2035,12 +2040,730 @@
       </div>
     </div>
 
+
+    <div class="week-header">Week 5. 동사 심화 활용 (수여·추측·사역·수동·변화)</div>
+
+    <!-- 심화 01 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 01</span>
+        <span class="day-verb">가능형 (~할 수 있다)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 1그룹 u단→e단+る · 2그룹 る→られる · する→できる · 来る→来られる</div>
+      <table><tr><th>1그룹</th><th>2그룹</th><th>する</th><th>来る</th></tr><tr><td><span class="cell-h">1그룹</span><ruby>行<rt>い</rt></ruby>く → <ruby>行<rt>い</rt></ruby>ける<button class="table-speak-btn" onclick="speakText('行ける')">🔊</button><span class="reading-kr">이께루</span></td><td><span class="cell-h">2그룹</span><ruby>食<rt>た</rt></ruby>べる → <ruby>食<rt>た</rt></ruby>べられる<button class="table-speak-btn" onclick="speakText('食べられる')">🔊</button><span class="reading-kr">따베라레루</span></td><td><span class="cell-h">する</span>する → できる<button class="table-speak-btn" onclick="speakText('できる')">🔊</button><span class="reading-kr">데끼루</span></td><td><span class="cell-h">来る</span><ruby>来<rt>く</rt></ruby>る → <ruby>来<rt>こ</rt></ruby>られる<button class="table-speak-btn" onclick="speakText('来られる')">🔊</button><span class="reading-kr">꼬라레루</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>日本語<rt>にほんご</rt></ruby>が<ruby>話<rt>はな</rt></ruby>せます。</span>
+            <button class="audio-btn" onclick="speakText('日本語が話せます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니혼고가하나세마스</div>
+          <div class="drill-trans">해석: 일본어를 말할 수 있어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>刺身<rt>さしみ</rt></ruby>が<ruby>食<rt>た</rt></ruby>べられます。</span>
+            <button class="audio-btn" onclick="speakText('刺身が食べられます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">사시미가따베라레마스</div>
+          <div class="drill-trans">해석: 회를 먹을 수 있어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>朝早<rt>あさはや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きられます。</span>
+            <button class="audio-btn" onclick="speakText('朝早く起きられます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아사하야꾸오끼라레마스</div>
+          <div class="drill-trans">해석: 아침 일찍 일어날 수 있어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">ここで<ruby>写真<rt>しゃしん</rt></ruby>が<ruby>撮<rt>と</rt></ruby>れます。</span>
+            <button class="audio-btn" onclick="speakText('ここで写真が撮れます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꼬꼬데샤신가또레마스</div>
+          <div class="drill-trans">해석: 여기서 사진을 찍을 수 있어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>は<ruby>来<rt>こ</rt></ruby>られますか。</span>
+            <button class="audio-btn" onclick="speakText('明日は来られますか。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시따와꼬라레마스까</div>
+          <div class="drill-trans">해석: 내일 올 수 있어요?</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 02 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 02</span>
+        <span class="day-verb">수동형 (~당하다/받다)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 1그룹 u단→a단+れる · 2그룹 る→られる · する→される · 来る→来られる</div>
+      <table><tr><th>1그룹</th><th>2그룹</th><th>する</th><th>来る</th></tr><tr><td><span class="cell-h">1그룹</span><ruby>言<rt>い</rt></ruby>う → <ruby>言<rt>い</rt></ruby>われる<button class="table-speak-btn" onclick="speakText('言われる')">🔊</button><span class="reading-kr">이와레루</span></td><td><span class="cell-h">2그룹</span><ruby>見<rt>み</rt></ruby>る → <ruby>見<rt>み</rt></ruby>られる<button class="table-speak-btn" onclick="speakText('見られる')">🔊</button><span class="reading-kr">미라레루</span></td><td><span class="cell-h">する</span>する → される<button class="table-speak-btn" onclick="speakText('される')">🔊</button><span class="reading-kr">사레루</span></td><td><span class="cell-h">来る</span><ruby>来<rt>く</rt></ruby>る → <ruby>来<rt>こ</rt></ruby>られる<button class="table-speak-btn" onclick="speakText('来られる')">🔊</button><span class="reading-kr">꼬라레루</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>先生<rt>せんせい</rt></ruby>に<ruby>名前<rt>なまえ</rt></ruby>を<ruby>呼<rt>よ</rt></ruby>ばれました。</span>
+            <button class="audio-btn" onclick="speakText('先生に名前を呼ばれました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">센세이니나마에오요바레마시따</div>
+          <div class="drill-trans">해석: 선생님이 이름을 불렀어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>弟<rt>おとうと</rt></ruby>にケーキを<ruby>食<rt>た</rt></ruby>べられた。</span>
+            <button class="audio-btn" onclick="speakText('弟にケーキを食べられた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오또우또니께에끼오따베라레따</div>
+          <div class="drill-trans">해석: 남동생이 케이크를 먹어버렸다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">みんなに<ruby>笑<rt>わら</rt></ruby>われました。</span>
+            <button class="audio-btn" onclick="speakText('みんなに笑われました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">민나니와라와레마시따</div>
+          <div class="drill-trans">해석: 모두에게 비웃음을 당했어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>母<rt>はは</rt></ruby>に<ruby>日記<rt>にっき</rt></ruby>を<ruby>読<rt>よ</rt></ruby>まれた。</span>
+            <button class="audio-btn" onclick="speakText('母に日記を読まれた。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">하하니닛끼오요마레따</div>
+          <div class="drill-trans">해석: 엄마가 일기를 봤다.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>雨<rt>あめ</rt></ruby>に<ruby>降<rt>ふ</rt></ruby>られて<ruby>困<rt>こま</rt></ruby>りました。</span>
+            <button class="audio-btn" onclick="speakText('雨に降られて困りました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아메니후라레떼꼬마리마시따</div>
+          <div class="drill-trans">해석: 비를 맞아서 곤란했어요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 03 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 03</span>
+        <span class="day-verb">사역형 (~하게 하다/시키다)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 1그룹 u단→a단+せる · 2그룹 る→させる · する→させる · 来る→来させる</div>
+      <table><tr><th>1그룹</th><th>2그룹</th><th>する</th><th>来る</th></tr><tr><td><span class="cell-h">1그룹</span><ruby>行<rt>い</rt></ruby>く → <ruby>行<rt>い</rt></ruby>かせる<button class="table-speak-btn" onclick="speakText('行かせる')">🔊</button><span class="reading-kr">이까세루</span></td><td><span class="cell-h">2그룹</span><ruby>食<rt>た</rt></ruby>べる → <ruby>食<rt>た</rt></ruby>べさせる<button class="table-speak-btn" onclick="speakText('食べさせる')">🔊</button><span class="reading-kr">따베사세루</span></td><td><span class="cell-h">する</span>する → させる<button class="table-speak-btn" onclick="speakText('させる')">🔊</button><span class="reading-kr">사세루</span></td><td><span class="cell-h">来る</span><ruby>来<rt>く</rt></ruby>る → <ruby>来<rt>こ</rt></ruby>させる<button class="table-speak-btn" onclick="speakText('来させる')">🔊</button><span class="reading-kr">꼬사세루</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>子供<rt>こども</rt></ruby>に<ruby>野菜<rt>やさい</rt></ruby>を<ruby>食<rt>た</rt></ruby>べさせます。</span>
+            <button class="audio-btn" onclick="speakText('子供に野菜を食べさせます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꼬도모니야사이오따베사세마스</div>
+          <div class="drill-trans">해석: 아이에게 야채를 먹여요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>部下<rt>ぶか</rt></ruby>を<ruby>出張<rt>しゅっちょう</rt></ruby>に<ruby>行<rt>い</rt></ruby>かせました。</span>
+            <button class="audio-btn" onclick="speakText('部下を出張に行かせました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">부까오슛쵸우니이까세마시따</div>
+          <div class="drill-trans">해석: 부하를 출장 보냈어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>学生<rt>がくせい</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>を<ruby>読<rt>よ</rt></ruby>ませます。</span>
+            <button class="audio-btn" onclick="speakText('学生に本を読ませます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">가꾸세이니혼오요마세마스</div>
+          <div class="drill-trans">해석: 학생에게 책을 읽혀요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>母<rt>はは</rt></ruby>を<ruby>心配<rt>しんぱい</rt></ruby>させました。</span>
+            <button class="audio-btn" onclick="speakText('母を心配させました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">하하오신빠이사세마시따</div>
+          <div class="drill-trans">해석: 엄마를 걱정시켰어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>少<rt>すこ</rt></ruby>し<ruby>休<rt>やす</rt></ruby>ませてください。</span>
+            <button class="audio-btn" onclick="speakText('少し休ませてください。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">스꼬시야스마세떼꾸다사이</div>
+          <div class="drill-trans">해석: 좀 쉬게 해 주세요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 04 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 04</span>
+        <span class="day-verb">수여① あげる·くれる·もらう (물건)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 내가/남→남: あげる · 남→나: くれる · (내가) 받다: もらう</div>
+      <table><tr><th>あげる (주다)</th><th>くれる (나에게)</th><th>もらう (받다)</th></tr><tr><td><span class="cell-h">あげる (주다)</span>あげます<button class="table-speak-btn" onclick="speakText('あげます')">🔊</button><span class="reading-kr">아게마스</span></td><td><span class="cell-h">くれる (나에게)</span>くれます<button class="table-speak-btn" onclick="speakText('くれます')">🔊</button><span class="reading-kr">꾸레마스</span></td><td><span class="cell-h">もらう (받다)</span>もらいます<button class="table-speak-btn" onclick="speakText('もらいます')">🔊</button><span class="reading-kr">모라이마스</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>妹<rt>いもうと</rt></ruby>に<ruby>本<rt>ほん</rt></ruby>をあげました。</span>
+            <button class="audio-btn" onclick="speakText('私は妹に本をあげました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">와따시와이모우또니혼오아게마시따</div>
+          <div class="drill-trans">해석: 나는 여동생에게 책을 줬어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>友達<rt>ともだち</rt></ruby>が<ruby>私<rt>わたし</rt></ruby>に<ruby>花<rt>はな</rt></ruby>をくれました。</span>
+            <button class="audio-btn" onclick="speakText('友達が私に花をくれました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">또모다치가와따시니하나오꾸레마시따</div>
+          <div class="drill-trans">해석: 친구가 나에게 꽃을 줬어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>私<rt>わたし</rt></ruby>は<ruby>先生<rt>せんせい</rt></ruby>にお<ruby>土産<rt>みやげ</rt></ruby>をもらいました。</span>
+            <button class="audio-btn" onclick="speakText('私は先生にお土産をもらいました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">와따시와센세이니오미야게오모라이마시따</div>
+          <div class="drill-trans">해석: 나는 선생님께 선물을 받았어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>母<rt>はは</rt></ruby>に<ruby>時計<rt>とけい</rt></ruby>をもらいました。</span>
+            <button class="audio-btn" onclick="speakText('母に時計をもらいました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">하하니또께이오모라이마시따</div>
+          <div class="drill-trans">해석: 엄마에게 시계를 받았어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>弟<rt>おとうと</rt></ruby>にお<ruby>菓子<rt>かし</rt></ruby>をあげます。</span>
+            <button class="audio-btn" onclick="speakText('弟にお菓子をあげます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">오또우또니오까시오아게마스</div>
+          <div class="drill-trans">해석: 남동생에게 과자를 줄게요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 05 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 05</span>
+        <span class="day-verb">수여② ~てあげる·~てくれる·~てもらう (행위)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 동사 て형 + あげる/くれる/もらう</div>
+      <table><tr><th>~てあげる</th><th>~てくれる</th><th>~てもらう</th></tr><tr><td><span class="cell-h">~てあげる</span><ruby>手伝<rt>てつだ</rt></ruby>ってあげます<button class="table-speak-btn" onclick="speakText('手伝ってあげます')">🔊</button><span class="reading-kr">떼쓰닷떼아게마스</span></td><td><span class="cell-h">~てくれる</span><ruby>手伝<rt>てつだ</rt></ruby>ってくれます<button class="table-speak-btn" onclick="speakText('手伝ってくれます')">🔊</button><span class="reading-kr">떼쓰닷떼꾸레마스</span></td><td><span class="cell-h">~てもらう</span><ruby>手伝<rt>てつだ</rt></ruby>ってもらいます<button class="table-speak-btn" onclick="speakText('手伝ってもらいます')">🔊</button><span class="reading-kr">떼쓰닷떼모라이마스</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>荷物<rt>にもつ</rt></ruby>を<ruby>持<rt>も</rt></ruby>ってあげました。</span>
+            <button class="audio-btn" onclick="speakText('荷物を持ってあげました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니모쓰오못떼아게마시따</div>
+          <div class="drill-trans">해석: 짐을 들어 줬어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>友達<rt>ともだち</rt></ruby>が<ruby>駅<rt>えき</rt></ruby>まで<ruby>送<rt>おく</rt></ruby>ってくれました。</span>
+            <button class="audio-btn" onclick="speakText('友達が駅まで送ってくれました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">또모다치가에끼마데오꿋떼꾸레마시따</div>
+          <div class="drill-trans">해석: 친구가 역까지 바래다줬어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>先生<rt>せんせい</rt></ruby>に<ruby>教<rt>おし</rt></ruby>えてもらいました。</span>
+            <button class="audio-btn" onclick="speakText('先生に教えてもらいました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">센세이니오시에떼모라이마시따</div>
+          <div class="drill-trans">해석: 선생님께 배웠어요(가르쳐 받음).</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>写真<rt>しゃしん</rt></ruby>を<ruby>撮<rt>と</rt></ruby>ってあげます。</span>
+            <button class="audio-btn" onclick="speakText('写真を撮ってあげます。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">샤신오똣떼아게마스</div>
+          <div class="drill-trans">해석: 사진을 찍어 줄게요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>道<rt>みち</rt></ruby>を<ruby>教<rt>おし</rt></ruby>えてくれました。</span>
+            <button class="audio-btn" onclick="speakText('道を教えてくれました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">미치오오시에떼꾸레마시따</div>
+          <div class="drill-trans">해석: 길을 알려 줬어요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 06 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 06</span>
+        <span class="day-verb">양태 ~そうだ (~일 것 같다·보고 판단)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 동사 ます형+そう · 형용사 어간+そう (いい→よさそう 예외)</div>
+      <table><tr><th>동사</th><th>い형용사</th><th>な형용사</th><th>예외</th></tr><tr><td><span class="cell-h">동사</span><ruby>降<rt>ふ</rt></ruby>る → <ruby>降<rt>お</rt></ruby>りそう<button class="table-speak-btn" onclick="speakText('降りそう')">🔊</button><span class="reading-kr">오리소우</span></td><td><span class="cell-h">い형용사</span>おいしそう<button class="table-speak-btn" onclick="speakText('おいしそう')">🔊</button><span class="reading-kr">오이시소우</span></td><td><span class="cell-h">な형용사</span><ruby>元気<rt>げんき</rt></ruby>そう<button class="table-speak-btn" onclick="speakText('元気そう')">🔊</button><span class="reading-kr">겐끼소우</span></td><td><span class="cell-h">예외</span>いい → よさそう<button class="table-speak-btn" onclick="speakText('よさそう')">🔊</button><span class="reading-kr">요사소우</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>雨<rt>あめ</rt></ruby>が<ruby>降<rt>お</rt></ruby>りそうです。</span>
+            <button class="audio-btn" onclick="speakText('雨が降りそうです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아메가오리소우데스</div>
+          <div class="drill-trans">해석: 비가 올 것 같아요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">このケーキ、おいしそうですね。</span>
+            <button class="audio-btn" onclick="speakText('このケーキ、おいしそうですね。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꼬노께에끼오이시소우데스네</div>
+          <div class="drill-trans">해석: 이 케이크 맛있어 보여요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>彼<rt>かれ</rt></ruby>は<ruby>元気<rt>げんき</rt></ruby>そうです。</span>
+            <button class="audio-btn" onclick="speakText('彼は元気そうです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">까레와겐끼소우데스</div>
+          <div class="drill-trans">해석: 그는 건강해 보여요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>荷物<rt>にもつ</rt></ruby>が<ruby>落<rt>お</rt></ruby>ちそうです。</span>
+            <button class="audio-btn" onclick="speakText('荷物が落ちそうです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니모쓰가오치소우데스</div>
+          <div class="drill-trans">해석: 짐이 떨어질 것 같아요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>仕事<rt>しごと</rt></ruby>が<ruby>忙<rt>いそが</rt></ruby>しそうですね。</span>
+            <button class="audio-btn" onclick="speakText('仕事が忙しそうですね。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">시고또가이소가시소우데스네</div>
+          <div class="drill-trans">해석: 일이 바빠 보여요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 07 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 07</span>
+        <span class="day-verb">추측 ~みたいだ·~ようだ·~らしい (~인 것 같다)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 보통형 + みたい(구어)/ようだ(문어)/らしい(근거·전문)</div>
+      <table><tr><th>みたい</th><th>ようだ</th><th>らしい</th></tr><tr><td><span class="cell-h">みたい</span><ruby>降<rt>ふ</rt></ruby>ったみたい<button class="table-speak-btn" onclick="speakText('降ったみたい')">🔊</button><span class="reading-kr">훗따미따이</span></td><td><span class="cell-h">ようだ</span>いるようだ<button class="table-speak-btn" onclick="speakText('いるようだ')">🔊</button><span class="reading-kr">이루요우다</span></td><td><span class="cell-h">らしい</span><ruby>休<rt>やす</rt></ruby>みらしい<button class="table-speak-btn" onclick="speakText('休みらしい')">🔊</button><span class="reading-kr">야스미라시이</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>誰<rt>だれ</rt></ruby>かいるみたいです。</span>
+            <button class="audio-btn" onclick="speakText('誰かいるみたいです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">다레까이루미따이데스</div>
+          <div class="drill-trans">해석: 누군가 있는 것 같아요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>風邪<rt>かぜ</rt></ruby>をひいたようです。</span>
+            <button class="audio-btn" onclick="speakText('風邪をひいたようです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">까제오히이따요우데스</div>
+          <div class="drill-trans">해석: 감기에 걸린 것 같아요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">あの<ruby>店<rt>みせ</rt></ruby>は<ruby>今日<rt>きょう</rt></ruby><ruby>休<rt>やす</rt></ruby>みらしいです。</span>
+            <button class="audio-btn" onclick="speakText('あの店は今日休みらしいです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아노미세와꾜우야스미라시이데스</div>
+          <div class="drill-trans">해석: 저 가게는 오늘 쉰대요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>彼<rt>かれ</rt></ruby>はもう<ruby>帰<rt>かえ</rt></ruby>ったみたいです。</span>
+            <button class="audio-btn" onclick="speakText('彼はもう帰ったみたいです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">까레와모우까엣따미따이데스</div>
+          <div class="drill-trans">해석: 그는 벌써 간 것 같아요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>事故<rt>じこ</rt></ruby>があったようです。</span>
+            <button class="audio-btn" onclick="speakText('事故があったようです。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">지꼬가앗따요우데스</div>
+          <div class="drill-trans">해석: 사고가 있었던 것 같아요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 08 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 08</span>
+        <span class="day-verb">의도·계획 ~(よ)うと思っています</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 동사 의지형 + と思っています (계획을 갖고 있음)</div>
+      <table><tr><th>1그룹</th><th>2그룹</th><th>する</th></tr><tr><td><span class="cell-h">1그룹</span><ruby>行<rt>い</rt></ruby>こうと<ruby>思<rt>おも</rt></ruby>っています<button class="table-speak-btn" onclick="speakText('行こうと思っています')">🔊</button><span class="reading-kr">이꼬우또오못떼이마스</span></td><td><span class="cell-h">2그룹</span><ruby>続<rt>つづ</rt></ruby>けようと<ruby>思<rt>おも</rt></ruby>っています<button class="table-speak-btn" onclick="speakText('続けようと思っています')">🔊</button><span class="reading-kr">쓰즈께요우또오못떼이마스</span></td><td><span class="cell-h">する</span>しようと<ruby>思<rt>おも</rt></ruby>っています<button class="table-speak-btn" onclick="speakText('しようと思っています')">🔊</button><span class="reading-kr">시요우또오못떼이마스</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>来年<rt>らいねん</rt></ruby>、<ruby>日本<rt>にっぽん</rt></ruby>に<ruby>行<rt>い</rt></ruby>こうと<ruby>思<rt>おも</rt></ruby>っています。</span>
+            <button class="audio-btn" onclick="speakText('来年、日本に行こうと思っています。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">라이넨닛뽄니이꼬우또오못떼이마스</div>
+          <div class="drill-trans">해석: 내년에 일본에 가려고 해요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>から<ruby>運動<rt>うんどう</rt></ruby>しようと<ruby>思<rt>おも</rt></ruby>っています。</span>
+            <button class="audio-btn" onclick="speakText('明日から運動しようと思っています。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시따까라운도우시요우또오못떼이마스</div>
+          <div class="drill-trans">해석: 내일부터 운동하려고 해요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>日本語<rt>にほんご</rt></ruby>を<ruby>続<rt>つづ</rt></ruby>けようと<ruby>思<rt>おも</rt></ruby>っています。</span>
+            <button class="audio-btn" onclick="speakText('日本語を続けようと思っています。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니혼고오쓰즈께요우또오못떼이마스</div>
+          <div class="drill-trans">해석: 일본어를 계속하려고 해요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>週末<rt>しゅうまつ</rt></ruby>は<ruby>休<rt>やす</rt></ruby>もうと<ruby>思<rt>おも</rt></ruby>っています。</span>
+            <button class="audio-btn" onclick="speakText('週末は休もうと思っています。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">슈우마쓰와야스모우또오못떼이마스</div>
+          <div class="drill-trans">해석: 주말은 쉬려고 해요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">タバコをやめようと<ruby>思<rt>おも</rt></ruby>っています。</span>
+            <button class="audio-btn" onclick="speakText('タバコをやめようと思っています。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">따바꼬오야메요우또오못떼이마스</div>
+          <div class="drill-trans">해석: 담배를 끊으려고 해요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 09 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 09</span>
+        <span class="day-verb">의견 ~と思います (~라고 생각해요)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 보통형 + と思います</div>
+      <table><tr><th>동사</th><th>부정</th><th>い형용사</th><th>な·명사</th></tr><tr><td><span class="cell-h">동사</span><ruby>来<rt>く</rt></ruby>ると<ruby>思<rt>おも</rt></ruby>います<button class="table-speak-btn" onclick="speakText('来ると思います')">🔊</button><span class="reading-kr">꾸루또오모이마스</span></td><td><span class="cell-h">부정</span><ruby>来<rt>こ</rt></ruby>ないと<ruby>思<rt>おも</rt></ruby>います<button class="table-speak-btn" onclick="speakText('来ないと思います')">🔊</button><span class="reading-kr">꼬나이또오모이마스</span></td><td><span class="cell-h">い형용사</span>おいしいと<ruby>思<rt>おも</rt></ruby>います<button class="table-speak-btn" onclick="speakText('おいしいと思います')">🔊</button><span class="reading-kr">오이시이또오모이마스</span></td><td><span class="cell-h">な·명사</span><ruby>便利<rt>べんり</rt></ruby>だと<ruby>思<rt>おも</rt></ruby>います<button class="table-speak-btn" onclick="speakText('便利だと思います')">🔊</button><span class="reading-kr">벤리다또오모이마스</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>明日<rt>あした</rt></ruby>は<ruby>晴<rt>は</rt></ruby>れると<ruby>思<rt>おも</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('明日は晴れると思います。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아시따와하레루또오모이마스</div>
+          <div class="drill-trans">해석: 내일은 맑을 거라고 생각해요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>彼<rt>かれ</rt></ruby>は<ruby>来<rt>こ</rt></ruby>ないと<ruby>思<rt>おも</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('彼は来ないと思います。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">까레와꼬나이또오모이마스</div>
+          <div class="drill-trans">해석: 그는 안 올 거라고 생각해요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">この<ruby>店<rt>みせ</rt></ruby>はおいしいと<ruby>思<rt>おも</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('この店はおいしいと思います。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">꼬노미세와오이시이또오모이마스</div>
+          <div class="drill-trans">해석: 이 가게는 맛있다고 생각해요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp">それはいい<ruby>考<rt>かんが</rt></ruby>えだと<ruby>思<rt>おも</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('それはいい考えだと思います。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">소레와이이깐가에다또오모이마스</div>
+          <div class="drill-trans">해석: 그건 좋은 생각이라고 생각해요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>少<rt>すこ</rt></ruby>し<ruby>高<rt>たか</rt></ruby>いと<ruby>思<rt>おも</rt></ruby>います。</span>
+            <button class="audio-btn" onclick="speakText('少し高いと思います。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">스꼬시따까이또오모이마스</div>
+          <div class="drill-trans">해석: 좀 비싸다고 생각해요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 10 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 10</span>
+        <span class="day-verb">변화 ~ことになりました (~하게 되었어요)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 동사 기본형 + ことになりました (외부·결과로 결정됨)</div>
+      <table><tr><th>동사</th><th>기본형</th><th>(내 결정)</th></tr><tr><td><span class="cell-h">동사</span><ruby>転勤<rt>てんきん</rt></ruby>することになりました<button class="table-speak-btn" onclick="speakText('転勤することになりました')">🔊</button><span class="reading-kr">뗀낀스루꼬또니나리마시따</span></td><td><span class="cell-h">기본형</span><ruby>引っ越<rt>ひっこ</rt></ruby>すことになりました<button class="table-speak-btn" onclick="speakText('引っ越すことになりました')">🔊</button><span class="reading-kr">힛꼬스꼬또니나리마시따</span></td><td><span class="cell-h">(내 결정)</span><ruby>留学<rt>りゅうがく</rt></ruby>することにしました<button class="table-speak-btn" onclick="speakText('留学することにしました')">🔊</button><span class="reading-kr">류우가꾸스루꼬또니시마시따</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>来月<rt>らいげつ</rt></ruby>、<ruby>東京<rt>とうきょう</rt></ruby>に<ruby>転勤<rt>てんきん</rt></ruby>することになりました。</span>
+            <button class="audio-btn" onclick="speakText('来月、東京に転勤することになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">라이게쓰또우꾜우니뗀낀스루꼬또니나리마시따</div>
+          <div class="drill-trans">해석: 다음 달 도쿄로 전근 가게 됐어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>会社<rt>かいしゃ</rt></ruby>をやめることになりました。</span>
+            <button class="audio-btn" onclick="speakText('会社をやめることになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">까이샤오야메루꼬또니나리마시따</div>
+          <div class="drill-trans">해석: 회사를 그만두게 됐어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>来週<rt>らいしゅう</rt></ruby>、<ruby>発表<rt>はっぴょう</rt></ruby>することになりました。</span>
+            <button class="audio-btn" onclick="speakText('来週、発表することになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">라이슈우핫뾰우스루꼬또니나리마시따</div>
+          <div class="drill-trans">해석: 다음 주에 발표하게 됐어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>日本<rt>にっぽん</rt></ruby>で<ruby>働<rt>はたら</rt></ruby>くことになりました。</span>
+            <button class="audio-btn" onclick="speakText('日本で働くことになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">닛뽄데하따라꾸꼬또니나리마시따</div>
+          <div class="drill-trans">해석: 일본에서 일하게 됐어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>結婚<rt>けっこん</rt></ruby>することになりました。</span>
+            <button class="audio-btn" onclick="speakText('結婚することになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">껫꼰스루꼬또니나리마시따</div>
+          <div class="drill-trans">해석: 결혼하게 됐어요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 11 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 11</span>
+        <span class="day-verb">능력변화 ~ようになりました (~할 수 있게 됐어요)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 가능형/기본형 + ようになりました (부정: ~なくなりました)</div>
+      <table><tr><th>가능형</th><th>2그룹</th><th>부정</th></tr><tr><td><span class="cell-h">가능형</span><ruby>話<rt>はな</rt></ruby>せるようになりました<button class="table-speak-btn" onclick="speakText('話せるようになりました')">🔊</button><span class="reading-kr">하나세루요우니나리마시따</span></td><td><span class="cell-h">2그룹</span><ruby>食<rt>た</rt></ruby>べられるようになりました<button class="table-speak-btn" onclick="speakText('食べられるようになりました')">🔊</button><span class="reading-kr">따베라레루요우니나리마시따</span></td><td><span class="cell-h">부정</span><ruby>飲<rt>の</rt></ruby>まなくなりました<button class="table-speak-btn" onclick="speakText('飲まなくなりました')">🔊</button><span class="reading-kr">노마나꾸나리마시따</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>日本語<rt>にほんご</rt></ruby>が<ruby>話<rt>はな</rt></ruby>せるようになりました。</span>
+            <button class="audio-btn" onclick="speakText('日本語が話せるようになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니혼고가하나세루요우니나리마시따</div>
+          <div class="drill-trans">해석: 일본어를 할 수 있게 됐어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>刺身<rt>さしみ</rt></ruby>が<ruby>食<rt>た</rt></ruby>べられるようになりました。</span>
+            <button class="audio-btn" onclick="speakText('刺身が食べられるようになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">사시미가따베라레루요우니나리마시따</div>
+          <div class="drill-trans">해석: 회를 먹을 수 있게 됐어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>朝早<rt>あさはや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きられるようになりました。</span>
+            <button class="audio-btn" onclick="speakText('朝早く起きられるようになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">아사하야꾸오끼라레루요우니나리마시따</div>
+          <div class="drill-trans">해석: 아침 일찍 일어날 수 있게 됐어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>自転車<rt>じてんしゃ</rt></ruby>に<ruby>乗<rt>の</rt></ruby>れるようになりました。</span>
+            <button class="audio-btn" onclick="speakText('自転車に乗れるようになりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">지뗀샤니노레루요우니나리마시따</div>
+          <div class="drill-trans">해석: 자전거를 탈 수 있게 됐어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>最近<rt>さいきん</rt></ruby>、お<ruby>酒<rt>さけ</rt></ruby>を<ruby>飲<rt>の</rt></ruby>まなくなりました。</span>
+            <button class="audio-btn" onclick="speakText('最近、お酒を飲まなくなりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">사이낀오사께오노마나꾸나리마시따</div>
+          <div class="drill-trans">해석: 요즘 술을 안 마시게 됐어요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 12 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 12</span>
+        <span class="day-verb">노력·습관 ~ようにします·~ようにしています</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 동사 기본형/ない형 + ようにする</div>
+      <table><tr><th>긍정</th><th>부정</th><th>습관</th></tr><tr><td><span class="cell-h">긍정</span><ruby>運動<rt>うんどう</rt></ruby>するようにします<button class="table-speak-btn" onclick="speakText('運動するようにします')">🔊</button><span class="reading-kr">운도우스루요우니시마스</span></td><td><span class="cell-h">부정</span><ruby>遅<rt>おく</rt></ruby>れないようにします<button class="table-speak-btn" onclick="speakText('遅れないようにします')">🔊</button><span class="reading-kr">오꾸레나이요우니시마스</span></td><td><span class="cell-h">습관</span><ruby>飲<rt>の</rt></ruby>むようにしています<button class="table-speak-btn" onclick="speakText('飲むようにしています')">🔊</button><span class="reading-kr">노무요우니시떼이마스</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>毎日<rt>まいにち</rt></ruby><ruby>野菜<rt>やさい</rt></ruby>を<ruby>食<rt>た</rt></ruby>べるようにしています。</span>
+            <button class="audio-btn" onclick="speakText('毎日野菜を食べるようにしています。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마이니치야사이오따베루요우니시떼이마스</div>
+          <div class="drill-trans">해석: 매일 야채를 먹으려고 해요(먹도록).</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>遅刻<rt>ちこく</rt></ruby>しないようにします。</span>
+            <button class="audio-btn" onclick="speakText('遅刻しないようにします。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">치꼬꾸시나이요우니시마스</div>
+          <div class="drill-trans">해석: 지각하지 않도록 할게요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>水<rt>みず</rt></ruby>をたくさん<ruby>飲<rt>の</rt></ruby>むようにしています。</span>
+            <button class="audio-btn" onclick="speakText('水をたくさん飲むようにしています。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">미즈오따꾸산노무요우니시떼이마스</div>
+          <div class="drill-trans">해석: 물을 많이 마시도록 하고 있어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>毎朝<rt>まいあさ</rt></ruby><ruby>早<rt>はや</rt></ruby>く<ruby>起<rt>お</rt></ruby>きるようにします。</span>
+            <button class="audio-btn" onclick="speakText('毎朝早く起きるようにします。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마이아사하야꾸오끼루요우니시마스</div>
+          <div class="drill-trans">해석: 매일 아침 일찍 일어나도록 할게요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>夜<rt>よる</rt></ruby>は<ruby>食<rt>た</rt></ruby>べすぎないようにしています。</span>
+            <button class="audio-btn" onclick="speakText('夜は食べすぎないようにしています。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">요루와따베스기나이요우니시떼이마스</div>
+          <div class="drill-trans">해석: 밤에는 과식하지 않도록 하고 있어요.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 심화 13 -->
+    <div class="day-card">
+      <div class="day-title-row">
+        <span class="day-tag">심화 13</span>
+        <span class="day-verb">형용사 변화 ~くなる·~になる (~해지다)</span>
+        <button class="day-play-btn" onclick="playCard(this)">▶ 전체 듣기</button>
+        <label class="check-label"><input type="checkbox"> 완료</label>
+      </div>
+      <div class="conn-note">📌 い형용사 어간+くなる · な형용사/명사+になる</div>
+      <table><tr><th>い형용사</th><th>な형용사</th><th>명사</th></tr><tr><td><span class="cell-h">い형용사</span><ruby>寒<rt>さむ</rt></ruby>い → <ruby>寒<rt>さむ</rt></ruby>くなりました<button class="table-speak-btn" onclick="speakText('寒くなりました')">🔊</button><span class="reading-kr">사무꾸나리마시따</span></td><td><span class="cell-h">な형용사</span><ruby>便利<rt>べんり</rt></ruby> → <ruby>便利<rt>べんり</rt></ruby>になりました<button class="table-speak-btn" onclick="speakText('便利になりました')">🔊</button><span class="reading-kr">벤리니나리마시따</span></td><td><span class="cell-h">명사</span><ruby>大人<rt>おとな</rt></ruby> → <ruby>大人<rt>おとな</rt></ruby>になりました<button class="table-speak-btn" onclick="speakText('大人になりました')">🔊</button><span class="reading-kr">오또나니나리마시따</span></td></tr></table>
+      <div class="drill-section">
+        <div class="drill-label">실전 예문 · 5문장</div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>最近<rt>さいきん</rt></ruby>、<ruby>寒<rt>さむ</rt></ruby>くなりました。</span>
+            <button class="audio-btn" onclick="speakText('最近、寒くなりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">사이낀사무꾸나리마시따</div>
+          <div class="drill-trans">해석: 요즘 추워졌어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>町<rt>まち</rt></ruby>がとても<ruby>便利<rt>べんり</rt></ruby>になりました。</span>
+            <button class="audio-btn" onclick="speakText('町がとても便利になりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">마치가또떼모벤리니나리마시따</div>
+          <div class="drill-trans">해석: 동네가 아주 편리해졌어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>日本語<rt>にほんご</rt></ruby>が<ruby>上手<rt>じょうず</rt></ruby>になりました。</span>
+            <button class="audio-btn" onclick="speakText('日本語が上手になりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">니혼고가죠우즈니나리마시따</div>
+          <div class="drill-trans">해석: 일본어가 늘었어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>空<rt>そら</rt></ruby>が<ruby>暗<rt>くら</rt></ruby>くなりました。</span>
+            <button class="audio-btn" onclick="speakText('空が暗くなりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">소라가꾸라꾸나리마시따</div>
+          <div class="drill-trans">해석: 하늘이 어두워졌어요.</div>
+        </div>
+        <div class="drill-item">
+          <div class="drill-main">
+            <span class="drill-jp"><ruby>元気<rt>げんき</rt></ruby>になりました。</span>
+            <button class="audio-btn" onclick="speakText('元気になりました。')">🔊 듣기</button>
+          </div>
+          <div class="drill-kr-read">겐끼니나리마시따</div>
+          <div class="drill-trans">해석: 건강해졌어요.</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
     let speechRate = 1.0;
     let jaVoice = null;
-    let apActive = false, apTimer = null, apBtn = null;
+    let apActive = false, apTimer = null, apBtn = null, allBtn = null, allCards = [], allI = 0;
 
     function pickVoice() {
       if (!('speechSynthesis' in window)) return;
@@ -2059,6 +2782,31 @@
       apActive = false;
       if (apTimer) { clearTimeout(apTimer); apTimer = null; }
       if (apBtn) { apBtn.textContent = '▶ 전체 듣기'; apBtn.classList.remove('playing'); apBtn = null; }
+      if (allBtn) { allBtn.textContent = '▶ Day 1부터 전체 이어 듣기'; allBtn.classList.remove('active'); allBtn = null; }
+    }
+    // Day 1부터 모든 카드 순차 재생
+    function togglePlayAll(btn) {
+      if (!('speechSynthesis' in window)) { alert('이 브라우저는 음성 재생을 지원하지 않습니다.'); return; }
+      if (allBtn) { window.speechSynthesis.cancel(); stopAuto(); return; }
+      window.speechSynthesis.cancel(); stopAuto();
+      if (!jaVoice) pickVoice();
+      allCards = [...document.querySelectorAll('.day-card')]; allI = 0;
+      allBtn = btn; btn.textContent = '⏸ 전체 재생 정지'; btn.classList.add('active');
+      apActive = true; playCardSeq();
+    }
+    function playCardSeq() {
+      if (!apActive || allI >= allCards.length) { stopAuto(); return; }
+      const card = allCards[allI];
+      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      const texts = [...card.querySelectorAll('[onclick^="speakText"]')]
+        .map(e => (e.getAttribute('onclick').match(/speakText\('([^']*)'\)/) || [])[1]).filter(Boolean);
+      let j = 0;
+      const step = () => {
+        if (!apActive) return;
+        if (j >= texts.length) { allI++; apTimer = setTimeout(playCardSeq, 750); return; }
+        speakOne(texts[j], () => { if (!apActive) return; j++; apTimer = setTimeout(step, 380); });
+      };
+      step();
     }
     function speakText(text) {
       if (!('speechSynthesis' in window)) { alert('이 브라우저는 음성 재생(Web Speech API)을 지원하지 않습니다. Chrome이나 Safari를 권장합니다.'); return; }
