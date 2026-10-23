@@ -9,7 +9,7 @@
 | 앱 | 원본 | 문항 |
 |----|------|------|
 | [pattern202.html](pattern202.html) | 시원스쿨 일본어 패턴 202 (1~60강) | 508문장 |
-| [speaking.html](speaking.html) | 시원스쿨 일본어 기초말하기 (1~30강) 종합 실습본 | 130문장 |
+| [speaking.html](speaking.html) | 시원스쿨 일본어 기초말하기 (1~30강) 종합 실습본 | 259문장 |
 | [travel.html](travel.html) | 여행·일상·드라마 회화 (자체 제작, T01~T12 · D01~D05) | 170문장 |
 | [sentences.html](sentences.html) | 왕초보 1~3단계 문장정리 (Lv.1~3) | 53패턴 |
 | 단어장 | 무따기 25.01 교재 → [jp-vocab](https://turnup43.github.io/jp-vocab/) | 3,392단어 |
